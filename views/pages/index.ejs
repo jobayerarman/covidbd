@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html  lang="bd">
-<head>
-<% include ../partials/header.ejs %>
-</head>
+<html lang="bd">
+  <head>
+    <% include ../partials/header.ejs %>
+  </head>
 
-<body>
+  <body>
+    <% include ../partials/nav.ejs %>
 
-  <% include ../partials/nav.ejs %>
+    <div class="container-fluid px-lg-5">
+      <div class="row">
+        <div class="col-3">
+          <div class="card text-center mt-5">
+            <div class="card-body">
+              <h2 class="card-title text-warning">৪২৪</h2>
+              <p>মোট আক্রান্ত</p>
+              <h2 class="card-title text-danger">২৭</h2>
+              <p>মোট মৃত</p>
+              <h2 class="card-title text-success">৩৩</h2>
+              <p>মোট সুস্থ</p>
+            </div>
+          </div>
+        </div>
 
-  <div class="container">
-    <div class="chart-container">
-      <canvas id="coronaCases"></canvas>
+        <div class="col-9">
+          <div class="row">
+            <div class="col">
+              <div class="chart-container">
+                <canvas id="coronaCases"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="chart-container">
+                <canvas id="coronaDeaths"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="chart-container">
-      <canvas id="coronaDeaths"></canvas>
-    </div>
-  </div>
 
-  <% include ../partials/footer.ejs %>
-</body>
+    <% include ../partials/footer.ejs %>
+  </body>
 </html>
