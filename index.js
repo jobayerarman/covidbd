@@ -9,6 +9,5 @@ express()
 
   // ---- ROUTES ---- //
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/about', (req, res) => res.render('pages/about'))
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
