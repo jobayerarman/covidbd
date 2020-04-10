@@ -12,6 +12,10 @@
   },
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/covidbd.git"
+  },
   "dependencies": {
     "ejs": "^2.5.6",
     "express": "^4.15.2"
