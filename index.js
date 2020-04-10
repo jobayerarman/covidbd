@@ -9,5 +9,7 @@ express()
 
   // ---- ROUTES ---- //
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/wiki', (req, res) => res.render('pages/wiki'))
+  .get('/about', (req, res) => res.render('pages/about'))
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
