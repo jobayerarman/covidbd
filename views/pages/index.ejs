@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html  lang="bd">
 <head>
-  <% include ../partials/header.ejs %>
+<% include ../partials/header.ejs %>
 </head>
 
 <body>
 
   <% include ../partials/nav.ejs %>
-<div>
-  <p>Hello, World!</p>
-  <p>From: Jobayer Arman</p>
-</div>
 
+  <div class="container">
+    <div class="chart-container">
+      <canvas id="coronaCases"></canvas>
+    </div>
+  </div>
+  <div class="container">
+    <div class="chart-container">
+      <canvas id="coronaDeaths"></canvas>
+    </div>
+  </div>
+
+  <% include ../partials/footer.ejs %>
 </body>
 </html>
