@@ -22,31 +22,34 @@ const bnNum = (num, komma = false) => {
 };
 
 app
-  .set('view engine', 'ejs')
-  .set('views', path.join(__dirname, 'views'))
-  .use(express.static(path.join(__dirname, 'public')))
+  .set("view engine", "ejs")
+  .set("views", path.join(__dirname, "views"))
+  .use(express.static(path.join(__dirname, "public")))
 
   // ---- ROUTES ---- //
-  .get('/', (req, res) => {
-    track.countries('Bangladesh').then((result) => {
-      let todayCases = bnNum(result.todayCases, true);
-      let cases = bnNum(result.cases, true);
-      let todayDeaths = bnNum(result.todayDeaths, true);
-      let deaths = bnNum(result.deaths, true);
-      let recovered = bnNum(result.recovered, true);
-      let tests = bnNum(result.tests, true);
+  .get("/", (req, res) => {
+    track
+      .countries("Bangladesh")
+      .then((result) => {
+        let todayCases = bnNum(result.todayCases, true);
+        let cases = bnNum(result.cases, true);
+        let todayDeaths = bnNum(result.todayDeaths, true);
+        let deaths = bnNum(result.deaths, true);
+        let recovered = bnNum(result.recovered, true);
+        let tests = bnNum(result.tests, true);
 
-      res.render("pages/index", {
-        todayCases: todayCases,
-        cases: cases,
-        todayDeaths: todayDeaths,
-        deaths: deaths,
-        recovered: recovered,
-        tests: tests,
-      });
-    });
+        res.render("pages/index", {
+          todayCases: todayCases,
+          cases: cases,
+          todayDeaths: todayDeaths,
+          deaths: deaths,
+          recovered: recovered,
+          tests: tests,
+        });
+      })
+      .catch((err) => console.error());
   })
-  .get('/wiki', (req, res) => res.render('pages/wiki'))
-  .get('/about', (req, res) => res.render('pages/about'))
+  .get("/wiki", (req, res) => res.render("pages/wiki"))
+  .get("/about", (req, res) => res.render("pages/about"))
 
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
