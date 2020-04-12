@@ -1,28 +1,17 @@
-const express = require('express')
-const path = require('path')
-const axios = require("axios");
-const cheerio = require("cheerio");
-const PORT = process.env.PORT || 5000
+const express = require('express');
+const path = require('path');
+const { NovelCovid } = require("novelcovid");
+const track = new NovelCovid();
+const PORT = process.env.PORT || 5000;
 
-const fetchHtml = async (url) => {
-  try {
-    const { data } = await axios.get(url);
-    return data;
-  } catch {
-    console.error(`ERROR: An error occurred while trying to fetch the URL: ${url}`);
-  }
-};
+let cases, todayCases, deaths, todayDeaths;
 
-const scrapData = async () => {
-  const webUrl = "https://corona.gov.bd/";
-  const html = await fetchHtml(webUrl);
-  const $ = cheerio.load(html);
-  const statistic = $(".statistic__efected").html();
-
-  console.log(statistic);
+const assignData = (result) => {
+  cases = result.cases;
+  todayCases = result.todayCases;
 }
+track.countries("Bangladesh").then(assignData);
 
-scrapData();
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
