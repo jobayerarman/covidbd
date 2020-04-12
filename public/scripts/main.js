@@ -29,6 +29,7 @@ var dateLabels = [
   "৯ এপ্রিল",
   "১০ এপ্রিল",
   "১১ এপ্রিল",
+  "১২ এপ্রিল",
 ];
 
 var deathData = {
@@ -39,7 +40,7 @@ var deathData = {
     borderColor: 'rgb(243, 58, 63)',
     fill: false,
     data: [
-      0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 8, 9, 12, 17, 20, 21, 27, 30
+      0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 8, 9, 12, 17, 20, 21, 27, 30, 34
     ]
   }]
 };
@@ -95,8 +96,8 @@ var casesConfig = {
     datasets: [
       {
         label: "নতুন আক্রান্ত",
-        backgroundColor: "rgb(103, 164, 255)",
-        borderColor: "rgb(103, 164, 255)",
+        backgroundColor: "rgb(251, 206, 68)",
+        borderColor: "rgb(251, 206, 68)",
         fill: false,
         data: [
           {
@@ -203,12 +204,16 @@ var casesConfig = {
             x: moment("11-04-2020", "DD-MM-YYYY"),
             y: 58,
           },
+          {
+            x: moment("12-04-2020", "DD-MM-YYYY"),
+            y: 139,
+          },
         ],
       },
       {
         label: "মোট আক্রান্ত",
-        backgroundColor: "rgb(42, 127, 255)",
-        borderColor: "rgb(42, 127, 255)",
+        backgroundColor: "rgb(236, 178, 5)",
+        borderColor: "rgb(236, 178, 5)",
         fill: false,
         data: [
           {
@@ -314,6 +319,10 @@ var casesConfig = {
           {
             x: moment("11-04-2020", "DD-MM-YYYY"),
             y: 482,
+          },
+          {
+            x: moment("12-04-2020", "DD-MM-YYYY"),
+            y: 621,
           },
         ],
       },
