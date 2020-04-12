@@ -55,6 +55,7 @@ var deathConfig = {
   // Configuration options go here
   options: {
     responsive: true,
+    maintainAspectRatio: false,
     title: {
       display: true,
       fontSize: 20,
@@ -329,6 +330,8 @@ var casesConfig = {
     ],
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
     title: {
       display: true,
       fontSize: 20,

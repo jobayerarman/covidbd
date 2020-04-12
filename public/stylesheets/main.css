@@ -1,0 +1,13 @@
+@media only screen and (max-width: 768px) {
+  .card {
+    margin-top: 15px;
+  }
+
+  .twitter-follow {
+    margin-top: 20px;
+  }
+
+  .chart-container {
+    margin-bottom: 30px;
+  }
+}
