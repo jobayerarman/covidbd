@@ -7,42 +7,71 @@
   <body>
     <% include ../partials/nav.ejs %>
 
-    <div class="container-fluid px-lg-5">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card text-center mt-5">
+    <div class="container-fluid px-md-5 mt-4">
+      <div class="row text-center">
+        <div class="col-md-2">
+          <div class="card border border-warning">
             <div class="card-body">
-              <h2 class="card-title text-primary">৫৮</h2>
-              <p>নতুন আক্রান্ত</p>
-              <h2 class="card-title text-primary">৪৮২</h2>
-              <p>মোট আক্রান্ত</p>
-              <h2 class="card-title text-danger">৩০ <small>(+৩)</small></h2>
-              <p>মোট মৃত</p>
-              <h2 class="card-title text-success">৩৬ <small>(+৩)</small></h2>
-              <p>মোট সুস্থ</p>
-              <small>সর্বশেষঃ <span id="update-date">এপ্রিল, 2020</span></small>
+              <h2 class="card-title text-warning"><%= todayCases %></h2>
+              <p>গত ২৪ ঘণ্টায় নতুন আক্রান্ত</p>
             </div>
           </div>
         </div>
-
-        <div class="col-md-9">
-
-          <div class="row">
-            <div class="col">
-              <div class="chart-container">
-                <canvas id="coronaCasesByTime"></canvas>
-              </div>
+        <div class="col-md-2">
+          <div class="card bg-warning">
+            <div class="card-body text-white">
+              <h2 class="card-title"><%= cases %></h2>
+              <p>মোট আক্রান্ত</p>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col mt-5">
-              <div class="chart-container">
-                <canvas id="coronaDeathByTime"></canvas>
-              </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card border border-danger">
+            <div class="card-body">
+              <h2 class="card-title text-danger"><%= todayDeaths %></h2>
+              <p>গত ২৪ ঘণ্টায় মোট মৃত্যু</p>
             </div>
           </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card bg-danger">
+            <div class="card-body text-white">
+              <h2 class="card-title"><%= deaths %></h2>
+              <p>মোট মৃত</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card border border-success">
+            <div class="card-body">
+              <h2 class="card-title text-success"><%= recovered %> </h2>
+              <p>মোট সুস্থ</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card border border-info">
+            <div class="card-body">
+              <h2 class="card-title text-info"><%= tests %> </h2>
+              <p>মোট পরিক্ষাকৃত নমুনার সংখ্যা</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="container-fluid px-lg-5">
+      <div class="row">
+        <div class="col">
+          <div class="chart-container">
+            <canvas id="coronaCasesByTime"></canvas>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="chart-container">
+            <canvas id="coronaDeathByTime"></canvas>
+          </div>
         </div>
       </div>
     </div>
