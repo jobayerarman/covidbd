@@ -4,20 +4,23 @@ const favicon        = require("serve-favicon");
 const path           = require('path');
 const { NovelCovid } = require('novelcovid');
 const track          = new NovelCovid();
+const moment         = require('moment');
 const PORT           = process.env.PORT || 5000;
+
+moment.locale('bn');
 
 const bnNum = (num, komma = false) => {
   const banglaNumber = {
-    "0": "০",
-    "1": "১",
-    "2": "২",
-    "3": "৩",
-    "4": "৪",
-    "5": "৫",
-    "6": "৬",
-    "7": "৭",
-    "8": "৮",
-    "9": "৯",
+    '0': '০',
+    '1': '১',
+    '2': '২',
+    '3': '৩',
+    '4': '৪',
+    '5': '৫',
+    '6': '৬',
+    '7': '৭',
+    '8': '৮',
+    '9': '৯',
   };
   let str = `${num.toLocaleString('bn-BD', { useGrouping: komma })}`;
 
@@ -39,20 +42,23 @@ app
     track
       .countries('Bangladesh')
       .then((result) => {
-        let todayCases = bnNum(result.todayCases, true);
-        let cases = bnNum(result.cases, true);
+        let todayCases  = bnNum(result.todayCases, true);
+        let cases       = bnNum(result.cases, true);
         let todayDeaths = bnNum(result.todayDeaths, true);
-        let deaths = bnNum(result.deaths, true);
-        let recovered = bnNum(result.recovered, true);
-        let tests = bnNum(result.tests, true);
+        let deaths      = bnNum(result.deaths, true);
+        let recovered   = bnNum(result.recovered, true);
+        let tests       = bnNum(result.tests, true);
+        let updated     = moment(result.updated).fromNow();
+        console.log(updated);
 
         res.render('pages/index', {
-          todayCases: todayCases,
-          cases: cases,
+          todayCases : todayCases,
+          cases      : cases,
           todayDeaths: todayDeaths,
-          deaths: deaths,
-          recovered: recovered,
-          tests: tests,
+          deaths     : deaths,
+          recovered  : recovered,
+          tests      : tests,
+          updated    : updated,
         });
       })
       .catch((err) => console.error());

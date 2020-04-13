@@ -10,4 +10,9 @@
   .chart-container {
     margin-bottom: 30px;
   }
+
+  .list-inline {
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
+  }
 }
