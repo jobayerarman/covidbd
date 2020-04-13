@@ -379,14 +379,4 @@ window.onload = () => {
   window.myLine = new Chart(coronaCases, casesConfig);
   let coronaDeaths = document.getElementById("coronaDeathByTime").getContext("2d");
   window.myLine = new Chart(coronaDeaths, deathConfig);
-
-  let updateTime = () => {
-    let datePlace = document.getElementById('update-date');
-    let localLocale = moment();
-    localLocale.locale('bn');
-    let dateToday = localLocale.format('DD MMMM, YYYY');
-    datePlace.innerText = dateToday;
-  }
-  updateTime();
 };
-
