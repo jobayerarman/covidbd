@@ -1,10 +1,9 @@
 const express        = require('express');
 const app            = express();
+const favicon        = require("serve-favicon");
 const path           = require('path');
-
 const { NovelCovid } = require('novelcovid');
 const track          = new NovelCovid();
-
 const PORT           = process.env.PORT || 5000;
 
 const bnNum = (num, komma = false) => {
@@ -30,14 +29,15 @@ const bnNum = (num, komma = false) => {
 };
 
 app
-  .set("view engine", "ejs")
-  .set("views", path.join(__dirname, "views"))
-  .use(express.static(path.join(__dirname, "public")))
+  .set('view engine', 'ejs')
+  .set('views', path.join(__dirname, 'views'))
+  .use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
+  .use(express.static(path.join(__dirname, 'public')))
 
   // ---- ROUTES ---- //
-  .get("/", (req, res) => {
+  .get('/', (req, res) => {
     track
-      .countries("Bangladesh")
+      .countries('Bangladesh')
       .then((result) => {
         let todayCases = bnNum(result.todayCases, true);
         let cases = bnNum(result.cases, true);
@@ -46,7 +46,7 @@ app
         let recovered = bnNum(result.recovered, true);
         let tests = bnNum(result.tests, true);
 
-        res.render("pages/index", {
+        res.render('pages/index', {
           todayCases: todayCases,
           cases: cases,
           todayDeaths: todayDeaths,
@@ -57,7 +57,7 @@ app
       })
       .catch((err) => console.error());
   })
-  .get("/wiki", (req, res) => res.render("pages/wiki"))
-  .get("/about", (req, res) => res.render("pages/about"))
+  .get('/wiki', (req, res) => res.render('pages/wiki'))
+  .get('/about', (req, res) => res.render('pages/about'))
 
   .listen(PORT, () => console.log(`Listening on ${PORT}`));

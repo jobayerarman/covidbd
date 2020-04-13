@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",
@@ -19,7 +19,8 @@
   "dependencies": {
     "ejs": "^2.5.6",
     "express": "^4.15.2",
-    "novelcovid": "^1.1.4"
+    "novelcovid": "^1.1.4",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "request": "^2.81.0",
