@@ -22,12 +22,11 @@ const bnNum = (num, komma = false) => {
     '8': '৮',
     '9': '৯',
   };
-  let str = `${num.toLocaleString('bn-BD', { useGrouping: komma })}`;
 
+  let str = `${num.toLocaleString('bn-BD', { useGrouping: komma })}`;
   for (var x in banglaNumber) {
     str = str.replace(new RegExp(x, "g"), banglaNumber[x]);
   }
-
   return str;
 };
 
@@ -47,9 +46,9 @@ app
         let todayDeaths = bnNum(result.todayDeaths, true);
         let deaths      = bnNum(result.deaths, true);
         let recovered   = bnNum(result.recovered, true);
+        let recovered   = bnNum(result.recovered, true);
         let tests       = bnNum(result.tests, true);
         let updated     = moment(result.updated).fromNow();
-        console.log(updated);
 
         res.render('pages/index', {
           todayCases : todayCases,
