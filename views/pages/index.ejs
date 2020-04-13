@@ -8,55 +8,62 @@
     <% include ../partials/nav.ejs %>
 
     <div class="container-fluid px-md-5 mt-4 mb-4">
-      <div class="row text-center">
-        <div class="col-lg-2 col-md-6">
-          <div class="card border border-warning">
-            <div class="card-body">
-              <h2 class="card-title text-warning"><%= todayCases %></h2>
-              <p>গত ২৪ ঘণ্টায় নতুন আক্রান্ত</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 text-center">
+
+        <div class="col mb-2">
           <div class="card bg-warning">
             <div class="card-body text-white">
-              <h2 class="card-title"><%= cases %></h2>
-              <p>মোট আক্রান্ত</p>
+              <p>গত ২৪ ঘণ্টায় নতুন আক্রান্ত</p>
+              <h2 class="card-title"><%= todayCases %></h2>
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6">
-          <div class="card border border-danger">
-            <div class="card-body">
-              <h2 class="card-title text-danger"><%= todayDeaths %></h2>
-              <p>গত ২৪ ঘণ্টায় মোট মৃত্যু</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6">
+
+        <div class="col mb-2">
           <div class="card bg-danger">
             <div class="card-body text-white">
-              <h2 class="card-title"><%= deaths %></h2>
-              <p>মোট মৃত</p>
+              <p>গত ২৪ ঘণ্টায় মোট মৃত্যু</p>
+              <h2 class="card-title"><%= todayDeaths %></h2>
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6">
+
+        <div class="col mb-2">
+          <div class="card border border-warning">
+            <div class="card-body text-warning">
+              <p>মোট আক্রান্ত</p>
+              <h2 class="card-title"><%= cases %></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-2">
+          <div class="card border-danger">
+            <div class="card-body text-danger">
+              <p>মোট মৃত</p>
+              <h2 class="card-title"><%= deaths %></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-2">
           <div class="card border border-success">
             <div class="card-body">
-              <h2 class="card-title text-success"><%= recovered %> </h2>
               <p>মোট সুস্থ</p>
+              <h2 class="card-title text-success"><%= recovered %> </h2>
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6">
+
+        <div class="col mb-2">
           <div class="card border border-info">
             <div class="card-body">
-              <h2 class="card-title text-info"><%= tests %> </h2>
               <p>মোট পরিক্ষাকৃত নমুনার সংখ্যা</p>
+              <h2 class="card-title text-info"><%= tests %> </h2>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
