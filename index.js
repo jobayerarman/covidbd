@@ -33,8 +33,8 @@ const bnNum = (num, komma = false) => {
 app
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))
-  .use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
   .use(express.static(path.join(__dirname, 'public')))
+  .use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 
   // ---- ROUTES ---- //
   .get('/', (req, res) => {
