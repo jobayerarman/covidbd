@@ -46,7 +46,6 @@ app
         let todayDeaths = bnNum(result.todayDeaths, true);
         let deaths      = bnNum(result.deaths, true);
         let recovered   = bnNum(result.recovered, true);
-        let recovered   = bnNum(result.recovered, true);
         let tests       = bnNum(result.tests, true);
         let updated     = moment(result.updated).fromNow();
 
