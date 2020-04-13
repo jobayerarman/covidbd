@@ -98,8 +98,8 @@ var casesConfig = {
     datasets: [
       {
         label: "নতুন আক্রান্ত",
-        backgroundColor: "rgb(251, 206, 68)",
-        borderColor: "rgb(251, 206, 68)",
+        backgroundColor: "rgb(250, 196, 29)",
+        borderColor: "rgb(250, 196, 29)",
         fill: false,
         data: [
           {
@@ -218,8 +218,8 @@ var casesConfig = {
       },
       {
         label: "মোট আক্রান্ত",
-        backgroundColor: "rgb(236, 178, 5)",
-        borderColor: "rgb(236, 178, 5)",
+        backgroundColor: "rgb(241, 118, 0)",
+        borderColor: "rgb(241, 118, 0)",
         fill: false,
         data: [
           {
