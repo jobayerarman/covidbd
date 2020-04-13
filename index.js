@@ -8,17 +8,25 @@ const track          = new NovelCovid();
 const PORT           = process.env.PORT || 5000;
 
 const bnNum = (num, komma = false) => {
-  return `${num.toLocaleString("fullwide", { useGrouping: komma })}`
-    .replace("1", "১")
-    .replace("2", "২")
-    .replace("3", "৩")
-    .replace("4", "৪")
-    .replace("5", "৫")
-    .replace("6", "৬")
-    .replace("7", "৭")
-    .replace("8", "৮")
-    .replace("9", "৯")
-    .replace("0", "০");
+  const banglaNumber = {
+    "0": "০",
+    "1": "১",
+    "2": "২",
+    "3": "৩",
+    "4": "৪",
+    "5": "৫",
+    "6": "৬",
+    "7": "৭",
+    "8": "৮",
+    "9": "৯",
+  };
+  let str = `${num.toLocaleString('bn-BD', { useGrouping: komma })}`;
+
+  for (var x in banglaNumber) {
+    str = str.replace(new RegExp(x, "g"), banglaNumber[x]);
+  }
+
+  return str;
 };
 
 app
