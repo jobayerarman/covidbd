@@ -65,6 +65,10 @@ var deathConfig = {
     legend: {
       position: "bottom",
     },
+    tooltips: {
+      mode: "index",
+      intersect: false,
+    },
   },
 };
 
@@ -348,6 +352,10 @@ var casesConfig = {
     },
     legend: {
       position: "bottom",
+    },
+    tooltips: {
+      mode: "index",
+      intersect: false,
     },
     scales: {
       xAxes: [
