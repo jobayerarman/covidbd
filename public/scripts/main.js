@@ -1,5 +1,6 @@
 window["moment-range"].extendMoment(moment);
 var dateLabels = [
+  "১ মার্চ",
   "৮ মার্চ",
   "১৫ মার্চ",
   "১৬ মার্চ",
@@ -43,7 +44,7 @@ var deathData = {
     borderColor: 'rgb(243, 58, 63)',
     fill: false,
     data: [
-      0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 8, 9, 12, 17, 20, 21, 27, 30, 34, 39, 46, 50
+      0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 8, 9, 12, 17, 20, 21, 27, 30, 34, 39, 46, 50
     ]
   }]
 };
@@ -108,6 +109,10 @@ var casesConfig = {
         borderColor: "rgb(250, 196, 29)",
         fill: false,
         data: [
+          {
+            x: moment("01-03-2020", "DD-MM-YYYY"),
+            y: 0,
+          },
           {
             x: moment("08-03-2020", "DD-MM-YYYY"),
             y: 3,
@@ -236,6 +241,10 @@ var casesConfig = {
         borderColor: "rgb(241, 118, 0)",
         fill: false,
         data: [
+          {
+            x: moment("01-03-2020", "DD-MM-YYYY"),
+            y: 0,
+          },
           {
             x: moment("08-03-2020", "DD-MM-YYYY"),
             y: 3,
