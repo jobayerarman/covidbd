@@ -7,7 +7,7 @@
     "npm": "^5.6.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "gulp",
     "test": "node test.js"
   },
   "main": "index.js",
@@ -24,6 +24,9 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
     "request": "^2.81.0",
     "tape": "^4.7.0"
   },
