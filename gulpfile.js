@@ -87,6 +87,10 @@ const watchFiles = () => {
   // watch css files
   watch('public/**/*.css', parallel(styles))
   .on('change', browserReload());
+
+  // watch ejs files
+  watch('views/**/*.ejs')
+  .on('change', browserReload());
 };
 
 exports.default = parallel(series(nodemonTask, browserSyncTask), watchFiles);
