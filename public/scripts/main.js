@@ -105,7 +105,7 @@ var casesConfig = {
     labels: dates,
     datasets: [
       {
-        label: "নতুন আক্রান্ত",
+        label: "নতুন শনাক্ত",
         backgroundColor: "rgb(250, 196, 29)",
         borderColor: "rgb(250, 196, 29)",
         fill: false,
@@ -241,7 +241,7 @@ var casesConfig = {
         ],
       },
       {
-        label: "মোট আক্রান্ত",
+        label: "মোট শনাক্ত",
         backgroundColor: "rgb(241, 118, 0)",
         borderColor: "rgb(241, 118, 0)",
         fill: false,
@@ -384,7 +384,7 @@ var casesConfig = {
     title: {
       display: true,
       fontSize: 20,
-      text: "নতুন ও মোট আক্রান্তের সংখ্যা",
+      text: "নতুন ও মোট শনাক্তের সংখ্যা",
     },
     legend: {
       position: "bottom",

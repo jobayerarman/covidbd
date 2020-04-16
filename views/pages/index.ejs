@@ -13,7 +13,7 @@
         <div class="col mb-2">
           <div class="card bg-warning">
             <div class="card-body text-white">
-              <p>গত ২৪ ঘণ্টায় নতুন আক্রান্ত</p>
+              <p>গত ২৪ ঘণ্টায় নতুন শনাক্ত</p>
               <h2 class="card-title"><%= todayCases %></h2>
             </div>
           </div>
@@ -31,7 +31,7 @@
         <div class="col mb-2">
           <div class="card border border-warning">
             <div class="card-body">
-              <p>মোট আক্রান্ত</p>
+              <p>মোট শনাক্ত</p>
               <h2 class="card-title text-warning"><%= cases %></h2>
             </div>
           </div>
@@ -78,6 +78,22 @@
         <div class="col-lg-6 col-md-12">
           <div class="chart-container table-responsive">
             <canvas id="coronaDeathByTime" class="table" style="max-height: 450px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid px-lg-5">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="chart-container table-responsive">
+            <canvas id="coronaDivision" class="table" style="max-height: 450px"></canvas>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+          <div class="chart-container table-responsive">
+            <canvas id="coronaDistrict" class="table" style="max-height: 450px"></canvas>
           </div>
         </div>
       </div>
