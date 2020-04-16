@@ -1,5 +1,5 @@
 window["moment-range"].extendMoment(moment);
-var dateLabels = [
+let dateLabels = [
   "১ মার্চ",
   "৮ মার্চ",
   "১৫ মার্চ",
@@ -37,7 +37,7 @@ var dateLabels = [
   "১৬ এপ্রিল",
 ];
 
-var deathData = {
+let deathData = {
   labels: dateLabels,
   datasets: [{
     label: 'মোট মৃতের সংখ্যা',
@@ -50,7 +50,7 @@ var deathData = {
   }]
 };
 
-var deathConfig = {
+let deathConfig = {
   // The type of chart we want to create
   type: "line",
 
@@ -86,7 +86,7 @@ const totalDeath = [
   0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 8, 9, 12, 17, 20, 21, 27
 ];
 
-var now = moment().format("YYYY-MM-DD");
+let now = moment().format("YYYY-MM-DD");
 let range = moment().range("2020-03-08", now) /*can handle leap year*/
 let dateArray = Array.from(range.by("days")); /*days, hours, years, etc.*/
 
@@ -99,7 +99,7 @@ let caseNewArray = () => {}
 let caseTotalArray = () => {}
 let deathTotalArray = () => {}
 
-var casesConfig = {
+let casesConfig = {
   type: "line",
   data: {
     labels: dates,
@@ -423,4 +423,8 @@ window.onload = () => {
   window.myLine = new Chart(coronaCases, casesConfig);
   let coronaDeaths = document.getElementById("coronaDeathByTime").getContext("2d");
   window.myLine = new Chart(coronaDeaths, deathConfig);
+  let coronaDivision = document.getElementById("coronaDivision").getContext("2d");
+  window.myBar = new Chart(coronaDivision, divisionConfig);
+  let coronaDistrict = document.getElementById("coronaDistrict").getContext("2d");
+  window.myBar = new Chart(coronaDistrict, districtConfig);
 };
