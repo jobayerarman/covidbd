@@ -84,8 +84,12 @@ const browserReload = () => {
 
 // Watch files
 const watchFiles = () => {
-  // watch css files
+  // watch style files
   watch('public/**/*.css', parallel(styles))
+  .on('change', browserReload());
+
+// watch script files
+  watch('public/**/*.js')
   .on('change', browserReload());
 
   // watch ejs files
