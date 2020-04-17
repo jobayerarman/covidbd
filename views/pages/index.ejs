@@ -1,117 +1,120 @@
 <!DOCTYPE html>
 <html lang="bd">
-  <head>
-    <% include ../partials/header.ejs %>
-  </head>
 
-  <body>
-    <% include ../partials/nav.ejs %>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
 
-    <div class="container-fluid px-md-5 mt-4 mb-4">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 text-center">
+<body>
+  <% include ../partials/nav.ejs %>
 
-        <div class="col mb-2">
-          <div class="card bg-warning">
-            <div class="card-body text-white">
-              <p>গত ২৪ ঘণ্টায় নতুন শনাক্ত</p>
-              <h2 class="card-title"><%= todayCases %></h2>
-            </div>
-          </div>
-        </div>
+  <div class="container-fluid px-md-5 mt-4 mb-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 text-center">
 
-        <div class="col mb-2">
-          <div class="card bg-danger">
-            <div class="card-body text-white">
-              <p>গত ২৪ ঘণ্টায় মোট মৃত্যু</p>
-              <h2 class="card-title"><%= todayDeaths %></h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="col mb-2">
-          <div class="card border border-warning">
-            <div class="card-body">
-              <p>মোট শনাক্ত</p>
-              <h2 class="card-title text-warning"><%= cases %></h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="col mb-2">
-          <div class="card border-danger">
-            <div class="card-body">
-              <p>মোট মৃত</p>
-              <h2 class="card-title text-danger"><%= deaths %></h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="col mb-2">
-          <div class="card border border-success">
-            <div class="card-body">
-              <p>মোট সুস্থ</p>
-              <h2 class="card-title text-success"><%= recovered %> </h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="col mb-2">
-          <div class="card border border-info">
-            <div class="card-body">
-              <p>মোট পরিক্ষাকৃত নমুনার সংখ্যা</p>
-              <h2 class="card-title text-info"><%= tests %> </h2>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container-fluid px-lg-5">
-      <div class="row">
-        <div class="col-lg-6 col-md-12">
-          <div class="chart-container table-responsive">
-            <canvas id="coronaCasesByTime" class="table" style="max-height: 450px"></canvas>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-12">
-          <div class="chart-container table-responsive">
-            <canvas id="coronaDeathByTime" class="table" style="max-height: 450px"></canvas>
+      <div class="col mb-2">
+        <div class="card bg-warning">
+          <div class="card-body text-white">
+            <p>গত ২৪ ঘণ্টায় নতুন শনাক্ত</p>
+            <h2 class="card-title"><%= todayCases %></h2>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="container-fluid px-lg-5">
-      <div class="row">
-        <div class="col-lg-6 col-md-12">
-          <div class="chart-container table-responsive">
-            <canvas id="coronaDivision" class="table" style="max-height: 450px"></canvas>
+      <div class="col mb-2">
+        <div class="card bg-danger">
+          <div class="card-body text-white">
+            <p>গত ২৪ ঘণ্টায় মোট মৃত্যু</p>
+            <h2 class="card-title"><%= todayDeaths %></h2>
           </div>
         </div>
+      </div>
 
-        <div class="col-lg-6 col-md-12">
-          <div class="chart-container table-responsive">
-            <canvas id="coronaDistrict" class="table" style="max-height: 450px"></canvas>
+      <div class="col mb-2">
+        <div class="card border border-warning">
+          <div class="card-body">
+            <p>মোট শনাক্ত</p>
+            <h2 class="card-title text-warning"><%= cases %></h2>
           </div>
+        </div>
+      </div>
+
+      <div class="col mb-2">
+        <div class="card border-danger">
+          <div class="card-body">
+            <p>মোট মৃত</p>
+            <h2 class="card-title text-danger"><%= deaths %></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col mb-2">
+        <div class="card border border-success">
+          <div class="card-body">
+            <p>মোট সুস্থ</p>
+            <h2 class="card-title text-success"><%= recovered %> </h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col mb-2">
+        <div class="card border border-info">
+          <div class="card-body">
+            <p>মোট পরিক্ষাকৃত নমুনার সংখ্যা</p>
+            <h2 class="card-title text-info"><%= tests %> </h2>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid px-lg-5">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="chart-container table-responsive">
+          <canvas id="coronaCasesByTime" class="table" style="max-height: 450px"></canvas>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="chart-container table-responsive">
+          <canvas id="coronaDeathByTime" class="table" style="max-height: 450px"></canvas>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid text-center">
-      <div class="row">
-        <div class="col-sm">
-            <p class="py-2">সর্বশেষঃ <span><%= updated %></span></p>
+  <div class="container-fluid px-lg-5">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="chart-container table-responsive">
+          <canvas id="coronaDivision" class="table" style="max-height: 450px"></canvas>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm">
-            <p class="py-2"><small>API data by <a href="https://github.com/novelcovid/api" target="_blank">Novel CoVID19/API</a></small></>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="chart-container table-responsive">
+          <canvas id="coronaDistrict" class="table" style="max-height: 450px"></canvas>
         </div>
       </div>
     </div>
+  </div>
 
-    <% include ../partials/footer.ejs %>
-  </body>
+  <div class="container-fluid text-center">
+    <div class="row">
+      <div class="col-sm">
+        <p class="py-2">সর্বশেষঃ <span><%= updated %></span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <p class="py-2"><small>API data by <a href="https://github.com/novelcovid/api" target="_blank">Novel
+              CoVID19/API</a></small></>
+      </div>
+    </div>
+  </div>
+
+  <% include ../partials/footer.ejs %>
+</body>
+
 </html>
