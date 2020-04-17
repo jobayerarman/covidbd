@@ -9,6 +9,16 @@
   <% include ../partials/nav.ejs %>
 
   <div class="container-fluid px-md-5 mt-4 mb-4">
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6">
+      <div class="col-sm">
+        <p>
+          <small><span class="update-head border border-primary pl-3 pr-2 py-2">সর্বশেষঃ </span><span
+              class="update-data border border-info px-4 py-2"><%= updated %></span></small>
+        </p>
+      </div>
+    </div>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 text-center">
 
       <div class="col mb-2">
@@ -87,7 +97,7 @@
   <div class="container-fluid px-lg-5">
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <h4 class="text-center mb-4">বিভাগীয় আক্রান্তের সংখ্যা</h4>
+        <h4 class="text-center mb-4">বিভাগভিত্তিক আক্রান্তের সংখ্যা</h4>
         <table class="table table-sm table-striped table-bordered">
           <thead class="thead-light">
             <tr class="d-flex">
@@ -128,12 +138,7 @@
     </div>
   </div>
 
-  <div class="container-fluid text-center">
-    <div class="row">
-      <div class="col-sm">
-        <p class="py-2">সর্বশেষঃ <span><%= updated %></span></p>
-      </div>
-    </div>
+  <div class="container-fluid mt-4 mb-4 text-center">
     <div class="row">
       <div class="col-sm">
         <p class="py-2"><small>API data by <a href="https://github.com/novelcovid/api" target="_blank">Novel
