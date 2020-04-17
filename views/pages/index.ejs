@@ -87,11 +87,43 @@
   <div class="container-fluid px-lg-5">
     <div class="row">
       <div class="col-lg-6 col-md-12">
-
+        <h4 class="text-center mb-4">বিভাগীয় আক্রান্তের সংখ্যা</h4>
+        <table class="table table-sm table-striped table-bordered">
+          <thead class="thead-light">
+            <tr class="d-flex">
+              <th class="col-8 col-md-10">বিভাগের নাম</th>
+              <th class="col-4 col-md-2 text-right">মোট শনাক্ত</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% divisions.forEach(function(division) { %>
+            <tr class="d-flex">
+              <td class="col-8 col-md-10"><%= division.name %></td>
+              <td class="col-4 col-md-2 text-right"><%= division.count %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
 
       <div class="col-lg-6 col-md-12">
-
+        <h4 class="text-center mb-4">জেলাভিত্তিক আক্রান্তের সংখ্যা</h4>
+        <table class="table table-sm table-striped table-bordered">
+          <thead class="thead-light">
+            <tr class="d-flex">
+              <th class="col-8 col-md-10">জেলার নাম</th>
+              <th class="col-4 col-md-2 text-right">মোট শনাক্ত</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% districts.forEach(function(district) { %>
+            <tr class="d-flex">
+              <td class="col-8 col-md-10"><%= district.name %></td>
+              <td class="col-4 col-md-2 text-right"><%= district.count %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
