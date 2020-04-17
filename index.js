@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const favicon = require('serve-favicon');
 const path = require('path');
+const fs = require('fs');
 const track = require('covidapi');
 const moment = require('moment');
 const PORT = process.env.PORT || 5000;
@@ -29,6 +30,11 @@ const bnNum = (num, komma = false) => {
   return str;
 };
 
+const readData = () => {
+  const rawData = fs.readFileSync('./data/covid-data.json', 'utf8');
+  return JSON.parse(rawData);
+};
+
 app
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))
@@ -37,6 +43,26 @@ app
 
   // ---- ROUTES ---- //
   .get('/', (req, res) => {
+    let divisions = [];
+    let districts = [];
+    let countryData = readData();
+    Object.entries(countryData.divisionData).forEach(([key, value]) => {
+      let obj = {
+        name: key,
+        count: value,
+      };
+      divisions.push(obj);
+    });
+    divisions.sort((a, b) => (b.count > a.count ? 1 : -1));
+    Object.entries(countryData.districtData).forEach(([key, value]) => {
+      let obj = {
+        name: key,
+        count: value,
+      };
+      districts.push(obj);
+    });
+    districts.sort((a, b) => (b.count > a.count ? 1 : -1));
+
     track
       .countries({ country: 'bangladesh' })
       .then((result) => {
@@ -56,6 +82,8 @@ app
           recovered: recovered,
           tests: tests,
           updated: updated,
+          divisions: divisions,
+          districts: districts,
         });
       })
       .catch((err) => console.error());
