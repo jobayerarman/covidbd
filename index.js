@@ -1,10 +1,10 @@
-const express        = require('express');
-const app            = express();
-const favicon        = require("serve-favicon");
-const path           = require('path');
-const track          = require('covidapi');
-const moment         = require('moment');
-const PORT           = process.env.PORT || 5000;
+const express = require('express');
+const app = express();
+const favicon = require('serve-favicon');
+const path = require('path');
+const track = require('covidapi');
+const moment = require('moment');
+const PORT = process.env.PORT || 5000;
 
 moment.locale('bn');
 
@@ -24,7 +24,7 @@ const bnNum = (num, komma = false) => {
 
   let str = `${num.toLocaleString('bn-BD', { useGrouping: komma })}`;
   for (var x in banglaNumber) {
-    str = str.replace(new RegExp(x, "g"), banglaNumber[x]);
+    str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
   }
   return str;
 };
@@ -38,24 +38,24 @@ app
   // ---- ROUTES ---- //
   .get('/', (req, res) => {
     track
-      .countries({country: 'bangladesh'})
+      .countries({ country: 'bangladesh' })
       .then((result) => {
-        let todayCases  = bnNum(result.todayCases, true);
-        let cases       = bnNum(result.cases, true);
+        let todayCases = bnNum(result.todayCases, true);
+        let cases = bnNum(result.cases, true);
         let todayDeaths = bnNum(result.todayDeaths, true);
-        let deaths      = bnNum(result.deaths, true);
-        let recovered   = bnNum(result.recovered, true);
-        let tests       = bnNum(result.tests, true);
-        let updated     = moment(result.updated).fromNow();
+        let deaths = bnNum(result.deaths, true);
+        let recovered = bnNum(result.recovered, true);
+        let tests = bnNum(result.tests, true);
+        let updated = moment(result.updated).fromNow();
 
         res.render('pages/index', {
-          todayCases : todayCases,
-          cases      : cases,
+          todayCases: todayCases,
+          cases: cases,
           todayDeaths: todayDeaths,
-          deaths     : deaths,
-          recovered  : recovered,
-          tests      : tests,
-          updated    : updated,
+          deaths: deaths,
+          recovered: recovered,
+          tests: tests,
+          updated: updated,
         });
       })
       .catch((err) => console.error());

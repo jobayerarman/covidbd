@@ -5,9 +5,15 @@ module.exports = {
   env: {
     "browser": true,
     "node": true,
+    "es6": true,
     "jquery": true,
     "jest": true
   },
+  "parserOptions": {
+    "ecmaFeatures": {
+        "jsx": true
+    }
+},
   rules: {
     "no-debugger": 0,
     "no-alert": 0,
