@@ -2,8 +2,7 @@ const express        = require('express');
 const app            = express();
 const favicon        = require("serve-favicon");
 const path           = require('path');
-const { NovelCovid } = require('novelcovid');
-const track          = new NovelCovid();
+const track          = require('covidapi');
 const moment         = require('moment');
 const PORT           = process.env.PORT || 5000;
 
@@ -39,7 +38,7 @@ app
   // ---- ROUTES ---- //
   .get('/', (req, res) => {
     track
-      .countries('Bangladesh')
+      .countries({country: 'bangladesh'})
       .then((result) => {
         let todayCases  = bnNum(result.todayCases, true);
         let cases       = bnNum(result.cases, true);

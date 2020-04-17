@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",
@@ -17,10 +17,10 @@
     "url": "https://git.heroku.com/covidbd.git"
   },
   "dependencies": {
+    "covidapi": "^0.1.2",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
     "moment": "^2.24.0",
-    "novelcovid": "^1.1.4",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
