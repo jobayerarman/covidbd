@@ -578,3 +578,24 @@ window.onload = () => {
     .getContext('2d');
   window.coronaDeaths = new Chart(coronaDeaths, deathConfig);
 };
+
+$(document).ready(function () {
+  let width = '20%';
+  let height = '264px';
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+  ) {
+    width = '42%';
+    height = '300px';
+  }
+  $('.datatable').DataTable({
+    order: [[1, 'desc']],
+    scrollY: height,
+    scrollCollapse: true,
+    paging: false,
+    columnDefs: [{ width: width, targets: 1 }],
+    bInfo: false,
+  });
+});

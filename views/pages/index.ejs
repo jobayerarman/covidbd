@@ -97,45 +97,45 @@
   <div class="container-fluid px-lg-5">
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <div class="tabtle-title text-center mb-4">
+        <div class="text-center mb-4">
           <h4>বিভাগভিত্তিক আক্রান্তের সংখ্যা</h4>
-          <p><small>(মোট আক্রান্ত সংখ্যার ক্রমানুযায়ী)</small></p>
         </div>
-        <table class="table table-sm table-striped table-bordered">
-          <thead class="thead-light">
-            <tr class="d-flex">
-              <th class="col-8 col-md-10">বিভাগের নাম</th>
-              <th class="col-4 col-md-2 text-right">মোট আক্রান্ত</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% divisions.forEach(function(division) { %>
-            <tr class="d-flex">
-              <td class="col-8 col-md-10"><%= division.name %></td>
-              <td class="col-4 col-md-2 text-right"><%= division.count %></td>
-            </tr>
-            <% }); %>
-          </tbody>
-        </table>
+        <div class="mb-5">
+          <table id="datatable-one" class="table table-sm table-striped table-hover table-bordered datatable">
+            <thead class="thead-light">
+              <tr>
+                <th>বিভাগের নাম</th>
+                <th class="text-center">মোট আক্রান্ত</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% divisions.forEach(function(division) { %>
+              <tr>
+                <td><%= division.name %></td>
+                <td class="text-center"><%= division.count %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="col-lg-6 col-md-12">
-        <div class="tabtle-title text-center mb-4">
+        <div class="text-center mb-4">
           <h4>জেলাভিত্তিক আক্রান্তের সংখ্যা</h4>
-          <p><small>(মোট আক্রান্ত সংখ্যার ক্রমানুযায়ী)</small></p>
         </div>
-        <table class="table table-sm table-striped table-bordered">
+        <table id="datatable-two" class="table table-sm table-striped table-hover table-bordered datatable">
           <thead class="thead-light">
-            <tr class="d-flex">
-              <th class="col-8 col-md-10">জেলার নাম</th>
-              <th class="col-4 col-md-2 text-right">মোট আক্রান্ত</th>
+            <tr>
+              <th>জেলার নাম</th>
+              <th scope="col" class="text-center">মোট আক্রান্ত</th>
             </tr>
           </thead>
           <tbody>
             <% districts.forEach(function(district) { %>
-            <tr class="d-flex">
-              <td class="col-8 col-md-10"><%= district.name %></td>
-              <td class="col-4 col-md-2 text-right"><%= district.count %></td>
+            <tr>
+              <td class=""><%= district.name %></td>
+              <td class="text-center"><%= district.count %></td>
             </tr>
             <% }); %>
           </tbody>
