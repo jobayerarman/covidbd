@@ -32,6 +32,7 @@ module.exports = {
     ],
   },
   plugins: [
+    "ejs",
     "html",
     "prettier"
   ]

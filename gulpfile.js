@@ -8,7 +8,7 @@ const path = require('path');
 // ----
 const dirs = {
   src: 'src',
-  dest: 'public'
+  dest: 'public',
 };
 
 // we'd need a slight delay to reload browsers
@@ -69,12 +69,11 @@ const browserSyncTask = () => {
 };
 
 //
-const scripts = () => { };
+const scripts = () => {};
 
 //
 const styles = () => {
-  return src('public/**/*.css')
-    .pipe(browserSync.reload({ stream: true }));
+  return src('public/**/*.css').pipe(browserSync.reload({ stream: true }));
 };
 
 // BrowserSync reload
@@ -85,16 +84,13 @@ const browserReload = () => {
 // Watch files
 const watchFiles = () => {
   // watch style files
-  watch('public/**/*.css', parallel(styles))
-    .on('change', browserReload());
+  watch('public/**/*.css', parallel(styles)).on('change', browserReload());
 
   // watch script files
-  watch('public/**/*.js')
-    .on('change', browserReload());
+  watch('public/**/*.js').on('change', browserReload());
 
   // watch ejs files
-  watch('views/**/*.ejs')
-    .on('change', browserReload());
+  watch('views/**/*.ejs').on('change', browserReload());
 };
 
 exports.default = parallel(series(nodemonTask, browserSyncTask), watchFiles);
