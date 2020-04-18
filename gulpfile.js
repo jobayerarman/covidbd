@@ -1,8 +1,8 @@
 // Gulp module imports
 const { src, dest, parallel, series, watch } = require('gulp');
 const browserSync = require('browser-sync');
-const nodemon     = require('gulp-nodemon');
-const path        = require('path');
+const nodemon = require('gulp-nodemon');
+const path = require('path');
 
 // Build Directories
 // ----
@@ -47,14 +47,14 @@ const browserSyncTask = () => {
   // for more browser-sync config options: http://www.browsersync.io/docs/options/
   browserSync({
     // informs browser-sync to proxy our expressjs app which would run at the following location
-    proxy: "http://localhost:5000",
+    proxy: 'http://localhost:5000',
 
     // informs browser-sync to use the following port for the proxied app
     // notice that the default port is 3000, which would clash with our expressjs
     port: 3000,
 
     // open the proxied app in chrome
-    browser: ["google-chrome"],
+    browser: ['google-chrome'],
 
     // `true` Automatically open the browser with BrowserSync live server.
     // `false` Stop the browser from automatically opening.
@@ -69,7 +69,7 @@ const browserSyncTask = () => {
 };
 
 //
-const scripts = () => {};
+const scripts = () => { };
 
 //
 const styles = () => {
@@ -86,15 +86,15 @@ const browserReload = () => {
 const watchFiles = () => {
   // watch style files
   watch('public/**/*.css', parallel(styles))
-  .on('change', browserReload());
+    .on('change', browserReload());
 
-// watch script files
+  // watch script files
   watch('public/**/*.js')
-  .on('change', browserReload());
+    .on('change', browserReload());
 
   // watch ejs files
   watch('views/**/*.ejs')
-  .on('change', browserReload());
+    .on('change', browserReload());
 };
 
 exports.default = parallel(series(nodemonTask, browserSyncTask), watchFiles);
