@@ -1,23 +1,5 @@
-let hexToRGB = (h) => {
-  let r = 0,
-    g = 0,
-    b = 0;
+window['moment-range'].extendMoment(moment);
 
-  // 3 digits
-  if (h.length == 4) {
-    r = '0x' + h[1] + h[1];
-    g = '0x' + h[2] + h[2];
-    b = '0x' + h[3] + h[3];
-
-    // 6 digits
-  } else if (h.length == 7) {
-    r = '0x' + h[1] + h[2];
-    g = '0x' + h[3] + h[4];
-    b = '0x' + h[5] + h[6];
-  }
-
-  return 'rgb(' + +r + ',' + +g + ',' + +b + ')';
-};
 let chartColors = {
   greenDark: 'rgb(60, 162, 65, 0.7)',
   greenLight: 'rgb(88, 197, 102, 0.7)',
@@ -28,26 +10,12 @@ let chartColors = {
   redDark: 'rgb(192, 19, 28, 0.7)',
 };
 let colorNames = Object.keys(chartColors);
-let randomColor = () => {
-  let color =
-    'rgb(' +
-    Math.round(Math.random() * 255) +
-    ',' +
-    Math.round(Math.random() * 255) +
-    ',' +
-    Math.round(Math.random() * 255) +
-    ',' +
-    0.5 +
-    ')';
-  return color;
-};
 let getRangeNumber = (number) => {
+  if (number > 999) return Math.floor((number / 10000) * colorNames.length);
   if (number > 99) return Math.floor((number / 1000) * colorNames.length);
-
   return Math.floor((number / 100) * colorNames.length);
 };
 
-window['moment-range'].extendMoment(moment);
 let dateLabels = [
   '১ মার্চ',
   '৮ মার্চ',
@@ -162,97 +130,6 @@ let deathConfig = {
     },
   },
 };
-
-const newCases = [
-  3,
-  2,
-  3,
-  2,
-  4,
-  3,
-  3,
-  4,
-  3,
-  6,
-  6,
-  0,
-  5,
-  4,
-  0,
-  0,
-  1,
-  2,
-  3,
-  2,
-  5,
-  9,
-  18,
-  35,
-  41,
-  54,
-  112,
-  94,
-];
-const totalCases = [
-  3,
-  5,
-  8,
-  10,
-  14,
-  17,
-  20,
-  24,
-  27,
-  33,
-  39,
-  39,
-  44,
-  48,
-  48,
-  48,
-  49,
-  51,
-  54,
-  56,
-  61,
-  70,
-  88,
-  123,
-  164,
-  218,
-  330,
-  424,
-];
-const totalDeath = [
-  0,
-  0,
-  0,
-  0,
-  1,
-  1,
-  1,
-  2,
-  2,
-  3,
-  4,
-  5,
-  5,
-  5,
-  5,
-  5,
-  5,
-  5,
-  6,
-  6,
-  6,
-  8,
-  9,
-  12,
-  17,
-  20,
-  21,
-  27,
-];
 
 let now = moment().format('YYYY-MM-DD');
 let range = moment().range('2020-03-08', now); /*can handle leap year*/
@@ -593,26 +470,7 @@ let casesConfig = {
   },
 };
 
-const divisionLabels = [
-  'ঢাকা',
-  'চট্টগ্রাম',
-  'সিলেট',
-  'রংপুর',
-  'খুলনা',
-  'ময়মনসিংহ',
-  'বরিশাল',
-  'রাজশাহী',
-];
-const divisionData = [
-  { label: 'ঢাকা', data: 934 },
-  { label: 'চট্টগ্রাম', data: 62 },
-  { label: 'সিলেট', data: 5 },
-  { label: 'রংপুর', data: 34 },
-  { label: 'খুলনা', data: 3 },
-  { label: 'ময়মনসিংহ', data: 26 },
-  { label: 'বরিশাল', data: 23 },
-  { label: 'রাজশাহী', data: 4 },
-];
+const divisionData = [];
 const buildDivisionData = () => {
   let dataset = [];
   divisionData.forEach((item, index) => {
@@ -666,21 +524,30 @@ let divisionConfig = {
 };
 
 const districtLabels = [];
-const districtData = [
-  { label: 'ঢাকা', data: 934 },
-  { label: 'চট্টগ্রাম', data: 62 },
-  { label: 'সিলেট', data: 5 },
-  { label: 'রংপুর', data: 34 },
-  { label: 'খুলনা', data: 3 },
-  { label: 'ময়মনসিংহ', data: 26 },
-  { label: 'বরিশাল', data: 23 },
-  { label: 'রাজশাহী', data: 4 },
-];
+const districtData = [];
+const buildDistrictData = () => {
+  let dataset = [];
+  districtData.forEach((item, index) => {
+    let colorName = colorNames[getRangeNumber(item.data)];
+    let dsColor = chartColors[colorName];
+    let data = {
+      label: item.label,
+      backgroundColor: dsColor,
+      borderColor: dsColor,
+      borderWidth: 1,
+      data: [item.data],
+    };
+    dataset.push(data);
+    console.log(getRangeNumber(item.data));
+  });
+  return dataset;
+};
+let districtDatasets = buildDistrictData();
 let districtConfig = {
   type: 'bar',
   data: {
     labels: ' ',
-    datasets: {},
+    datasets: districtDatasets,
   },
   options: {
     responsive: true,
@@ -691,6 +558,7 @@ let districtConfig = {
       text: 'জেলাভিত্তিক আক্রান্তের সংখ্যা',
     },
     legend: {
+      display: false,
       position: 'bottom',
     },
     tooltips: {
@@ -709,12 +577,4 @@ window.onload = () => {
     .getElementById('coronaDeathByTime')
     .getContext('2d');
   window.coronaDeaths = new Chart(coronaDeaths, deathConfig);
-  let coronaDivision = document
-    .getElementById('coronaDivision')
-    .getContext('2d');
-  window.coronaDivision = new Chart(coronaDivision, divisionConfig);
-  let coronaDistrict = document
-    .getElementById('coronaDistrict')
-    .getContext('2d');
-  window.coronaDistrict = new Chart(coronaDistrict, districtConfig);
 };

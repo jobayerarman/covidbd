@@ -9,6 +9,16 @@
   <% include ../partials/nav.ejs %>
 
   <div class="container-fluid px-md-5 mt-4 mb-4">
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6">
+      <div class="col-sm">
+        <p>
+          <small><span class="update-head border border-primary pl-3 pr-2 py-2">সর্বশেষঃ </span><span
+              class="update-data border border-info px-4 py-2"><%= updated %></span></small>
+        </p>
+      </div>
+    </div>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 text-center">
 
       <div class="col mb-2">
@@ -68,7 +78,7 @@
     </div>
   </div>
 
-  <div class="container-fluid px-lg-5">
+  <div class="container-fluid px-md-5 mt-4 mb-4">
     <div class="row">
       <div class="col-lg-6 col-md-12">
         <div class="chart-container table-responsive">
@@ -87,25 +97,48 @@
   <div class="container-fluid px-lg-5">
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <div class="chart-container table-responsive">
-          <canvas id="coronaDivision" class="table" style="max-height: 450px"></canvas>
-        </div>
+        <h4 class="text-center mb-4">বিভাগভিত্তিক আক্রান্তের সংখ্যা</h4>
+        <table class="table table-sm table-striped table-bordered">
+          <thead class="thead-light">
+            <tr class="d-flex">
+              <th class="col-8 col-md-10">বিভাগের নাম</th>
+              <th class="col-4 col-md-2 text-right">মোট শনাক্ত</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% divisions.forEach(function(division) { %>
+            <tr class="d-flex">
+              <td class="col-8 col-md-10"><%= division.name %></td>
+              <td class="col-4 col-md-2 text-right"><%= division.count %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
 
       <div class="col-lg-6 col-md-12">
-        <div class="chart-container table-responsive">
-          <canvas id="coronaDistrict" class="table" style="max-height: 450px"></canvas>
-        </div>
+        <h4 class="text-center mb-4">জেলাভিত্তিক আক্রান্তের সংখ্যা</h4>
+        <table class="table table-sm table-striped table-bordered">
+          <thead class="thead-light">
+            <tr class="d-flex">
+              <th class="col-8 col-md-10">জেলার নাম</th>
+              <th class="col-4 col-md-2 text-right">মোট শনাক্ত</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% districts.forEach(function(district) { %>
+            <tr class="d-flex">
+              <td class="col-8 col-md-10"><%= district.name %></td>
+              <td class="col-4 col-md-2 text-right"><%= district.count %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid text-center">
-    <div class="row">
-      <div class="col-sm">
-        <p class="py-2">সর্বশেষঃ <span><%= updated %></span></p>
-      </div>
-    </div>
+  <div class="container-fluid mt-4 mb-4 text-center">
     <div class="row">
       <div class="col-sm">
         <p class="py-2"><small>API data by <a href="https://github.com/novelcovid/api" target="_blank">Novel
