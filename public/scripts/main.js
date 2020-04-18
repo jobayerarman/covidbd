@@ -53,6 +53,7 @@ let dateLabels = [
   '১৫ এপ্রিল',
   '১৬ এপ্রিল',
   '১৭ এপ্রিল',
+  '১৮ এপ্রিল',
 ];
 
 let deathData = {
@@ -100,6 +101,7 @@ let deathData = {
         50,
         60,
         75,
+        84,
       ],
     },
   ],
@@ -286,6 +288,10 @@ let casesConfig = {
             x: moment('17-04-2020', 'DD-MM-YYYY'),
             y: 266,
           },
+          {
+            x: moment('18-04-2020', 'DD-MM-YYYY'),
+            y: 306,
+          },
         ],
       },
       {
@@ -425,6 +431,10 @@ let casesConfig = {
           {
             x: moment('17-04-2020', 'DD-MM-YYYY'),
             y: 1838,
+          },
+          {
+            x: moment('18-04-2020', 'DD-MM-YYYY'),
+            y: 2144,
           },
         ],
       },
