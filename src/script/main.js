@@ -609,5 +609,3 @@ $(document).ready(function () {
     bInfo: false,
   });
 });
-
-//# sourceMappingURL=main.js.map

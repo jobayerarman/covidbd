@@ -1,8 +1,47 @@
-// Gulp module imports
+/**
+ * Gulpfile for front-end developing with Bootstrap
+ *
+ * @author Jobayer Arman (@JobayerArman)
+ */
+
+/**
+ * Load Plugins.
+ *
+ * Load gulp plugins and assigning them semantic names.
+ */
 const { src, dest, parallel, series, watch } = require('gulp');
+const gutil       = require('gulp-util');
 const browserSync = require('browser-sync');
-const nodemon = require('gulp-nodemon');
-const path = require('path');
+const nodemon     = require('gulp-nodemon');
+const sass        = require('gulp-sass');
+const prefix      = require('gulp-autoprefixer');
+const sourcemaps  = require('gulp-sourcemaps');
+const concat      = require('gulp-concat');
+const uglify      = require('gulp-uglify-es').default;
+const plumber     = require('gulp-plumber');
+const gulpif      = require('gulp-if');
+const rename      = require('gulp-rename');
+const size        = require('gulp-size');
+const lazypipe    = require('lazypipe');
+const path        = require('path');
+const del         = require('del');
+
+// we'd need a slight delay to reload browsers
+// connected to browser-sync after restarting nodemon
+const BROWSER_SYNC_RELOAD_DELAY = 500;
+
+// Browsers you care about for autoprefixing.
+// Browserlist https://github.com/ai/browserslist
+const AUTOPREFIXER_BROWSERS = [
+  'last 15 versions',
+  '> 1%',
+  'ie 8',
+  'ie 7',
+  'iOS >= 9',
+  'Safari >= 9',
+  'Android >= 4.4',
+  'Opera >= 30',
+];
 
 // Build Directories
 // ----
@@ -11,9 +50,10 @@ const dirs = {
   dest: 'public',
 };
 
-// we'd need a slight delay to reload browsers
-// connected to browser-sync after restarting nodemon
-const BROWSER_SYNC_RELOAD_DELAY = 500;
+const config = {
+  production: !!gutil.env.production, // Two exclamations turn undefined into a proper false.
+  sourceMaps: !gutil.env.production,
+};
 
 // nodemon
 const nodemonTask = (cb) => {
@@ -69,7 +109,16 @@ const browserSyncTask = () => {
 };
 
 //
-const scripts = () => {};
+const scripts = () => {
+  let uglifyScripts = lazypipe().pipe(uglify);
+  return src('./src/script/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(concat('main.js'))
+    .pipe(gulpif(config.production, uglifyScripts()))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('public/scripts'))
+    .pipe(size({ showFiles: true }));
+};
 
 //
 const styles = () => {
@@ -87,10 +136,11 @@ const watchFiles = () => {
   watch('public/**/*.css', parallel(styles)).on('change', browserReload());
 
   // watch script files
-  watch('public/**/*.js').on('change', browserReload());
+  watch('public/**/*.js', parallel(scripts)).on('change', browserReload());
 
   // watch ejs files
   watch('views/**/*.ejs').on('change', browserReload());
 };
 
+exports.scripts = scripts;
 exports.default = parallel(series(nodemonTask, browserSyncTask), watchFiles);
