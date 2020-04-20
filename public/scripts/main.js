@@ -627,5 +627,8 @@ $(document).ready(function () {
     paging: false,
     columnDefs: [{ width: width, targets: 1 }],
     bInfo: false,
+    oLanguage: {
+      sSearch: 'সার্চঃ',
+    },
   });
 });
