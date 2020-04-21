@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+const compression = require('compression');
 const favicon = require('serve-favicon');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
@@ -9,9 +9,15 @@ const PORT = process.env.PORT || 5000;
  */
 const homeController = require('./controllers/home');
 
+/**
+ * Create Express server.
+ */
+const app = express();
+
 app
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))
+  .use(compression())
   .use(express.static(path.join(__dirname, 'public')))
   .use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 
