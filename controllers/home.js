@@ -20,6 +20,13 @@ const getCovidData = async () => {
   return data;
 };
 
+let getChangeRate = (a, b, reverse = false) => {
+  console.log(a, b);
+  let rate = parseFloat(((a - b) / b) * 100).toFixed(2) * 1;
+  if (reverse) return rate * -1;
+  return rate;
+};
+
 /**
  * GET /
  * Home page.
@@ -50,23 +57,43 @@ exports.index = async (req, res) => {
 
       let yesterdayCases = yesterday.todayCases;
       let yesterdayTotalCases = yesterday.cases;
-      let yesterdayDeaths = yesterday.todayDeath;
+      let yesterdayDeaths = yesterday.todayDeaths;
       let yesterdayTotalDeaths = yesterday.deaths;
       let yesterdayRecovered = yesterday.recovered;
       let yesterdayTests = yesterday.tests;
 
       let todayCases =
-        today.todayCases == 0 ? yesterdayCases : today.todayCases;
+        today.todayCases == 0 ? yesterday.todayCases : today.todayCases;
       let todayDeaths =
-        today.todayDeaths == 0 ? yesterdayDeaths : today.todayDeaths;
+        today.todayDeaths == 0 ? yesterday.todayDeath : today.todayDeaths;
+      let totalCases = today.cases;
+      let totalDeaths = today.deaths;
+      let recovered = today.recovered;
+      let tests = today.tests;
+      let updated = today.updated;
+
+      let todayCasesRate = getChangeRate(todayCases, yesterdayCases);
+      let todayDeathRate = getChangeRate(todayDeaths, yesterdayDeaths);
+      let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases, true);
+      let totalDeathRate = getChangeRate(totalDeaths, yesterdayTotalDeaths, true);
+      let recoveredRate = getChangeRate(recovered, yesterdayRecovered);
+      let testRate = getChangeRate(tests, yesterdayTests);
+      console.table([
+        todayCasesRate,
+        todayDeathRate,
+        totatCasesRate,
+        totalDeathRate,
+        recoveredRate,
+        testRate,
+      ]);
 
       todayCases = util.bnNum(today.todayCases, true);
       todayDeaths = util.bnNum(today.todayDeaths, true);
-      let totalCases = util.bnNum(today.cases, true);
-      let totalDeaths = util.bnNum(today.deaths, true);
-      let recovered = util.bnNum(today.recovered, true);
-      let tests = util.bnNum(today.tests, true);
-      let updated = moment(today.updated).fromNow();
+      totalCases = util.bnNum(totalCases, true);
+      totalDeaths = util.bnNum(totalDeaths, true);
+      recovered = util.bnNum(today.recovered, true);
+      tests = util.bnNum(today.tests, true);
+      updated = moment(updated).fromNow();
 
       res.render('pages/index', {
         todayCases: todayCases,
@@ -78,6 +105,12 @@ exports.index = async (req, res) => {
         updated: updated,
         divisions: divisions,
         districts: districts,
+        todayCasesRate: todayCasesRate,
+        todayDeathRate: todayDeathRate,
+        totatCasesRate: totatCasesRate,
+        totalDeathRate: totalDeathRate,
+        recoveredRate: recoveredRate,
+        testRate: testRate,
       });
     })
     .catch((err) => console.error());
