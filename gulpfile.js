@@ -24,6 +24,7 @@ const rename      = require('gulp-rename');
 const size        = require('gulp-size');
 const lazypipe    = require('lazypipe');
 const path        = require('path');
+const filter      = require('gulp-filter');
 const del         = require('del');
 
 // we'd need a slight delay to reload browsers
@@ -108,7 +109,7 @@ const browserSyncTask = () => {
   });
 };
 
-//
+// JS bundled into minified JS task
 const scripts = () => {
   let uglifyScripts = lazypipe().pipe(uglify);
   return src('./src/script/*.js')
@@ -116,13 +117,26 @@ const scripts = () => {
     .pipe(concat('main.js'))
     .pipe(gulpif(config.production, uglifyScripts()))
     .pipe(sourcemaps.write('.'))
-    .pipe(dest('public/scripts'))
+    .pipe(dest('./public/scripts'))
     .pipe(size({ showFiles: true }));
 };
 
-//
+// SCSS bundled into CSS task
 const styles = () => {
-  return src('public/**/*.css').pipe(browserSync.reload({ stream: true }));
+  return src('./src/style/*.scss')
+    .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+    .pipe(
+      sass({ outputStyle: 'compressed' }).on('error', function () {
+        console.log(err.message);
+        this.emit('end');
+      })
+    )
+    .pipe(prefix(AUTOPREFIXER_BROWSERS))
+    .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
+    .pipe(dest('./public/stylesheets'))
+    .pipe(filter('**/*.css'))
+    .pipe(browserSync.reload({ stream: true }))
+    .pipe(size({ showFiles: true }));
 };
 
 // BrowserSync reload
@@ -142,5 +156,6 @@ const watchFiles = () => {
   watch('views/**/*.ejs').on('change', browserReload());
 };
 
+exports.styles = styles;
 exports.scripts = scripts;
 exports.default = parallel(series(nodemonTask, browserSyncTask), watchFiles);
