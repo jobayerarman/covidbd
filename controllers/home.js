@@ -55,19 +55,24 @@ exports.index = async (req, res) => {
       let yesterdayRecovered = yesterday.recovered;
       let yesterdayTests = yesterday.tests;
 
-      let todayCases = util.bnNum(today.todayCases, true);
-      let cases = util.bnNum(today.cases, true);
-      let todayDeaths = util.bnNum(today.todayDeaths, true);
-      let deaths = util.bnNum(today.deaths, true);
+      let todayCases =
+        today.todayCases == 0 ? yesterdayCases : today.todayCases;
+      let todayDeaths =
+        today.todayDeaths == 0 ? yesterdayDeaths : today.todayDeaths;
+
+      todayCases = util.bnNum(today.todayCases, true);
+      todayDeaths = util.bnNum(today.todayDeaths, true);
+      let totalCases = util.bnNum(today.cases, true);
+      let totalDeaths = util.bnNum(today.deaths, true);
       let recovered = util.bnNum(today.recovered, true);
       let tests = util.bnNum(today.tests, true);
       let updated = moment(today.updated).fromNow();
 
       res.render('pages/index', {
         todayCases: todayCases,
-        cases: cases,
+        cases: totalCases,
         todayDeaths: todayDeaths,
-        deaths: deaths,
+        deaths: totalDeaths,
         recovered: recovered,
         tests: tests,
         updated: updated,
