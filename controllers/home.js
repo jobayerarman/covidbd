@@ -95,6 +95,13 @@ exports.index = async (req, res) => {
       tests = util.bnNum(today.tests, true);
       updated = moment(updated).fromNow();
 
+      todayCasesRate = util.bnNum(todayCasesRate);
+      todayDeathRate = util.bnNum(todayDeathRate);
+      totatCasesRate = util.bnNum(totatCasesRate);
+      totalDeathRate = util.bnNum(totalDeathRate);
+      recoveredRate = util.bnNum(recoveredRate);
+      testRate = util.bnNum(testRate);
+
       res.render('pages/index', {
         todayCases: todayCases,
         cases: totalCases,
