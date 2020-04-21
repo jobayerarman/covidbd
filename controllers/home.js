@@ -24,7 +24,6 @@ exports.index = (req, res) => {
     };
     divisions.push(obj);
   });
-  divisions.sort((a, b) => (b.count > a.count ? 1 : -1));
   Object.entries(countryData.districtData).forEach(([key, value]) => {
     let obj = {
       name: key,
@@ -32,7 +31,6 @@ exports.index = (req, res) => {
     };
     districts.push(obj);
   });
-  districts.sort((a, b) => (b.count > a.count ? 1 : -1));
 
   track
     .countries({ country: 'bangladesh' })
