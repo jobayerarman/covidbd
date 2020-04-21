@@ -113,10 +113,10 @@ const browserSyncTask = () => {
 const buildScripts = () => {
   let uglifyScripts = lazypipe().pipe(uglify);
   return src('./src/script/*.js')
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
     .pipe(concat('main.js'))
     .pipe(gulpif(config.production, uglifyScripts()))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
     .pipe(dest('./public/scripts'))
     .pipe(size({ showFiles: true }));
 };
@@ -145,24 +145,30 @@ const browserReload = () => {
 };
 
 // Clean
+const clean = () => del(['./public/scripts/', './public/stylesheets/']);
 
 // Watch files
 const devWatch = () => {
-  // watch style files
-  watch('public/**/*.css', parallel(styles)).on('change', browserReload());
-
-  // watch script files
-  watch('public/**/*.js', parallel(scripts)).on('change', browserReload());
-
   // watch ejs files
   watch('views/**/*.ejs').on('change', browserReload());
+
+  // watch style files
+  watch('src/**/*.scss', parallel(buildStyles));
+
+  // watch script files
+  watch('src/**/*.js', parallel(buildScripts)).on('change', browserReload());
 };
 
 // Development Task
-export const dev = series(clean, nodemonTask, browserSyncTask, parallel(buildStyles, buildScripts), devWatch);
+exports.dev = dev = series(
+  clean,
+  nodemonTask,
+  parallel(buildStyles, buildScripts),
+  parallel(browserSyncTask, devWatch)
+);
 
 // Serve Task
-export const build = series(clean, parallel(buildStyles, buildScripts));
+exports.build = build = series(clean, parallel(buildStyles, buildScripts));
 
 // Default Task
 exports.default = dev;
