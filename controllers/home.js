@@ -74,15 +74,15 @@ exports.index = async (req, res) => {
 
       let todayCasesRate = getChangeRate(todayCases, yesterdayCases);
       let todayDeathRate = getChangeRate(todayDeaths, yesterdayDeaths);
-      let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases, true);
-      let totalDeathRate = getChangeRate(totalDeaths, yesterdayTotalDeaths, true);
+      let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases);
+      let totalDeathsRate = getChangeRate(totalDeaths, yesterdayTotalDeaths);
       let recoveredRate = getChangeRate(recovered, yesterdayRecovered);
       let testRate = getChangeRate(tests, yesterdayTests);
       console.table([
         todayCasesRate,
         todayDeathRate,
         totatCasesRate,
-        totalDeathRate,
+        totalDeathsRate,
         recoveredRate,
         testRate,
       ]);
@@ -95,12 +95,12 @@ exports.index = async (req, res) => {
       tests = util.bnNum(today.tests, true);
       updated = moment(updated).fromNow();
 
-      todayCasesRate = util.bnNum(todayCasesRate);
-      todayDeathRate = util.bnNum(todayDeathRate);
-      totatCasesRate = util.bnNum(totatCasesRate);
-      totalDeathRate = util.bnNum(totalDeathRate);
-      recoveredRate = util.bnNum(recoveredRate);
-      testRate = util.bnNum(testRate);
+      todayCasesRateBn = util.bnNum(todayCasesRate);
+      todayDeathRateBn = util.bnNum(todayDeathRate);
+      totatCasesRateBn = util.bnNum(totatCasesRate);
+      totalDeathsRateBn = util.bnNum(totalDeathsRate);
+      recoveredRateBn = util.bnNum(recoveredRate);
+      testRateBn = util.bnNum(testRate);
 
       res.render('pages/index', {
         todayCases: todayCases,
@@ -112,12 +112,18 @@ exports.index = async (req, res) => {
         updated: updated,
         divisions: divisions,
         districts: districts,
-        todayCasesRate: todayCasesRate,
-        todayDeathRate: todayDeathRate,
-        totatCasesRate: totatCasesRate,
-        totalDeathRate: totalDeathRate,
-        recoveredRate: recoveredRate,
-        testRate: testRate,
+        todayCasesRateBn: todayCasesRateBn,
+        todayCasesRateEn: todayCasesRate,
+        todayDeathRateBn: todayDeathRateBn,
+        todayDeathRateEn: todayDeathRate,
+        totatCasesRateBn: totatCasesRateBn,
+        totatCasesRateEn: totatCasesRate,
+        totalDeathsRateBn: totalDeathsRateBn,
+        totalDeathsRateEn: totalDeathsRate,
+        recoveredRateBn: recoveredRateBn,
+        recoveredRateEn: recoveredRate,
+        testRateBn: testRateBn,
+        testRateEn: testRate,
       });
     })
     .catch((err) => console.error());
