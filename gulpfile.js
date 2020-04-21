@@ -110,7 +110,7 @@ const browserSyncTask = () => {
 };
 
 // JS bundled into minified JS task
-const scripts = () => {
+const buildScripts = () => {
   let uglifyScripts = lazypipe().pipe(uglify);
   return src('./src/script/*.js')
     .pipe(sourcemaps.init())
@@ -122,7 +122,7 @@ const scripts = () => {
 };
 
 // SCSS bundled into CSS task
-const styles = () => {
+const buildStyles = () => {
   return src('./src/style/*.scss')
     .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
     .pipe(
@@ -144,8 +144,10 @@ const browserReload = () => {
   return browserSync.reload;
 };
 
+// Clean
+
 // Watch files
-const watchFiles = () => {
+const devWatch = () => {
   // watch style files
   watch('public/**/*.css', parallel(styles)).on('change', browserReload());
 
@@ -156,6 +158,11 @@ const watchFiles = () => {
   watch('views/**/*.ejs').on('change', browserReload());
 };
 
-exports.styles = styles;
-exports.scripts = scripts;
-exports.default = parallel(series(nodemonTask, browserSyncTask), watchFiles);
+// Development Task
+export const dev = series(clean, nodemonTask, browserSyncTask, parallel(buildStyles, buildScripts), devWatch);
+
+// Serve Task
+export const build = series(clean, parallel(buildStyles, buildScripts));
+
+// Default Task
+exports.default = dev;
