@@ -1,29 +1,8 @@
 const track = require('covidapi');
 const fs = require('fs');
 const moment = require('moment');
-
+const util = require('./../util/util');
 moment.locale('bn');
-
-const bnNum = (num, komma = false) => {
-  const banglaNumber = {
-    '0': '০',
-    '1': '১',
-    '2': '২',
-    '3': '৩',
-    '4': '৪',
-    '5': '৫',
-    '6': '৬',
-    '7': '৭',
-    '8': '৮',
-    '9': '৯',
-  };
-
-  let str = `${num.toLocaleString('bn-BD', { useGrouping: komma })}`;
-  for (var x in banglaNumber) {
-    str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
-  }
-  return str;
-};
 
 const readData = () => {
   const rawData = fs.readFileSync('./data/covid-data.json', 'utf8');
@@ -58,12 +37,12 @@ exports.index = (req, res) => {
   track
     .countries({ country: 'bangladesh' })
     .then((result) => {
-      let todayCases = bnNum(result.todayCases, true);
-      let cases = bnNum(result.cases, true);
-      let todayDeaths = bnNum(result.todayDeaths, true);
-      let deaths = bnNum(result.deaths, true);
-      let recovered = bnNum(result.recovered, true);
-      let tests = bnNum(result.tests, true);
+      let todayCases = util.bnNum(result.todayCases, true);
+      let cases = util.bnNum(result.cases, true);
+      let todayDeaths = util.bnNum(result.todayDeaths, true);
+      let deaths = util.bnNum(result.deaths, true);
+      let recovered = util.bnNum(result.recovered, true);
+      let tests = util.bnNum(result.tests, true);
       let updated = moment(result.updated).fromNow();
 
       res.render('pages/index', {
