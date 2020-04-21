@@ -11,12 +11,17 @@ module.exports = {
   },
   "parserOptions": {
     "ecmaFeatures": {
-        "jsx": true
+      "jsx": true
     }
-},
+  },
   rules: {
     "no-debugger": 0,
     "no-alert": 0,
+    "no-multi-spaces": [1, {
+      "exceptions": {
+        "VariableDeclaration": true
+      }
+    }],
     "prettier/prettier": [
       "error",
       {
@@ -27,6 +32,7 @@ module.exports = {
     ],
   },
   plugins: [
+    "ejs",
     "html",
     "prettier"
   ]
