@@ -65,7 +65,7 @@ exports.index = async (req, res) => {
       let todayCases =
         today.todayCases == 0 ? yesterday.todayCases : today.todayCases;
       let todayDeaths =
-        today.todayDeaths == 0 ? yesterday.todayDeath : today.todayDeaths;
+        today.todayDeaths == 0 ? yesterday.todayDeaths : today.todayDeaths;
       let totalCases = today.cases;
       let totalDeaths = today.deaths;
       let recovered = today.recovered;
@@ -73,22 +73,22 @@ exports.index = async (req, res) => {
       let updated = today.updated;
 
       let todayCasesRate = getChangeRate(todayCases, yesterdayCases);
-      let todayDeathRate = getChangeRate(todayDeaths, yesterdayDeaths);
+      let todayDeathsRate = getChangeRate(todayDeaths, yesterdayDeaths);
       let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases);
       let totalDeathsRate = getChangeRate(totalDeaths, yesterdayTotalDeaths);
       let recoveredRate = getChangeRate(recovered, yesterdayRecovered);
       let testRate = getChangeRate(tests, yesterdayTests);
       console.table([
         todayCasesRate,
-        todayDeathRate,
+        todayDeathsRate,
         totatCasesRate,
         totalDeathsRate,
         recoveredRate,
         testRate,
       ]);
 
-      todayCases = util.bnNum(today.todayCases, true);
-      todayDeaths = util.bnNum(today.todayDeaths, true);
+      todayCases = util.bnNum(todayCases, true);
+      todayDeaths = util.bnNum(todayDeaths, true);
       totalCases = util.bnNum(totalCases, true);
       totalDeaths = util.bnNum(totalDeaths, true);
       recovered = util.bnNum(today.recovered, true);
@@ -96,7 +96,7 @@ exports.index = async (req, res) => {
       updated = moment(updated).fromNow();
 
       todayCasesRateBn = util.bnNum(todayCasesRate);
-      todayDeathRateBn = util.bnNum(todayDeathRate);
+      todayDeathRateBn = util.bnNum(todayDeathsRate);
       totatCasesRateBn = util.bnNum(totatCasesRate);
       totalDeathsRateBn = util.bnNum(totalDeathsRate);
       recoveredRateBn = util.bnNum(recoveredRate);
@@ -115,7 +115,7 @@ exports.index = async (req, res) => {
         todayCasesRateBn: todayCasesRateBn,
         todayCasesRateEn: todayCasesRate,
         todayDeathRateBn: todayDeathRateBn,
-        todayDeathRateEn: todayDeathRate,
+        todayDeathRateEn: todayDeathsRate,
         totatCasesRateBn: totatCasesRateBn,
         totatCasesRateEn: totatCasesRate,
         totalDeathsRateBn: totalDeathsRateBn,
