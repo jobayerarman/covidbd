@@ -27,6 +27,14 @@
             <p>গত ২৪ ঘণ্টায় নতুন শনাক্ত</p>
             <h2 class="card-title"><%= todayCases %></h2>
           </div>
+          <div class="card-footer py-1 text-white">
+            <%= todayCasesRateBn %>%
+            <% if (todayCasesRateEn < 0) { %>
+            (কমেছে)
+            <% } else { %>
+            (বেড়েছে)
+            <% } %>
+          </div>
         </div>
       </div>
 
@@ -35,6 +43,14 @@
           <div class="card-body text-white">
             <p>গত ২৪ ঘণ্টায় মোট মৃত্যু</p>
             <h2 class="card-title"><%= todayDeaths %></h2>
+          </div>
+          <div class="card-footer py-1 text-white">
+            <%= todayDeathRateBn %>%
+            <% if (todayDeathRateEn < 0) { %>
+            (কমেছে)
+            <% } else { %>
+            (বেড়েছে)
+            <% } %>
           </div>
         </div>
       </div>
@@ -45,6 +61,14 @@
             <p>মোট শনাক্ত</p>
             <h2 class="card-title text-warning"><%= cases %></h2>
           </div>
+          <div class="card-footer py-1">
+            <%= totatCasesRateBn %>%
+            <% if (totatCasesRateEn < 0) { %>
+            (কমেছে)
+            <% } else { %>
+            (বেড়েছে)
+            <% } %>
+          </div>
         </div>
       </div>
 
@@ -53,6 +77,14 @@
           <div class="card-body">
             <p>মোট মৃত</p>
             <h2 class="card-title text-danger"><%= deaths %></h2>
+          </div>
+          <div class="card-footer py-1">
+            <%= totalDeathsRateBn %>%
+            <% if (totalDeathsRateEn < 0) { %>
+            (কমেছে)
+            <% } else { %>
+            (বেড়েছে)
+            <% } %>
           </div>
         </div>
       </div>
@@ -63,6 +95,14 @@
             <p>মোট সুস্থ</p>
             <h2 class="card-title text-success"><%= recovered %> </h2>
           </div>
+          <div class="card-footer py-1">
+            <%= recoveredRateBn %>%
+            <% if (recoveredRateEn < 0) { %>
+            (কমেছে)
+            <% } else { %>
+            (বেড়েছে)
+            <% } %>
+          </div>
         </div>
       </div>
 
@@ -71,6 +111,14 @@
           <div class="card-body">
             <p>মোট পরিক্ষাকৃত নমুনার সংখ্যা</p>
             <h2 class="card-title text-info"><%= tests %> </h2>
+          </div>
+          <div class="card-footer py-1">
+            <%= testRateBn %>%
+            <% if (testRateEn < 0) { %>
+            (কমেছে)
+            <% } else { %>
+            (বেড়েছে)
+            <% } %>
           </div>
         </div>
       </div>

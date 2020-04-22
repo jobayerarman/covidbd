@@ -10,6 +10,7 @@ module.exports = {
     "jest": true
   },
   "parserOptions": {
+    "ecmaVersion": 2017,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
