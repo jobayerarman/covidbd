@@ -21,7 +21,6 @@ const getCovidData = async () => {
 };
 
 let getChangeRate = (a, b, reverse = false) => {
-  console.log(a, b);
   let rate = parseFloat(((a - b) / b) * 100).toFixed(2) * 1;
   if (reverse) return rate * -1;
   return rate;
@@ -78,14 +77,6 @@ exports.index = async (req, res) => {
       let totalDeathsRate = getChangeRate(totalDeaths, yesterdayTotalDeaths);
       let recoveredRate = getChangeRate(recovered, yesterdayRecovered);
       let testRate = getChangeRate(tests, yesterdayTests);
-      console.table([
-        todayCasesRate,
-        todayDeathsRate,
-        totatCasesRate,
-        totalDeathsRate,
-        recoveredRate,
-        testRate,
-      ]);
 
       todayCases = util.bnNum(todayCases, true);
       todayDeaths = util.bnNum(todayDeaths, true);
