@@ -26,6 +26,20 @@ $cyan:    #17a2b8 !default;
     padding-top: .5rem !important;
     padding-bottom: .5rem !important;
   }
+
+  .news-container {
+    .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .news-container {
+    .news-ticker {
+      margin-left: -30px !important;
+    }
+  }
 }
 
 .bg-warning {
