@@ -98,17 +98,17 @@ exports.index = async (req, res) => {
       let testRate = getChangeRate(totalTests, yesterdayTests);
 
       // translation to bengali
-      todayCases = util.bnNum(todayCases, true);
-      todayDeaths = util.bnNum(todayDeaths, true);
+      let todayCasesBn = util.bnNum(todayCases, true);
+      let todayDeathsBn = util.bnNum(todayDeaths, true);
 
-      totalCases = util.bnNum(totalCases, true);
-      totalDeaths = util.bnNum(totalDeaths, true);
+      let totalCasesBn = util.bnNum(totalCases, true);
+      let totalDeathsBn = util.bnNum(totalDeaths, true);
 
-      todayRecovered = util.bnNum(todayRecovered);
-      todayTests = util.bnNum(todayTests);
+      let todayRecoveredBn = util.bnNum(todayRecovered);
+      let todayTestsBn = util.bnNum(todayTests);
 
-      totalRecovered = util.bnNum(today.recovered, true);
-      totalTests = util.bnNum(today.tests, true);
+      let totalRecoveredBn = util.bnNum(today.recovered, true);
+      let totalTestsBn = util.bnNum(today.tests, true);
 
       updated = moment(updated).fromNow();
 
@@ -129,15 +129,15 @@ exports.index = async (req, res) => {
       affectedCountries = util.bnNum(affectedCountries, true);
 
       res.render('pages/index', {
-        todayCases: todayCases,
-        todayDeaths: todayDeaths,
-        cases: totalCases,
-        deaths: totalDeaths,
+        todayCases: todayCasesBn,
+        todayDeaths: todayDeathsBn,
+        cases: totalCasesBn,
+        deaths: totalDeathsBn,
 
-        todayRecovered: todayRecovered,
-        todayTests: todayTests,
-        totalRecovered: totalRecovered,
-        totalTests: totalTests,
+        todayRecovered: todayRecoveredBn,
+        todayTests: todayTestsBn,
+        totalRecovered: totalRecoveredBn,
+        totalTests: totalTestsBn,
 
         updated: updated,
 
@@ -152,18 +152,24 @@ exports.index = async (req, res) => {
         testRateBn: testRateBn,
 
         todayCasesRateEn: todayCasesRate,
-        todayDeathRateEn: todayDeathsRate,
         totatCasesRateEn: totatCasesRate,
+        todayDeathRateEn: todayDeathsRate,
         totalDeathsRateEn: totalDeathsRate,
         recoveredRateEn: recoveredRate,
         testRateEn: testRate,
 
         allTodayCases: allTodayCases,
-        allTodayDeaths: allTodayDeaths,
         allCases: allCases,
+        allTodayDeaths: allTodayDeaths,
         allDeaths: allDeaths,
         allRecovered: allRecovered,
         affectedCountries: affectedCountries,
+
+        // charts variable
+        totalCasesEn: totalCases,
+        totalDeathsEn: totalDeaths,
+        totalRecoveredEn: totalRecovered,
+        totalTestsEn: totalTests,
       });
     })
     .catch((err) => console.error());
