@@ -10,22 +10,22 @@
  * Load gulp plugins and assigning them semantic names.
  */
 const { src, dest, parallel, series, watch } = require('gulp');
-const gutil       = require('gulp-util');
+const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
-const nodemon     = require('gulp-nodemon');
-const sass        = require('gulp-sass');
-const prefix      = require('gulp-autoprefixer');
-const sourcemaps  = require('gulp-sourcemaps');
-const concat      = require('gulp-concat');
-const uglify      = require('gulp-uglify-es').default;
-const plumber     = require('gulp-plumber');
-const gulpif      = require('gulp-if');
-const rename      = require('gulp-rename');
-const size        = require('gulp-size');
-const lazypipe    = require('lazypipe');
-const path        = require('path');
-const filter      = require('gulp-filter');
-const del         = require('del');
+const nodemon = require('gulp-nodemon');
+const sass = require('gulp-sass');
+const prefix = require('gulp-autoprefixer');
+const sourcemaps = require('gulp-sourcemaps');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify-es').default;
+const plumber = require('gulp-plumber');
+const gulpif = require('gulp-if');
+const rename = require('gulp-rename');
+const size = require('gulp-size');
+const lazypipe = require('lazypipe');
+const path = require('path');
+const filter = require('gulp-filter');
+const del = require('del');
 
 // we'd need a slight delay to reload browsers
 // connected to browser-sync after restarting nodemon
@@ -63,8 +63,11 @@ const nodemonTask = (cb) => {
     // nodemon our expressjs server
     script: 'index.js',
 
+    // setting nodejs environment to development
+    env: { NODE_ENV: 'development' },
+
     // watch core server file(s) that require server restart on change
-    watch: ['index.js'],
+    watch: ['index.js', 'controllers/', 'util/'],
   })
     .on('start', function onStart() {
       // ensure start only got called once
