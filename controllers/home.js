@@ -22,6 +22,7 @@ const getCovidData = async () => {
 
 let getChangeRate = (a, b, reverse = false) => {
   let rate = parseFloat(((a - b) / b) * 100).toFixed(2) * 1;
+  if (a < b) return rate * -1;
   if (reverse) return rate * -1;
   return rate;
 };
@@ -65,55 +66,76 @@ exports.index = async (req, res) => {
         today.todayCases == 0 ? yesterday.todayCases : today.todayCases;
       let todayDeaths =
         today.todayDeaths == 0 ? yesterday.todayDeaths : today.todayDeaths;
+
       let totalCases = today.cases;
       let totalDeaths = today.deaths;
-      let recovered = today.recovered;
-      let tests = today.tests;
+
+      let totalRecovered = today.recovered;
+      let totalTests = today.tests;
+
+      let todayRecovered = totalRecovered - yesterdayRecovered;
+      let todayTests = totalTests - yesterdayTests;
+
       let updated = today.updated;
 
       let todayCasesRate = getChangeRate(todayCases, yesterdayCases);
       let todayDeathsRate = getChangeRate(todayDeaths, yesterdayDeaths);
       let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases);
       let totalDeathsRate = getChangeRate(totalDeaths, yesterdayTotalDeaths);
-      let recoveredRate = getChangeRate(recovered, yesterdayRecovered);
-      let testRate = getChangeRate(tests, yesterdayTests);
+      let recoveredRate = getChangeRate(totalRecovered, yesterdayRecovered);
+      let testRate = getChangeRate(totalTests, yesterdayTests);
 
       todayCases = util.bnNum(todayCases, true);
       todayDeaths = util.bnNum(todayDeaths, true);
+
       totalCases = util.bnNum(totalCases, true);
       totalDeaths = util.bnNum(totalDeaths, true);
-      recovered = util.bnNum(today.recovered, true);
-      tests = util.bnNum(today.tests, true);
+
+      todayRecovered = util.bnNum(todayRecovered);
+      todayTests = util.bnNum(todayTests);
+
+      totalRecovered = util.bnNum(today.recovered, true);
+      totalTests = util.bnNum(today.tests, true);
+
       updated = moment(updated).fromNow();
 
       todayCasesRateBn = util.bnNum(todayCasesRate);
       todayDeathRateBn = util.bnNum(todayDeathsRate);
+
       totatCasesRateBn = util.bnNum(totatCasesRate);
       totalDeathsRateBn = util.bnNum(totalDeathsRate);
+
       recoveredRateBn = util.bnNum(recoveredRate);
       testRateBn = util.bnNum(testRate);
 
       res.render('pages/index', {
         todayCases: todayCases,
-        cases: totalCases,
         todayDeaths: todayDeaths,
+        cases: totalCases,
         deaths: totalDeaths,
-        recovered: recovered,
-        tests: tests,
+
+        todayRecovered: todayRecovered,
+        todayTests: todayTests,
+        totalRecovered: totalRecovered,
+        totalTests: totalTests,
+
         updated: updated,
+
         divisions: divisions,
         districts: districts,
+
         todayCasesRateBn: todayCasesRateBn,
-        todayCasesRateEn: todayCasesRate,
         todayDeathRateBn: todayDeathRateBn,
-        todayDeathRateEn: todayDeathsRate,
         totatCasesRateBn: totatCasesRateBn,
-        totatCasesRateEn: totatCasesRate,
         totalDeathsRateBn: totalDeathsRateBn,
-        totalDeathsRateEn: totalDeathsRate,
         recoveredRateBn: recoveredRateBn,
-        recoveredRateEn: recoveredRate,
         testRateBn: testRateBn,
+
+        todayCasesRateEn: todayCasesRate,
+        totatCasesRateEn: totatCasesRate,
+        todayDeathRateEn: todayDeathsRate,
+        totalDeathsRateEn: totalDeathsRate,
+        recoveredRateEn: recoveredRate,
         testRateEn: testRate,
       });
     })
