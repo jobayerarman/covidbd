@@ -1,3 +1,4 @@
+// color variables
 $blue:    #0d6efd !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
@@ -9,6 +10,7 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
+// styles for upto mobile screen
 @media only screen and (max-width: 768px) {
   .card {
     margin-top: 15px;
@@ -26,6 +28,26 @@ $cyan:    #17a2b8 !default;
     padding-top: .5rem !important;
     padding-bottom: .5rem !important;
   }
+
+  .news-container {
+    .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
+
+// styles for large screen only
+@media only screen and (min-width: 768px) {
+  .news-container {
+    .news-ticker {
+      margin-left: -30px !important;
+    }
+  }
+}
+
+.panel {
+  border-radius: 4px;
 }
 
 .bg-warning {
@@ -35,3 +57,4 @@ $cyan:    #17a2b8 !default;
 .text-warning {
   color: $orange !important;
 }
+
