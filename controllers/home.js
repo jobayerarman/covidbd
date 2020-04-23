@@ -21,9 +21,8 @@ const getCovidData = async () => {
   return data;
 };
 
-let getChangeRate = (a, b, reverse = false) => {
-  let rate = parseFloat(((a - b) / b) * 100).toFixed(2) * 1;
-  if (a < b) return rate * -1;
+let getChangeRate = (newNum, oldNum, reverse = false) => {
+  let rate = parseFloat(((newNum - oldNum) / oldNum) * 100).toFixed(2) * 1;
   if (reverse) return rate * -1;
   return rate;
 };
@@ -153,15 +152,15 @@ exports.index = async (req, res) => {
         testRateBn: testRateBn,
 
         todayCasesRateEn: todayCasesRate,
-        totatCasesRateEn: totatCasesRate,
         todayDeathRateEn: todayDeathsRate,
+        totatCasesRateEn: totatCasesRate,
         totalDeathsRateEn: totalDeathsRate,
         recoveredRateEn: recoveredRate,
         testRateEn: testRate,
 
         allTodayCases: allTodayCases,
-        allCases: allCases,
         allTodayDeaths: allTodayDeaths,
+        allCases: allCases,
         allDeaths: allDeaths,
         allRecovered: allRecovered,
         affectedCountries: affectedCountries,
