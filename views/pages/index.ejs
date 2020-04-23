@@ -22,23 +22,23 @@
                 <span>
                   <i class="fa fa-circle-o mr-2" style="color: red" aria-hidden="true"></i>
                   ২৪ ঘন্টায় বাংলাদেশে
-                  নতুন সংক্রমণ: <span class="text-warning"><%= todayCases %></span>,
-                  মোট আক্রান্ত: <span class="text-warning"><%= cases %></span>;
-                  মৃত্যু: <span class="text-danger"><%= todayDeaths %></span>,
-                  মোট মৃত্যু: <sapn class="text-danger"><%= deaths %></sapn>;
-                  নতুন করে সুস্থ: <sapn class="text-success"><%= todayRecovered %></sapn>,
-                  মোট সুস্থ: <span class="text-success"><%= totalRecovered %></span>
+                  <span class="text-warning">নতুন সংক্রমণ:</span> <%= todayCases %>,
+                  <span class="text-warning">মোট আক্রান্ত:</span> <%= cases %>;
+                  <span class="text-danger">মৃত্যু:</span> <%= todayDeaths %>,
+                  <span class="text-danger">মোট মৃত্যু:</span> <%= deaths %>;
+                  <span class="text-success">নতুন করে সুস্থ:</span> <%= todayRecovered %>,
+                  <span class="text-success">মোট সুস্থ:</span> <%= totalRecovered %>
                 </span>
                 <span class="ml-5">
                   <i class="fa fa-circle-o mr-2" style="color: red" aria-hidden="true"></i>
                   বিশ্বে করোনায়
-                  নতুন সংক্রমণ: <span class="text-warning"><%= allTodayCases %></span>,
-                  মোট আক্রান্ত: <span class="text-warning"><%= allCases %></span>;
-                  মৃত্যু: <span class="text-danger"><%= allTodayDeaths %></span>,
-                  মোট মৃত্যু: <sapn class="text-danger"><%= allDeaths %></sapn>;
-                  মোট সুস্থ: <span class="text-success"><%= allRecovered %> </span>;
-                  মোট আক্রান্ত দেশ: <sapn class="text-danger"><%= affectedCountries %></sapn>
-                  - জন হপকিংস ইউনিভার্সিটি
+                  <span class="text-warning">নতুন সংক্রমণ:</span> <%= allTodayCases %>,
+                  <span class="text-warning">মোট আক্রান্ত:</span> <%= allCases %>;
+                  <span class="text-danger">মৃত্যু:</span> <%= allTodayDeaths %>,
+                  <span class="text-danger">মোট মৃত্যু:</span> <%= allDeaths %>;
+                  <span class="text-success">মোট সুস্থ:</span> <%= allRecovered %>;
+                  <span class="text-danger">মোট আক্রান্ত দেশ:</span> <%= affectedCountries %> টি
+                  - তথ্যসূত্রঃ জন হপকিংস ইউনিভার্সিটি
                 </span>
               </p>
             </marquee>
