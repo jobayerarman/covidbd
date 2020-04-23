@@ -159,7 +159,7 @@
           <div class="row">
             <div class="col">
               <div class="panel-footer py-2">
-                <%= testRateBn %>%
+                <%= testRateBn %>
                 <% if (testRateEn < 0) { %>
                 (কমেছে)
                 <% } else { %>
@@ -185,6 +185,19 @@
       <div class="col-lg-6 col-md-12">
         <div class="chart-container table-responsive">
           <canvas id="coronaDeathByTime" class="table" style="max-height: 450px"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="chart-container table-responsive">
+          <canvas id="pie-chart-one" class="table" style="max-height: 450px"></canvas>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div class="chart-container table-responsive">
+          <canvas id="pie-chart-two" class="table" style="max-height: 450px"></canvas>
         </div>
       </div>
     </div>
@@ -241,6 +254,7 @@
   </div>
 
   <% include ../partials/footer.ejs %>
+  <% include ../partials/charts.ejs %>
 </body>
 
 </html>
