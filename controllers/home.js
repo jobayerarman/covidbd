@@ -14,8 +14,9 @@ const getCovidData = async () => {
   const b = track.yesterday
     .countries({ country: 'bangladesh' })
     .catch(() => 'error');
+  const c = track.all().catch(() => 'error');
 
-  const data = await Promise.all([a, b]);
+  const data = await Promise.all([a, b, c]);
 
   return data;
 };
@@ -54,7 +55,9 @@ exports.index = async (req, res) => {
     .then((result) => {
       let today = result[0];
       let yesterday = result[1];
+      let all = result[2];
 
+      // yesterday
       let yesterdayCases = yesterday.todayCases;
       let yesterdayTotalCases = yesterday.cases;
       let yesterdayDeaths = yesterday.todayDeaths;
@@ -62,6 +65,7 @@ exports.index = async (req, res) => {
       let yesterdayRecovered = yesterday.recovered;
       let yesterdayTests = yesterday.tests;
 
+      // today
       let todayCases =
         today.todayCases == 0 ? yesterday.todayCases : today.todayCases;
       let todayDeaths =
@@ -76,8 +80,17 @@ exports.index = async (req, res) => {
       let todayRecovered = totalRecovered - yesterdayRecovered;
       let todayTests = totalTests - yesterdayTests;
 
+      // worldwise
+      let allTodayCases = all.todayCases;
+      let allCases = all.cases;
+      let allTodayDeaths = all.todayDeaths;
+      let allDeaths = all.deaths;
+      let allRecovered = all.recovered;
+      let affectedCountries = all.affectedCountries;
+      // update time
       let updated = today.updated;
 
+      // get change rate
       let todayCasesRate = getChangeRate(todayCases, yesterdayCases);
       let todayDeathsRate = getChangeRate(todayDeaths, yesterdayDeaths);
       let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases);
@@ -85,6 +98,7 @@ exports.index = async (req, res) => {
       let recoveredRate = getChangeRate(totalRecovered, yesterdayRecovered);
       let testRate = getChangeRate(totalTests, yesterdayTests);
 
+      // translation to bengali
       todayCases = util.bnNum(todayCases, true);
       todayDeaths = util.bnNum(todayDeaths, true);
 
@@ -107,6 +121,13 @@ exports.index = async (req, res) => {
 
       recoveredRateBn = util.bnNum(recoveredRate);
       testRateBn = util.bnNum(testRate);
+
+      allTodayCases = util.bnNum(allTodayCases, true);
+      allCases = util.bnNum(allCases, true);
+      allTodayDeaths = util.bnNum(allTodayDeaths, true);
+      allDeaths = util.bnNum(allDeaths, true);
+      allRecovered = util.bnNum(allRecovered, true);
+      affectedCountries = util.bnNum(affectedCountries, true);
 
       res.render('pages/index', {
         todayCases: todayCases,
@@ -137,6 +158,13 @@ exports.index = async (req, res) => {
         totalDeathsRateEn: totalDeathsRate,
         recoveredRateEn: recoveredRate,
         testRateEn: testRate,
+
+        allTodayCases: allTodayCases,
+        allCases: allCases,
+        allTodayDeaths: allTodayDeaths,
+        allDeaths: allDeaths,
+        allRecovered: allRecovered,
+        affectedCountries: affectedCountries,
       });
     })
     .catch((err) => console.error());
