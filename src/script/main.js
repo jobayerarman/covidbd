@@ -58,6 +58,7 @@ let dateLabels = [
   '২০ এপ্রিল',
   '২১ এপ্রিল',
   '২২ এপ্রিল',
+  '২৩ এপ্রিল',
 ];
 
 let deathData = {
@@ -110,6 +111,7 @@ let deathData = {
         101,
         110,
         120,
+        127,
       ],
     },
   ],
@@ -316,6 +318,10 @@ let casesConfig = {
             x: moment('22-04-2020', 'DD-MM-YYYY'),
             y: 390,
           },
+          {
+            x: moment('23-04-2020', 'DD-MM-YYYY'),
+            y: 414,
+          },
         ],
       },
       {
@@ -475,6 +481,10 @@ let casesConfig = {
           {
             x: moment('22-04-2020', 'DD-MM-YYYY'),
             y: 3772,
+          },
+          {
+            x: moment('23-04-2020', 'DD-MM-YYYY'),
+            y: 4186,
           },
         ],
       },
