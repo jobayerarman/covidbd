@@ -1,0 +1,66 @@
+<script>
+    // pie chart - cases, deaths and recovered
+    let pieChartOneData = {
+        labels: ['শনাক্ত', 'মৃত্যু', 'সুস্থ'],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: ['rgb(241, 118, 0)', 'rgb(243, 58, 63)', 'rgb(58, 167, 69)'],
+            data: [<%= totalCasesEn %>, <%= totalDeathsEn %>, <%= totalRecoveredEn %>],
+        }]
+    };
+
+    let pieChartOneConfig = {
+        type: 'doughnut',
+
+        data: pieChartOneData,
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'মোট শনাক্ত, মৃত্যু ও সুস্থ',
+            },
+            legend: {
+                position: 'top',
+            },
+        }
+    };
+    // pie chart - tests and cases
+    let pieChartTwoData = {
+        labels: ['পরীক্ষা', 'শনাক্ত'],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: ['rgb(35, 162, 184)', 'rgb(241, 118, 0)'],
+            data: [<%= totalTestsEn %>, <%= totalCasesEn %>],
+        }]
+    };
+
+    let pieChartTwoConfig = {
+        type: 'doughnut',
+
+        data: pieChartTwoData,
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'মোট পরীক্ষা ও শনাক্ত',
+            },
+            legend: {
+                position: 'top',
+            },
+        }
+    };
+
+    window.onload = function () {
+        let pieChartOne = document.getElementById('pie-chart-one').getContext('2d');
+        window.pieChartOne = new Chart(pieChartOne, pieChartOneConfig);
+
+        let pieChartTwo = document.getElementById('pie-chart-two').getContext('2d');
+        window.pieChartTwo = new Chart(pieChartTwo, pieChartTwoConfig);
+    };
+</script>
