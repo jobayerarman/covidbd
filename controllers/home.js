@@ -1,5 +1,6 @@
 const track = require('covidapi');
 const fs = require('fs');
+const googleNews = require('google-news-json');
 const moment = require('moment');
 const util = require('./../util/util');
 moment.locale('bn');
@@ -48,6 +49,19 @@ exports.index = async (req, res) => {
       count: value,
     };
     districts.push(obj);
+  });
+  let news = await googleNews.getNews(
+    googleNews.SEARCH,
+    '%E0%A6%95%E0%A6%B0%E0%A7%8B%E0%A6%A8%E0%A6%BE%E0%A6%AD%E0%A6%BE%E0%A6%87%E0%A6%B0%E0%A6%BE%E0%A6%B8',
+    'bn-BD'
+  );
+  news = news.items.slice(0, 6);
+  let newsItems = news.map((n) => {
+    return {
+      title: n.title,
+      published: moment(n.pubDate).fromNow(),
+      link: n.link,
+    };
   });
 
   getCovidData()
@@ -170,7 +184,10 @@ exports.index = async (req, res) => {
         totalDeathsEn: totalDeaths,
         totalRecoveredEn: totalRecovered,
         totalTestsEn: totalTests,
+
+        // google news
+        news: newsItems,
       });
     })
-    .catch((err) => console.error());
+    .catch((err) => console.error(err));
 };
