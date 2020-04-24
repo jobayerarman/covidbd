@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.8.19",
+  "version": "0.9.0",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",
@@ -22,7 +22,9 @@
     "covidapi": "^0.1.4",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "google-news-json": "^1.0.3",
     "moment": "^2.24.0",
+    "node-gnews": "^1.0.3",
     "prettier": "^2.0.4",
     "serve-favicon": "^2.5.0"
   },
