@@ -1,7 +1,5 @@
 module.exports = {
-  extends: [
-    "prettier"
-  ],
+  extends: ["prettier"],
   env: {
     "browser": true,
     "node": true,
