@@ -50,13 +50,22 @@ exports.index = async (req, res) => {
     };
     districts.push(obj);
   });
-  let news = await googleNews.getNews(
+  let coronaNews = await googleNews.getNews(
     googleNews.SEARCH,
     '%E0%A6%95%E0%A6%B0%E0%A7%8B%E0%A6%A8%E0%A6%BE%E0%A6%AD%E0%A6%BE%E0%A6%87%E0%A6%B0%E0%A6%BE%E0%A6%B8',
     'bn-BD'
   );
-  news = news.items.slice(0, 6);
-  let newsItems = news.map((n) => {
+  coronaNews = coronaNews.items.slice(0, 6);
+  let coronaArticles = coronaNews.map((n) => {
+    return {
+      title: n.title,
+      published: moment(n.pubDate).fromNow(),
+      link: n.link,
+    };
+  });
+  let latestNews = await googleNews.getNews(googleNews.TOP_NEWS, null, 'bn-BD');
+  latestNews = latestNews.items.slice(0, 6);
+  let latestArticles = latestNews.map((n) => {
     return {
       title: n.title,
       published: moment(n.pubDate).fromNow(),
@@ -186,7 +195,8 @@ exports.index = async (req, res) => {
         totalTestsEn: totalTests,
 
         // google news
-        news: newsItems,
+        coronaArticles: coronaArticles,
+        latestArticles: latestArticles,
       });
     })
     .catch((err) => console.error(err));
