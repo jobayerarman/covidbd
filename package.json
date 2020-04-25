@@ -20,7 +20,7 @@
   "dependencies": {
     "compression": "^1.7.4",
     "covidapi": "^0.1.4",
-    "ejs": "^3.1.2",
+    "ejs": "^2.7.4",
     "express": "^4.15.2",
     "google-news-json": "^1.0.3",
     "moment": "^2.24.0",
