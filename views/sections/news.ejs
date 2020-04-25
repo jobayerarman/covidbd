@@ -1,0 +1,47 @@
+<div class="container-fluid px-md-5">
+    <div class="row mt-4 pt-4">
+        <div class="col-8 offset-2 col-lg-2 offset-lg-5">
+            <h5 class="text-center">করোনাভাইরাস সর্বশেষ খবর</h5>
+            <hr>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="px-5">
+            <div class="card-deck">
+                <% coronaArticles.forEach(function(item) { %>
+                <div class="card border border-info">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="<%= item.link %>" target="_blank"><%= item.title %></a> </h5>
+                    </div>
+                    <div class="card-footer">
+                        <small>প্রকাশিতঃ <%= item.published %></small>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 pt-4">
+        <div class="col-8 offset-2 col-lg-2 offset-lg-5">
+            <h5 class="text-center">বাংলাদেশের শীর্ষ খবর</h5>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="px-5">
+            <div class="card-deck">
+            <% latestArticles.forEach(function(item) { %>
+                <div class="card border border-info">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="<%= item.link %>" target="_blank"><%= item.title %></a> </h5>
+                    </div>
+                    <div class="card-footer">
+                        <small>প্রকাশিতঃ <%= item.published %></small>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
