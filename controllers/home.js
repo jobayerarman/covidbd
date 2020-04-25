@@ -50,6 +50,9 @@ exports.index = async (req, res) => {
     };
     districts.push(obj);
   });
+
+
+  // latest corona news
   let coronaNews = await googleNews.getNews(
     googleNews.SEARCH,
     '%E0%A6%95%E0%A6%B0%E0%A7%8B%E0%A6%A8%E0%A6%BE%E0%A6%AD%E0%A6%BE%E0%A6%87%E0%A6%B0%E0%A6%BE%E0%A6%B8',
@@ -63,6 +66,8 @@ exports.index = async (req, res) => {
       link: n.link,
     };
   });
+
+  // latest news of bangladesh
   let latestNews = await googleNews.getNews(googleNews.TOP_NEWS, null, 'bn-BD');
   latestNews = latestNews.items.slice(0, 6);
   let latestArticles = latestNews.map((n) => {
