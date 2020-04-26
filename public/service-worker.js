@@ -1,7 +1,7 @@
 /* A version number is useful when updating the worker logic,
    allowing you to remove outdated cache entries during the update.
 */
-var version = 'v1::';
+var version = 'v3::';
 
 /* These resources will be downloaded and cached by the service worker
    during the installation process. If any resource fails to be downloaded,
@@ -126,8 +126,67 @@ self.addEventListener('fetch', (event) => {
        the request. Once the promise is settled, we can then provide a response
        to the fetch request.
     */
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+    caches.match(event.request).then((cached) => {
+      var networked = fetch(event.request)
+        // We handle the network request with success and failure scenarios.
+        .then(fetchedFromNetwork, unableToResolve)
+        // We should catch errors on the fetchedFromNetwork handler as well.
+        .catch(unableToResolve);
+
+      /* We return the cached response immediately if there is one, and fall
+          back to waiting on the network as usual.
+      */
+      console.log(
+        '[ServiceWorker]: fetch event',
+        cached ? '(cached)' : '(network)'
+      );
+      return cached || networked;
+
+      function fetchedFromNetwork(response) {
+        /* We copy the response before replying to the network request.
+           This is the response that will be stored on the ServiceWorker cache.
+        */
+        var cacheCopy = response.clone();
+
+        console.log('[ServiceWorker]: fetch response from network.');
+
+        caches
+          // We open a cache to store the response for this request.
+          .open(version + 'pages')
+          .then(function add(cache) {
+            /* We store the response for this request. It'll later become
+               available to caches.match(event.request) calls, when looking
+               for cached responses.
+            */
+            return cache.put(event.request, cacheCopy);
+          })
+          .then(function () {
+            console.log('[ServiceWorker]: fetch response stored in cache.');
+          });
+
+        // Return the response so that the promise is settled in fulfillment.
+        return response;
+      }
+
+      /* When this method is called, it means we were unable to produce a response
+         from either the cache or the network. This is our opportunity to produce
+         a meaningful response even when all else fails. It's the last chance, so
+         you probably want to display a "Service Unavailable" view or a generic
+         error response.
+      */
+      function unableToResolve() {
+        console.log(
+          '[ServiceWorker]: fetch request failed in both cache and network.'
+        );
+
+        return new Response('<h1>Service Unavailable</h1>', {
+          status: 503,
+          statusText: 'Service Unavailable',
+          headers: new Headers({
+            'Content-Type': 'text/html',
+          }),
+        });
+      }
     })
   );
 });
