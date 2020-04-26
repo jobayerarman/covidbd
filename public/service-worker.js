@@ -1,7 +1,7 @@
 /* A version number is useful when updating the worker logic,
    allowing you to remove outdated cache entries during the update.
 */
-var version = 'v3::';
+var version = 'v4::';
 
 /* These resources will be downloaded and cached by the service worker
    during the installation process. If any resource fails to be downloaded,
@@ -17,6 +17,18 @@ var filesToCache = [
   './images/favicon-16x16.png',
   './images/favicon-32x32.png',
   './images/apple-touch-icon-152x152.png',
+  'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
+  'https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/social-share-kit/1.0.15/css/social-share-kit.css',
+  'https://code.jquery.com/jquery-3.4.1.slim.min.js',
+  'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+  'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js',
+  'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js',
+  'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js',
+  'https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/social-share-kit/1.0.15/js/social-share-kit.min.js',
+  'https://platform.twitter.com/widgets.js',
 ];
 
 /* The install event fires when the service worker is first installed.
