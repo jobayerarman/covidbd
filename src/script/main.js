@@ -138,4 +138,15 @@ $(document).ready(function () {
       sSearch: 'সার্চঃ',
     },
   });
+
+  // Init Social Share Kit
+  SocialShareKit.init({
+    selector: '.social-widget .ssk',
+    url: 'https://covidbd.herokuapp.com/',
+  });
+
+  // Just to disable href
+  $('.ssk').on('click', function (e) {
+    e.preventDefault();
+  });
 });
