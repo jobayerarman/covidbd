@@ -1,9 +1,13 @@
-let cacheName = 'covidbd-v3';
+/* A version number is useful when updating the worker logic,
+   allowing you to remove outdated cache entries during the update.
+*/
+var version = 'v1::';
 
-/*
- * Files to be served from cache
- */
-let filesToCache = [
+/* These resources will be downloaded and cached by the service worker
+   during the installation process. If any resource fails to be downloaded,
+   then the service worker won't be installed either.
+*/
+var filesToCache = [
   './',
   './scripts/main.js',
   './stylesheets/main.css',
@@ -22,22 +26,36 @@ let filesToCache = [
 self.addEventListener('install', (event) => {
   console.info('[ServiceWorker]: Installing...');
 
-  // e.waitUntil Delays the event until the Promise is resolved
+  /* Using event.waitUntil(p) blocks the installation process on the provided
+     promise. If the promise is rejected, the service worker won't be installed.
+  */
   event.waitUntil(
-    // Open the cache
-    caches.open(cacheName).then((cache) => {
-      // Add all the default files to the cache
-      return cache
-        .addAll(filesToCache)
-        .then(() => {
-          console.info('[ServiceWorker]: Sucessfully Cached');
-          return self.skipWaiting();
-        })
-        .catch((error) => {
-          console.error('[ServiceWorker]: Failed to cache', error);
-        });
-    })
+    /* The caches built-in is a promise-based API that helps you cache responses,
+       as well as finding and deleting them.
+    */
+    caches
+      /* You can open a cache by name, and this method returns a promise. We use
+         a versioned cache name here so that we can remove old cache entries in
+         one fell swoop later, when phasing out an older service worker.
+      */
+      .open(version + 'fundamentals')
+      .then((cache) => {
+        /* After the cache is opened, we can fill it with the offline fundamentals.
+           The method below will add all resources in `offlineFundamentals` to the
+           cache, after making requests for them.
+        */
+        return cache
+          .addAll(filesToCache)
+          .then(() => {
+            console.info('[ServiceWorker]: Sucessfully Cached');
+            return self.skipWaiting();
+          })
+          .catch((error) => {
+            console.error('[ServiceWorker]: Failed to cache', error);
+          });
+      })
   );
+  console.log('[ServiceWorker]: Install completed');
 });
 
 /* The activate event fires after a service worker has been successfully installed.
@@ -56,25 +74,24 @@ self.addEventListener('activate', (event) => {
     // Get all the cache keys (cacheName)
     caches
       .keys()
-      .then((cacheNames) => {
+      .then((keys) => {
         // We return a promise that settles when all outdated caches are deleted.
         return Promise.all(
-          cacheNames.map((thisCacheName) => {
-            // If a cached item is saved under a previous cacheName
-            if (thisCacheName !== cacheName) {
-              // Delete that cached file
-              console.log(
-                '[ServiceWorker]: Removing Cached Files from Cache - ',
-                thisCacheName
-              );
-              return caches.delete(thisCacheName);
-            }
-          })
+          keys
+            .filter((key) => {
+              // Filter by keys that don't start with the latest version prefix.
+              return !key.startsWith(version);
+            })
+            .map((key) => {
+              /* Return a promise that's fulfilled
+                when each outdated cache is deleted.
+              */
+              return caches.delete(key);
+            })
         );
       })
       .then(() => {
         console.info('[ServiceWorker]: activate completed');
-        return self.clients.claim();
       })
   );
 });
@@ -85,10 +102,8 @@ self.addEventListener('activate', (event) => {
    CSS resources, fonts, any images, etc.
 */
 self.addEventListener('fetch', (event) => {
-  console.log('[ServiceWorker]: Fetch', event.request.url);
-
   /* We should only cache GET requests, and deal with the rest of method in the
-     client-side, by handling failed POST,PUT,PATCH,etc. requests.
+  client-side, by handling failed POST,PUT,PATCH,etc. requests.
   */
   if (event.request.method !== 'GET') {
     /* If we don't block the event as shown below, then the request will go to
@@ -111,46 +126,8 @@ self.addEventListener('fetch', (event) => {
        the request. Once the promise is settled, we can then provide a response
        to the fetch request.
     */
-    caches.match(event.request).then((cached) => {
-      // If the request is in the cache
-      if (cached) {
-        console.log(
-          '[ServiceWorker]: Found in Cache',
-          event.request.url,
-          cached
-        );
-        // Return the cached version
-        return cached;
-      }
-
-      // If the request is NOT in the cache, fetch and cache
-      var requestClone = event.request.clone();
-
-      return fetch(requestClone)
-        .then((response) => {
-          if (!response) {
-            console.log('[ServiceWorker]: No response from fetch ');
-            return response;
-          }
-
-          var responseClone = response.clone();
-
-          // Open the cache
-          caches.open(cacheName).then((cache) => {
-            // Put the fetched response in the cache
-            cache.put(event.request, responseClone);
-            console.log('[ServiceWorker]: New Data Cached', event.request.url);
-
-            // Return the response
-            return response;
-          });
-        })
-        .catch((err) => {
-          console.log(
-            '[ServiceWorker]: Error Fetching & Caching New Data',
-            err
-          );
-        });
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });
