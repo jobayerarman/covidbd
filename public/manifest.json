@@ -3,7 +3,7 @@
   "short_name": "CovidBD",
   "description": "এক নজরে বাংলাদেশের সার্বিক পরিস্থিতি #StayHome #StaySafe",
   "start_url": "/",
-  "display": "browser",
+  "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "icons": [
