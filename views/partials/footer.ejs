@@ -60,14 +60,14 @@
 <script type="text/javascript">
     (function () {
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                .register('./service-worker.js')
-                .then(function (registration) {
-                    console.info('[ServiceWorker]: Registered scope: ', registration.scope);
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js', {
+                    scope: '/'
                 })
-                .catch(function (error) {
-                    console.error('[ServiceWorker]: Registration failed ', error);
-                });
+                    .then(registration => {
+                        console.log('[ServiceWorker]: Registered scope: ', registration.scope);
+                    });
+            });
         }
     })();
 </script>
