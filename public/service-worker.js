@@ -74,19 +74,19 @@ self.addEventListener('activate', (event) => {
     // Get all the cache keys (cacheName)
     caches
       .keys()
-      .then((keys) => {
+      .then((cacheNames) => {
         // We return a promise that settles when all outdated caches are deleted.
         return Promise.all(
-          keys
-            .filter((key) => {
-              // Filter by keys that don't start with the latest version prefix.
-              return !key.startsWith(version);
+          cacheNames
+            .filter((cache) => {
+              // Filter by cache names that don't start with the latest version prefix.
+              return !cache.startsWith(version);
             })
-            .map((key) => {
+            .map((cache) => {
               /* Return a promise that's fulfilled
                 when each outdated cache is deleted.
               */
-              return caches.delete(key);
+              return caches.delete(cache);
             })
         );
       })
