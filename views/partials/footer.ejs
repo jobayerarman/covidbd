@@ -59,17 +59,14 @@
 <!-- service worker registration -->
 <script type="text/javascript">
     (function () {
-        /*
-         * Registering Service Worker
-         */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
-                .register('service-worker.js', { scope: './' })
+                .register('./service-worker.js')
                 .then(function (registration) {
-                    console.info('[ServiceWorker]: registered scope: ', registration.scope);
+                    console.info('[ServiceWorker]: Registered scope: ', registration.scope);
                 })
                 .catch(function (error) {
-                    console.error('[ServiceWorker]: registration failed ', error);
+                    console.error('[ServiceWorker]: Registration failed ', error);
                 });
         }
     })();
