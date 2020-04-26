@@ -159,10 +159,10 @@ $(document).ready(function () {
     navigator.serviceWorker
       .register('service-worker.js', { scope: './' })
       .then(function (registration) {
-        console.info('Service worker registered scope: ', registration.scope);
+        console.info('[ServiceWorker]: registered scope: ', registration.scope);
       })
       .catch(function (error) {
-        console.error('Service worker registration failed ', error);
+        console.error('[ServiceWorker]: registration failed ', error);
       });
   }
 })();
