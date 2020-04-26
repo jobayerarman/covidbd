@@ -48,9 +48,29 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <!-- social-share-kit Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share-kit/1.0.15/js/social-share-kit.min.js" integrity="sha256-pZkANNk3OAr66HhVKttd7M9iCrFXwPhkomTxzWykRKQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share-kit/1.0.15/js/social-share-kit.min.js"
+    integrity="sha256-pZkANNk3OAr66HhVKttd7M9iCrFXwPhkomTxzWykRKQ=" crossorigin="anonymous"></script>
 <!-- Twitter Scripts -->
 <script src="https://platform.twitter.com/widgets.js"></script>
 
 <!-- User Scripts -->
 <script type="text/javascript" src="/scripts/main.js"></script>
+
+<!-- service worker registration -->
+<script type="text/javascript">
+    (function () {
+        /*
+         * Registering Service Worker
+         */
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('service-worker.js', { scope: './' })
+                .then(function (registration) {
+                    console.info('[ServiceWorker]: registered scope: ', registration.scope);
+                })
+                .catch(function (error) {
+                    console.error('[ServiceWorker]: registration failed ', error);
+                });
+        }
+    })();
+</script>
