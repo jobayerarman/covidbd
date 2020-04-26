@@ -150,3 +150,19 @@ $(document).ready(function () {
     e.preventDefault();
   });
 });
+
+(function () {
+  /*
+   * Registering Service Worker
+   */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('service-worker.js', { scope: './' })
+      .then(function (registration) {
+        console.info('Service worker registered scope: ', registration.scope);
+      })
+      .catch(function (error) {
+        console.error('Service worker registration failed ', error);
+      });
+  }
+})();
