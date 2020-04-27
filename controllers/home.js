@@ -1,8 +1,9 @@
 const track = require('covidapi');
 const fs = require('fs');
 const googleNews = require('google-news-json');
-const moment = require('moment');
+const toBengaliWord = require('bengali-number');
 const util = require('./../util/util');
+const moment = require('moment');
 moment.locale('bn');
 
 const readData = () => {
@@ -50,7 +51,6 @@ exports.index = async (req, res) => {
     };
     districts.push(obj);
   });
-
 
   // latest corona news
   let coronaNews = await googleNews.getNews(
@@ -149,12 +149,12 @@ exports.index = async (req, res) => {
       recoveredRateBn = util.bnNum(recoveredRate);
       testRateBn = util.bnNum(testRate);
 
-      allTodayCases = util.bnNum(allTodayCases, true);
-      allCases = util.bnNum(allCases, true);
-      allTodayDeaths = util.bnNum(allTodayDeaths, true);
-      allDeaths = util.bnNum(allDeaths, true);
-      allRecovered = util.bnNum(allRecovered, true);
-      affectedCountries = util.bnNum(affectedCountries, true);
+      allTodayCases = toBengaliWord(allTodayCases);
+      allCases = toBengaliWord(allCases);
+      allTodayDeaths = toBengaliWord(allTodayDeaths);
+      allDeaths = toBengaliWord(allDeaths);
+      allRecovered = toBengaliWord(allRecovered);
+      affectedCountries = toBengaliWord(affectedCountries);
 
       res.render('pages/index', {
         todayCases: todayCasesBn,
