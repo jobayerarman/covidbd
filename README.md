@@ -15,3 +15,23 @@
 ![Alt text](/public/images/metatag.jpg?raw=true "Optional Title")
 </div>
 <br>
+
+## Data API
+
+* NovelCOVID/API  
+[github.com/NovelCOVID/API](https://github.com/NovelCOVID/API)
+
+## Additional Data Source
+
+* IEDCR
+[https://www.iedcr.gov.bd](https://www.iedcr.gov.bd)
+
+## Icons
+* justicon
+[https://www.iconfinder.com/justicon](https://www.iconfinder.com/justicon)
+
+* DGHS
+[https://www.dghs.gov.bd](https://www.dghs.gov.bd)
+
+* Health Ministry of Bangladesh
+[http://www.mohfw.gov.bd](http://www.mohfw.gov.bd)
