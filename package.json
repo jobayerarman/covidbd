@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.10.3",
+  "version": "0.10.5",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",
@@ -20,7 +20,7 @@
   "dependencies": {
     "bengali-number": "^1.0.4",
     "compression": "^1.7.4",
-    "covidapi": "^0.1.4",
+    "covidapi": "^0.3.0",
     "ejs": "^2.7.4",
     "express": "^4.15.2",
     "google-news-json": "^1.0.3",
