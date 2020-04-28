@@ -56,13 +56,14 @@
         '২৫ এপ্রিল',
         '২৬ এপ্রিল',
         '২৭ এপ্রিল',
+        '২৮ এপ্রিল',
     ];
 
     let deathData = {
         labels: dateLabels,
         datasets: [
             {
-                label: 'মোট মৃতের সংখ্যা',
+                label: 'মোট মৃত্যুর সংখ্যা',
                 backgroundColor: 'rgb(243, 58, 63)',
                 borderColor: 'rgb(243, 58, 63)',
                 fill: false,
@@ -113,6 +114,7 @@
                     140,
                     145,
                     152,
+                    155,
                 ],
             },
         ],
@@ -132,7 +134,7 @@
             title: {
                 display: true,
                 fontSize: 20,
-                text: 'মোট মৃতের সংখ্যা',
+                text: 'মোট মৃত্যুর সংখ্যা',
             },
             legend: {
                 position: 'bottom',
@@ -327,6 +329,10 @@
                             x: moment('27-04-2020', 'DD-MM-YYYY'),
                             y: 497,
                         },
+                        {
+                            x: moment('28-04-2020', 'DD-MM-YYYY'),
+                            y: 549,
+                        },
                     ],
                 },
                 {
@@ -506,6 +512,10 @@
                         {
                             x: moment('27-04-2020', 'DD-MM-YYYY'),
                             y: 5913,
+                        },
+                        {
+                            x: moment('28-04-2020', 'DD-MM-YYYY'),
+                            y: 6462,
                         },
                     ],
                 },
