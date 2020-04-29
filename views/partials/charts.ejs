@@ -60,61 +60,32 @@
     ];
 
     let deathData = {
-        labels: dateLabels,
+        labels: [
+                <% timelineTotalDeaths.forEach(function (cases) { %>
+                    moment('<%= cases.date %>').format('YYYY-MM-DD'),
+                <% }); %>
+        ],
         datasets: [
             {
-                label: 'মোট মৃত্যুর সংখ্যা',
-                backgroundColor: 'rgb(243, 58, 63)',
-                borderColor: 'rgb(243, 58, 63)',
+                label: 'দিনের মৃত্যু',
+                backgroundColor: 'rgb(250, 102, 31, 0.5)',
+                borderColor: 'rgb(250, 102, 31)',
+                fill: true,
+                data: [
+                    <% timelineDailyDeaths.forEach(function (cases) { %>
+                        <%= cases.count %>,
+                    <% }); %>
+                ],
+            },
+            {
+                label: 'মোট মৃত্যু',
+                backgroundColor: 'rgb(237, 0, 0)',
+                borderColor: 'rgb(237, 0, 0)',
                 fill: false,
                 data: [
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    3,
-                    4,
-                    5,
-                    5,
-                    5,
-                    5,
-                    5,
-                    5,
-                    5,
-                    6,
-                    6,
-                    6,
-                    8,
-                    9,
-                    12,
-                    17,
-                    20,
-                    21,
-                    27,
-                    30,
-                    34,
-                    39,
-                    46,
-                    50,
-                    60,
-                    75,
-                    84,
-                    91,
-                    101,
-                    110,
-                    120,
-                    127,
-                    131,
-                    140,
-                    145,
-                    152,
-                    155,
+                    <% timelineTotalDeaths.forEach(function (cases) { %>
+                        <%= cases.count %>,
+                    <% }); %>
                 ],
             },
         ],
@@ -143,6 +114,28 @@
                 mode: 'index',
                 intersect: false,
             },
+            scales: {
+                xAxes: [
+                    {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'তারিখ',
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'সংখ্যা',
+                        },
+                    },
+                ],
+            },
         },
     };
 
@@ -157,9 +150,9 @@
             datasets: [
                 {
                     label: 'নতুন শনাক্ত',
-                    backgroundColor: 'rgb(250, 196, 29)',
+                    backgroundColor: 'rgb(250, 196, 29, 0.5)',
                     borderColor: 'rgb(250, 196, 29)',
-                    fill: false,
+                    fill: true,
                     data: [
                         <% timelineDailyCases.forEach(function (cases) { %>
                             {
