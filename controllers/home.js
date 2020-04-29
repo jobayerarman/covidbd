@@ -131,6 +131,7 @@ exports.index = async (req, res) => {
       };
       // update time
       let updated = today.updated;
+      updated = moment(updated).fromNow();
 
       // get change percent
       let changeRate = {
@@ -152,33 +153,22 @@ exports.index = async (req, res) => {
       };
 
       // translation to bengali
-      let todayCasesBn = util.bnNum(todayCases, true);
-      let todayDeathsBn = util.bnNum(todayDeaths, true);
-
-      let totalCasesBn = util.bnNum(totalCases, true);
-      let totalDeathsBn = util.bnNum(totalDeaths, true);
-
-      let todayRecoveredBn = util.bnNum(todayRecovered);
-      let todayTestsBn = util.bnNum(todayTests);
-
-      let totalRecoveredBn = util.bnNum(today.recovered, true);
-      let totalTestsBn = util.bnNum(today.tests, true);
-
-      updated = moment(updated).fromNow();
+      let covidDataBn = {
+        todayCases: util.bnNum(todayCases, true),
+        todayDeaths: util.bnNum(todayDeaths, true),
+        todayRecovered: util.bnNum(todayRecovered),
+        todayTests: util.bnNum(todayTests),
+        cases: util.bnNum(totalCases, true),
+        deaths: util.bnNum(totalDeaths, true),
+        recovered: util.bnNum(today.recovered, true),
+        tests: util.bnNum(today.tests, true),
+      };
 
       res.render('pages/index', {
-        todayCases: todayCasesBn,
-        todayDeaths: todayDeathsBn,
-        cases: totalCasesBn,
-        deaths: totalDeathsBn,
+        // main data
+        covidDataBn,
 
-        todayRecovered: todayRecoveredBn,
-        todayTests: todayTestsBn,
-        totalRecovered: totalRecoveredBn,
-        totalTests: totalTestsBn,
-
-        updated: updated,
-
+        // regional data
         divisions: divisions,
         districts: districts,
 
