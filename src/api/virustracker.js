@@ -62,4 +62,36 @@ const countryTimeline = async () => {
   }
 };
 
+/**
+ * @description Generates Daily Cases Timeline
+ * @returns {Promise<array>}
+ */
+const dailyCases = async () => {
+  let timeline = await countryTimeline();
+};
+
+/**
+ * @description Generates Total Cases Timeline
+ * @returns {Promise<array>}
+ */
+const totalCases = async () => {
+  let timeline = await countryTimeline();
+};
+
+/**
+ * @description Generates Daily Deaths Timeline
+ * @returns {Promise<array>}
+ */
+const dailyDeaths = async () => {
+  let timeline = await countryTimeline();
+};
+
+/**
+ * @description Generates Total Deaths Timeline
+ * @returns {Promise<array>}
+ */
+const totalDeaths = async () => {
+  let timeline = await countryTimeline();
+};
+
 module.exports = { countryTotal, countryTimeline };
