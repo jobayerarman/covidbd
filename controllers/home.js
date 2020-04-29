@@ -1,10 +1,11 @@
 const track = require('covidapi');
+const virusTracker = require('../src/api/virustracker');
 const fs = require('fs');
 const googleNews = require('google-news-json');
 const toBengaliWord = require('bengali-number');
 const util = require('./../util/util');
 const moment = require('moment');
-moment.locale('bn');
+// moment.locale('bn');
 
 const readData = () => {
   const rawData = fs.readFileSync('./data/covid-data.json', 'utf8');
@@ -34,6 +35,10 @@ let getChangeRate = (newNum, oldNum, reverse = false) => {
  * Home page.
  */
 exports.index = async (req, res) => {
+  let timelineDailyCases = await virusTracker.dailyCases();
+  let timelineTotalCases = await virusTracker.totalCases();
+  let timelineDailyDeaths = await virusTracker.dailyDeaths();
+  let timelineTotalDeaths = await virusTracker.totalDeaths();
   let divisions = [];
   let districts = [];
   let countryData = readData();
@@ -198,6 +203,11 @@ exports.index = async (req, res) => {
         totalDeathsEn: totalDeaths,
         totalRecoveredEn: totalRecovered,
         totalTestsEn: totalTests,
+
+        timelineDailyCases,
+        timelineTotalCases,
+        timelineDailyDeaths,
+        timelineTotalDeaths,
 
         // google news
         coronaArticles: coronaArticles,
