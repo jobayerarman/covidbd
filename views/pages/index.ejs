@@ -22,22 +22,22 @@
                 <span>
                   <i class="fa fa-circle-o mr-2" style="color: red" aria-hidden="true"></i>
                   ২৪ ঘন্টায় বাংলাদেশে
-                  <span class="text-warning">নতুন সংক্রমণ:</span> <%= todayCases %>,
-                  <span class="text-warning">মোট আক্রান্ত:</span> <%= cases %>;
-                  <span class="text-danger">মৃত্যু:</span> <%= todayDeaths %>,
-                  <span class="text-danger">মোট মৃত্যু:</span> <%= deaths %>;
-                  <span class="text-success">নতুন করে সুস্থ:</span> <%= todayRecovered %>,
-                  <span class="text-success">মোট সুস্থ:</span> <%= totalRecovered %>
+                  <span class="text-warning">নতুন সংক্রমণ:</span> <%= covidDataBn.todayCases %>,
+                  <span class="text-warning">মোট আক্রান্ত:</span> <%= covidDataBn.cases %>;
+                  <span class="text-danger">মৃত্যু:</span> <%= covidDataBn.todayDeaths %>,
+                  <span class="text-danger">মোট মৃত্যু:</span> <%= covidDataBn.deaths %>;
+                  <span class="text-success">নতুন করে সুস্থ:</span> <%= covidDataBn.todayRecovered %>,
+                  <span class="text-success">মোট সুস্থ:</span> <%= covidDataBn.recovered %>
                 </span>
                 <span class="ml-5">
                   <i class="fa fa-circle-o mr-2" style="color: red" aria-hidden="true"></i>
                   বিশ্বে করোনায়
-                  <span class="text-warning">নতুন সংক্রমণ:</span> <%= allTodayCases %>,
-                  <span class="text-warning">মোট আক্রান্ত:</span> <%= allCases %>;
-                  <span class="text-danger">মৃত্যু:</span> <%= allTodayDeaths %>,
-                  <span class="text-danger">মোট মৃত্যু:</span> <%= allDeaths %>;
-                  <span class="text-success">মোট সুস্থ:</span> <%= allRecovered %>;
-                  <span class="text-danger">মোট আক্রান্ত দেশ:</span> <%= affectedCountries %> টি
+                  <span class="text-warning">নতুন সংক্রমণ:</span> <%= worldData.todayCases %>,
+                  <span class="text-warning">মোট আক্রান্ত:</span> <%= worldData.cases %>;
+                  <span class="text-danger">মৃত্যু:</span> <%= worldData.todayDeaths %>,
+                  <span class="text-danger">মোট মৃত্যু:</span> <%= worldData.deaths %>;
+                  <span class="text-success">মোট সুস্থ:</span> <%= worldData.recovered %>;
+                  <span class="text-danger">মোট আক্রান্ত দেশ:</span> <%= worldData.affectedCountries %> টি
                   - তথ্যসূত্রঃ <a href="https://coronavirus.jhu.edu/map.html">জন হপকিংস ইউনিভার্সিটি</a>
                 </span>
               </p>
@@ -59,18 +59,18 @@
           <div class="row">
             <div class="col-6">
               <p class="panel-subhead">২৪ ঘণ্টায়</p>
-              <h3 class="panel-data text-warning"><%= todayCases %></h3>
+              <h3 class="panel-data text-warning"><%= covidDataBn.todayCases %></h3>
             </div>
             <div class="col-6">
               <p class="panel-subhead">মোট</p>
-              <h3 class="panel-data text-warning"><%= cases %></h3>
+              <h3 class="panel-data text-warning"><%= covidDataBn.cases %></h3>
             </div>
           </div>
           <div class=" row">
             <div class="col">
               <div class="panel-footer py-2">
-                <%= todayCasesRateBn %>%
-                <% if (todayCasesRateEn < 0) { %>
+                <%= changeRateBn.todayCases %>%
+                <% if (changeRate.todayCases < 0) { %>
                 (কমেছে)
                 <% } else { %>
                 (বেড়েছে)
@@ -89,18 +89,18 @@
           <div class="row">
             <div class="col-6">
               <p class="panel-subhead">২৪ ঘণ্টায়</p>
-              <h3 class="panel-data text-danger"><%= todayDeaths %></h3>
+              <h3 class="panel-data text-danger"><%= covidDataBn.todayDeaths %></h3>
             </div>
             <div class="col-6">
               <p class="panel-subhead">মোট</p>
-              <h3 class="panel-data text-danger"><%= deaths %></h3>
+              <h3 class="panel-data text-danger"><%= covidDataBn.deaths %></h3>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="panel-footer py-2">
-                <%= todayDeathRateBn %>%
-                <% if (todayDeathRateEn < 0) { %>
+                <%= changeRateBn.todayDeaths %>%
+                <% if (changeRate.todayDeaths < 0) { %>
                 (কমেছে)
                 <% } else { %>
                 (বেড়েছে)
@@ -119,18 +119,18 @@
           <div class="row">
             <div class="col-6">
               <p class="panel-subhead">২৪ ঘণ্টায়</p>
-              <h3 class="panel-data text-success"><%= todayRecovered %></h3>
+              <h3 class="panel-data text-success"><%= covidDataBn.todayRecovered %></h3>
             </div>
             <div class="col-6">
               <p class="panel-subhead">মোট</p>
-              <h3 class="panel-data text-success"><%= totalRecovered %></h3>
+              <h3 class="panel-data text-success"><%= covidDataBn.recovered %></h3>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="panel-footer py-2">
-                <%= recoveredRateBn %>%
-                <% if (recoveredRateEn < 0) { %>
+                <%= changeRateBn.recovered %>%
+                <% if (changeRate.recovered < 0) { %>
                 (কমেছে)
                 <% } else { %>
                 (বেড়েছে)
@@ -149,18 +149,18 @@
           <div class="row">
             <div class="col-6">
               <p class="panel-subhead">২৪ ঘণ্টায়</p>
-              <h3 class="panel-data text-info"><%= todayTests %></h3>
+              <h3 class="panel-data text-info"><%= covidDataBn.todayTests %></h3>
             </div>
             <div class="col-6">
               <p class="panel-subhead">মোট</p>
-              <h3 class="panel-data text-info"><%= totalTests %></h3>
+              <h3 class="panel-data text-info"><%= covidDataBn.tests %></h3>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="panel-footer py-2">
-                <%= testRateBn %>
-                <% if (testRateEn < 0) { %>
+                <%= changeRateBn.test %>
+                <% if (changeRate.test < 0) { %>
                 (কমেছে)
                 <% } else { %>
                 (বেড়েছে)
