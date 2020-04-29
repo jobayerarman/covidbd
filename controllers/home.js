@@ -1,9 +1,12 @@
 const track = require('covidapi');
-const virusTracker = require('../src/api/virustracker');
 const fs = require('fs');
+
 const googleNews = require('google-news-json');
 const toBengaliWord = require('bengali-number');
+
+const virusTracker = require('../src/api/virustracker');
 const util = require('../src/util/util');
+
 const moment = require('moment');
 moment.locale('bn');
 
@@ -35,10 +38,13 @@ let getPercent = (newNum, oldNum, reverse = false) => {
  * Home page.
  */
 exports.index = async (req, res) => {
+  // virustracker data
   let timelineDailyCases = await virusTracker.dailyCases();
   let timelineTotalCases = await virusTracker.totalCases();
   let timelineDailyDeaths = await virusTracker.dailyDeaths();
   let timelineTotalDeaths = await virusTracker.totalDeaths();
+
+  // division and district data
   let divisions = [];
   let districts = [];
   let countryData = readData();
@@ -135,9 +141,10 @@ exports.index = async (req, res) => {
         recovered: getPercent(totalRecovered, yesterdayRecovered),
         test: getPercent(totalTests, yesterdayTests),
       };
+      // change percent translation
       let changeRateBn = {
         todayCases: util.bnNum(changeRate.todayCases),
-        todayDeath: util.bnNum(changeRate.todayDeaths),
+        todayDeaths: util.bnNum(changeRate.todayDeaths),
         cases: util.bnNum(changeRate.cases),
         deaths: util.bnNum(changeRate.deaths),
         recovered: util.bnNum(changeRate.recovered),
@@ -175,19 +182,9 @@ exports.index = async (req, res) => {
         divisions: divisions,
         districts: districts,
 
-        todayCasesRateBn: todayCasesRateBn,
-        todayDeathRateBn: todayDeathRateBn,
-        totatCasesRateBn: totatCasesRateBn,
-        totalDeathsRateBn: totalDeathsRateBn,
-        recoveredRateBn: recoveredRateBn,
-        testRateBn: testRateBn,
-
-        todayCasesRateEn: todayCasesRate,
-        totatCasesRateEn: totatCasesRate,
-        todayDeathRateEn: todayDeathsRate,
-        totalDeathsRateEn: totalDeathsRate,
-        recoveredRateEn: recoveredRate,
-        testRateEn: testRate,
+        // change percent
+        changeRate,
+        changeRateBn,
 
         // worldwide data
         worldData,
