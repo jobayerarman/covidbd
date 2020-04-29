@@ -1,0 +1,125 @@
+<div class="container-fluid px-md-5 mb-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+
+        <div class="col mb-2">
+            <div class="panel border border-warning text-center">
+                <div class="panel-head bg-warning text-white py-2 mb-4">
+                    <h4>শনাক্ত</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="panel-subhead">২৪ ঘণ্টায়</p>
+                        <h3 class="panel-data text-warning"><%= covidDataBn.todayCases %></h3>
+                    </div>
+                    <div class="col-6">
+                        <p class="panel-subhead">মোট</p>
+                        <h3 class="panel-data text-warning"><%= covidDataBn.cases %></h3>
+                    </div>
+                </div>
+                <div class=" row">
+                    <div class="col">
+                        <div class="panel-footer py-2">
+                            <%= changeRateBn.todayCases %>%
+                            <% if (changeRate.todayCases < 0) { %>
+                            (কমেছে)
+                            <% } else { %>
+                            (বেড়েছে)
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-2">
+            <div class="panel border border-danger text-center">
+                <div class="panel-head bg-danger text-white py-2 mb-4">
+                    <h4>মৃত্যু</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="panel-subhead">২৪ ঘণ্টায়</p>
+                        <h3 class="panel-data text-danger"><%= covidDataBn.todayDeaths %></h3>
+                    </div>
+                    <div class="col-6">
+                        <p class="panel-subhead">মোট</p>
+                        <h3 class="panel-data text-danger"><%= covidDataBn.deaths %></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="panel-footer py-2">
+                            <%= changeRateBn.todayDeaths %>%
+                            <% if (changeRate.todayDeaths < 0) { %>
+                            (কমেছে)
+                            <% } else { %>
+                            (বেড়েছে)
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-2">
+            <div class="panel border border-success text-center">
+                <div class="panel-head bg-success text-white py-2 mb-4">
+                    <h4>সুস্থ</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="panel-subhead">২৪ ঘণ্টায়</p>
+                        <h3 class="panel-data text-success"><%= covidDataBn.todayRecovered %></h3>
+                    </div>
+                    <div class="col-6">
+                        <p class="panel-subhead">মোট</p>
+                        <h3 class="panel-data text-success"><%= covidDataBn.recovered %></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="panel-footer py-2">
+                            <%= changeRateBn.recovered %>%
+                            <% if (changeRate.recovered < 0) { %>
+                            (কমেছে)
+                            <% } else { %>
+                            (বেড়েছে)
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-2">
+            <div class="panel border border-info text-center">
+                <div class="panel-head bg-info text-white py-2 mb-4">
+                    <h4>পরীক্ষা</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="panel-subhead">২৪ ঘণ্টায়</p>
+                        <h3 class="panel-data text-info"><%= covidDataBn.todayTests %></h3>
+                    </div>
+                    <div class="col-6">
+                        <p class="panel-subhead">মোট</p>
+                        <h3 class="panel-data text-info"><%= covidDataBn.tests %></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="panel-footer py-2">
+                            <%= changeRateBn.test %>
+                            <% if (changeRate.test < 0) { %>
+                            (কমেছে)
+                            <% } else { %>
+                            (বেড়েছে)
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

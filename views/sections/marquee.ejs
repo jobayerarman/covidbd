@@ -1,0 +1,39 @@
+<div class="news-container">
+    <div class="container-fluid px-md-5">
+        <div class="row">
+            <div class="col col-5 col-md-3 col-lg-2">
+                <p class="bg-primary text-white text-center py-2">করোনা আপডেট </p>
+            </div>
+            <div class="col col-7 col-md-9 col-lg-10">
+                <div class="news-ticker">
+                    <marquee class="bg-light py-2" behavior="scroll" direction="left" onmouseover="this.stop();"
+                        onmouseout="this.start();">
+                        <p class="mb-0">
+                            <span>
+                                <i class="fa fa-circle-o mr-2" style="color: red" aria-hidden="true"></i>
+                                ২৪ ঘন্টায় বাংলাদেশে
+                                <span class="text-warning">নতুন সংক্রমণ:</span> <%= covidDataBn.todayCases %>,
+                                <span class="text-warning">মোট আক্রান্ত:</span> <%= covidDataBn.cases %>;
+                                <span class="text-danger">মৃত্যু:</span> <%= covidDataBn.todayDeaths %>,
+                                <span class="text-danger">মোট মৃত্যু:</span> <%= covidDataBn.deaths %>;
+                                <span class="text-success">নতুন করে সুস্থ:</span> <%= covidDataBn.todayRecovered %>,
+                                <span class="text-success">মোট সুস্থ:</span> <%= covidDataBn.recovered %>
+                            </span>
+                            <span class="ml-5">
+                                <i class="fa fa-circle-o mr-2" style="color: red" aria-hidden="true"></i>
+                                বিশ্বে করোনায়
+                                <span class="text-warning">নতুন সংক্রমণ:</span> <%= worldData.todayCases %>,
+                                <span class="text-warning">মোট আক্রান্ত:</span> <%= worldData.cases %>;
+                                <span class="text-danger">মৃত্যু:</span> <%= worldData.todayDeaths %>,
+                                <span class="text-danger">মোট মৃত্যু:</span> <%= worldData.deaths %>;
+                                <span class="text-success">মোট সুস্থ:</span> <%= worldData.recovered %>;
+                                <span class="text-danger">মোট আক্রান্ত দেশ:</span> <%= worldData.affectedCountries %> টি
+                                - তথ্যসূত্রঃ <a href="https://coronavirus.jhu.edu/map.html">জন হপকিংস ইউনিভার্সিটি</a>
+                            </span>
+                        </p>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
