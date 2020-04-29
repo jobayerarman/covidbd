@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.10.5",
+  "version": "0.10.9",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",

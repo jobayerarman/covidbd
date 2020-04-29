@@ -165,6 +165,9 @@ exports.index = async (req, res) => {
       };
 
       res.render('pages/index', {
+        // for active nav item
+        title: 'home',
+
         // main data
         covidDataBn,
 

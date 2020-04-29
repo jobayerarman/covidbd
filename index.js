@@ -23,7 +23,7 @@ app
 
   // ---- ROUTES ---- //
   .get('/', homeController.index)
-  .get('/wiki', (req, res) => res.render('pages/wiki'))
-  .get('/about', (req, res) => res.render('pages/about'))
+  .get('/wiki', (req, res) => res.render('pages/wiki', { title: 'wiki' }))
+  .get('/about', (req, res) => res.render('pages/about', { title: 'about' }))
 
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
