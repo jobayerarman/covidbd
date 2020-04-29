@@ -71,6 +71,13 @@ const countryTimeline = async () => {
 const dailyCases = async () => {
   let dailyCases = [];
   let timeline = await countryTimeline();
+  for (let [key, value] of Object.entries(timeline)) {
+    let obj = {
+      date: key,
+      count: value.new_daily_cases,
+    };
+    dailyCases.push(obj);
+  }
   return dailyCases;
 };
 
@@ -81,6 +88,13 @@ const dailyCases = async () => {
 const totalCases = async () => {
   let totalCases = [];
   let timeline = await countryTimeline();
+  for (let [key, value] of Object.entries(timeline)) {
+    let obj = {
+      date: key,
+      count: value.total_cases,
+    };
+    totalCases.push(obj);
+  }
   return totalCases;
 };
 
@@ -91,6 +105,13 @@ const totalCases = async () => {
 const dailyDeaths = async () => {
   let dailyDeaths = [];
   let timeline = await countryTimeline();
+  for (let [key, value] of Object.entries(timeline)) {
+    let obj = {
+      date: key,
+      count: value.new_daily_deaths,
+    };
+    dailyDeaths.push(obj);
+  }
   return dailyDeaths;
 };
 
@@ -101,6 +122,13 @@ const dailyDeaths = async () => {
 const totalDeaths = async () => {
   let totalDeaths = [];
   let timeline = await countryTimeline();
+  for (let [key, value] of Object.entries(timeline)) {
+    let obj = {
+      date: key,
+      count: value.total_deaths,
+    };
+    totalDeaths.push(obj);
+  }
   return totalDeaths;
 };
 
