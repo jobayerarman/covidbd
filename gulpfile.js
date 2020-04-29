@@ -67,7 +67,7 @@ const nodemonTask = (cb) => {
     env: { NODE_ENV: 'development' },
 
     // watch core server file(s) that require server restart on change
-    watch: ['index.js', 'controllers/', 'util/'],
+    watch: ['index.js', 'controllers/', 'util/', 'src/api/'],
   })
     .on('start', function onStart() {
       // ensure start only got called once
@@ -156,10 +156,13 @@ const devWatch = () => {
   watch('views/**/*.ejs').on('change', browserReload());
 
   // watch style files
-  watch('src/**/*.scss', parallel(buildStyles));
+  watch('src/style/**/*.scss', parallel(buildStyles));
 
   // watch script files
-  watch('src/**/*.js', parallel(buildScripts)).on('change', browserReload());
+  watch('src/script/**/*.js', parallel(buildScripts)).on(
+    'change',
+    browserReload()
+  );
 };
 
 // Development Task
