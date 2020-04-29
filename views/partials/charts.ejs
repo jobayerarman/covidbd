@@ -1,64 +1,4 @@
 <script>
-    // moment-range initialization
-    window['moment-range'].extendMoment(moment);
-    let now = moment().format('YYYY-MM-DD');
-    let range = moment().range('2020-03-08', now);
-    let dateArray = Array.from(range.by('days'));
-
-    let dates = dateArray.map((m) => {
-        return m.format('YYYY-MM-DD');
-    });
-
-    let dateLabels = [
-        '১ মার্চ',
-        '৮ মার্চ',
-        '১৫ মার্চ',
-        '১৬ মার্চ',
-        '১৭ মার্চ',
-        '১৮ মার্চ',
-        '১৯ মার্চ',
-        '২০ মার্চ',
-        '২১ মার্চ',
-        '২২ মার্চ',
-        '২৩ মার্চ',
-        '২৪ মার্চ',
-        '২৫ মার্চ',
-        '২৬ মার্চ',
-        '২৭ মার্চ',
-        '২৮ মার্চ',
-        '২৯ মার্চ',
-        '৩০ মার্চ',
-        '৩১ মার্চ',
-        '১ এপ্রিল',
-        '২ এপ্রিল',
-        '৩ এপ্রিল',
-        '৪ এপ্রিল',
-        '৫ এপ্রিল',
-        '৬ এপ্রিল',
-        '৭ এপ্রিল',
-        '৮ এপ্রিল',
-        '৯ এপ্রিল',
-        '১০ এপ্রিল',
-        '১১ এপ্রিল',
-        '১২ এপ্রিল',
-        '১৩ এপ্রিল',
-        '১৪ এপ্রিল',
-        '১৫ এপ্রিল',
-        '১৬ এপ্রিল',
-        '১৭ এপ্রিল',
-        '১৮ এপ্রিল',
-        '১৯ এপ্রিল',
-        '২০ এপ্রিল',
-        '২১ এপ্রিল',
-        '২২ এপ্রিল',
-        '২৩ এপ্রিল',
-        '২৪ এপ্রিল',
-        '২৫ এপ্রিল',
-        '২৬ এপ্রিল',
-        '২৭ এপ্রিল',
-        '২৮ এপ্রিল',
-    ];
-
     let deathData = {
         labels: [
                 <% timelineTotalDeaths.forEach(function (cases) { %>
@@ -67,10 +7,11 @@
         ],
         datasets: [
             {
-                label: 'দিনের মৃত্যু',
+                label: 'দৈনিক মৃত্যু',
                 backgroundColor: 'rgb(250, 102, 31, 0.5)',
                 borderColor: 'rgb(250, 102, 31)',
                 fill: true,
+                pointHoverRadius: 8,
                 data: [
                     <% timelineDailyDeaths.forEach(function (cases) { %>
                         <%= cases.count %>,
@@ -82,6 +23,7 @@
                 backgroundColor: 'rgb(237, 0, 0)',
                 borderColor: 'rgb(237, 0, 0)',
                 fill: false,
+                pointHoverRadius: 8,
                 data: [
                     <% timelineTotalDeaths.forEach(function (cases) { %>
                         <%= cases.count %>,
@@ -105,7 +47,7 @@
             title: {
                 display: true,
                 fontSize: 20,
-                text: 'মোট মৃত্যুর সংখ্যা',
+                text: 'দৈনিক ও মোট মৃত্যুর সংখ্যা',
             },
             legend: {
                 position: 'bottom',
@@ -113,6 +55,9 @@
             tooltips: {
                 mode: 'index',
                 intersect: false,
+            },
+            hover: {
+                mode: 'index'
             },
             scales: {
                 xAxes: [
@@ -149,10 +94,11 @@
             ],
             datasets: [
                 {
-                    label: 'নতুন শনাক্ত',
+                    label: 'দৈনিক শনাক্ত',
                     backgroundColor: 'rgb(250, 196, 29, 0.5)',
                     borderColor: 'rgb(250, 196, 29)',
                     fill: true,
+                    pointHoverRadius: 8,
                     data: [
                         <% timelineDailyCases.forEach(function (cases) { %>
                             {
@@ -167,6 +113,7 @@
                     backgroundColor: 'rgb(241, 118, 0)',
                     borderColor: 'rgb(241, 118, 0)',
                     fill: false,
+                    pointHoverRadius: 8,
                     data: [
                         <% timelineTotalCases.forEach(function (cases) { %>
                             {
@@ -184,7 +131,7 @@
             title: {
                 display: true,
                 fontSize: 20,
-                text: 'নতুন ও মোট শনাক্তের সংখ্যা',
+                text: 'দৈনিক ও মোট শনাক্তের সংখ্যা',
             },
             legend: {
                 position: 'bottom',
