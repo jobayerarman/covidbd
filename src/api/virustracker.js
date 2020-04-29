@@ -56,6 +56,8 @@ const countryTimeline = async () => {
   try {
     let dataURL = '?countryTimeline=BD';
     let { timelineitems } = await fetchJson(dataURL);
+    timelineitems = timelineitems['0'];
+    delete timelineitems.stat;
     return timelineitems;
   } catch (error) {
     console.error(error);
@@ -67,7 +69,9 @@ const countryTimeline = async () => {
  * @returns {Promise<array>}
  */
 const dailyCases = async () => {
+  let dailyCases = [];
   let timeline = await countryTimeline();
+  return dailyCases;
 };
 
 /**
@@ -75,7 +79,9 @@ const dailyCases = async () => {
  * @returns {Promise<array>}
  */
 const totalCases = async () => {
+  let totalCases = [];
   let timeline = await countryTimeline();
+  return totalCases;
 };
 
 /**
@@ -83,7 +89,9 @@ const totalCases = async () => {
  * @returns {Promise<array>}
  */
 const dailyDeaths = async () => {
+  let dailyDeaths = [];
   let timeline = await countryTimeline();
+  return dailyDeaths;
 };
 
 /**
@@ -91,7 +99,16 @@ const dailyDeaths = async () => {
  * @returns {Promise<array>}
  */
 const totalDeaths = async () => {
+  let totalDeaths = [];
   let timeline = await countryTimeline();
+  return totalDeaths;
 };
 
-module.exports = { countryTotal, countryTimeline };
+module.exports = {
+  countryTotal,
+  countryTimeline,
+  dailyCases,
+  totalCases,
+  dailyDeaths,
+  totalDeaths,
+};
