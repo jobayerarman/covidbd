@@ -3,7 +3,7 @@ const virusTracker = require('../src/api/virustracker');
 const fs = require('fs');
 const googleNews = require('google-news-json');
 const toBengaliWord = require('bengali-number');
-const util = require('./../util/util');
+const util = require('../src/util/util');
 const moment = require('moment');
 moment.locale('bn');
 
