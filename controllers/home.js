@@ -5,7 +5,7 @@ const googleNews = require('google-news-json');
 const toBengaliWord = require('bengali-number');
 const util = require('./../util/util');
 const moment = require('moment');
-// moment.locale('bn');
+moment.locale('bn');
 
 const readData = () => {
   const rawData = fs.readFileSync('./data/covid-data.json', 'utf8');
