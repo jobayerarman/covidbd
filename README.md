@@ -5,7 +5,6 @@
     <strong><a href="https://covidbd.herokuapp.com/"> https://covidbd.herokuapp.com</a> </strong>
 <br><br>
 
-![GitHub top language](https://img.shields.io/github/languages/top/jobayerarman/covidbd)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jobayerarman/covidbd)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jobayerarman/covidbd)<br>
 
@@ -18,6 +17,8 @@
 
 * NovelCOVID/API
 [github.com/NovelCOVID/API](https://github.com/NovelCOVID/API)
+* Coronavirus Tracker API
+[thevirustracker.com](https://thevirustracker.com/api)
 
 ## Resources
 * Chart.js
