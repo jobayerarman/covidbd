@@ -10,30 +10,34 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
+@media only screen and (max-width: 767px) {
+  .news-container {
+    .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
 // styles for upto mobile screen
 @media only screen and (max-width: 768px) {
   .card {
     margin-top: 15px;
   }
 
-  .twitter-follow {
-    margin-top: 20px;
-  }
-
   .chart-container {
-    margin-bottom: 30px;
+    margin-bottom: 1.25rem;
   }
 
   .list-inline {
     padding-top: .5rem !important;
     padding-bottom: .5rem !important;
   }
+}
 
-  .news-container {
-    .col {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
+@media only screen and (max-width: 1023px) {
+   .emergency-number,
+  .twitter-follow {
+    padding: 1rem 0;
   }
 }
 
@@ -43,6 +47,9 @@ $cyan:    #17a2b8 !default;
     .news-ticker {
       margin-left: -30px !important;
     }
+  }
+  .chart-container {
+    margin-bottom: 1.25rem;
   }
 }
 
@@ -58,3 +65,20 @@ $cyan:    #17a2b8 !default;
   color: $orange !important;
 }
 
+body {
+  background-color: #F0F2F8;
+}
+
+.panel,
+.chart-container,
+.table-container {
+  background-color: #fff;
+}
+
+.chart-container {
+  padding: 1.25rem 1.75rem !important;
+}
+
+.table-container {
+  padding: 1.75rem .75rem 0;
+}
