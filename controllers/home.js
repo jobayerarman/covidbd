@@ -24,7 +24,7 @@ const getCovidData = async () => {
   return data;
 };
 
-let getChangeRate = (newNum, oldNum, reverse = false) => {
+let getPercent = (newNum, oldNum, reverse = false) => {
   let rate = parseFloat(((newNum - oldNum) / oldNum) * 100).toFixed(2) * 1;
   if (reverse) return rate * -1;
   return rate;
@@ -90,12 +90,14 @@ exports.index = async (req, res) => {
       let all = result[2];
 
       // yesterday
-      let yesterdayCases = yesterday.todayCases;
-      let yesterdayTotalCases = yesterday.cases;
-      let yesterdayDeaths = yesterday.todayDeaths;
-      let yesterdayTotalDeaths = yesterday.deaths;
-      let yesterdayRecovered = yesterday.recovered;
-      let yesterdayTests = yesterday.tests;
+      let {
+        todayCases: yesterdayCases,
+        cases: yesterdayTotalCases,
+        todayDeaths: yesterdayDeaths,
+        deaths: yesterdayTotalDeaths,
+        recovered: yesterdayRecovered,
+        tests: yesterdayTests,
+      } = yesterday;
 
       // today
       let todayCases =
@@ -113,22 +115,34 @@ exports.index = async (req, res) => {
       let todayTests = totalTests - yesterdayTests;
 
       // worldwise
-      let allTodayCases = all.todayCases;
-      let allCases = all.cases;
-      let allTodayDeaths = all.todayDeaths;
-      let allDeaths = all.deaths;
-      let allRecovered = all.recovered;
-      let affectedCountries = all.affectedCountries;
+      let worldData = {
+        todayCases: util.bnNum(all.todayCases, true),
+        cases: util.bnNum(all.cases, true),
+        todayDeaths: util.bnNum(all.todayDeaths, true),
+        deaths: util.bnNum(all.deaths, true),
+        recovered: util.bnNum(all.recovered, true),
+        affectedCountries: util.bnNum(all.affectedCountries, true),
+      };
       // update time
       let updated = today.updated;
 
-      // get change rate
-      let todayCasesRate = getChangeRate(todayCases, yesterdayCases);
-      let todayDeathsRate = getChangeRate(todayDeaths, yesterdayDeaths);
-      let totatCasesRate = getChangeRate(totalCases, yesterdayTotalCases);
-      let totalDeathsRate = getChangeRate(totalDeaths, yesterdayTotalDeaths);
-      let recoveredRate = getChangeRate(totalRecovered, yesterdayRecovered);
-      let testRate = getChangeRate(totalTests, yesterdayTests);
+      // get change percent
+      let changeRate = {
+        todayCases: getPercent(todayCases, yesterdayCases),
+        todayDeaths: getPercent(todayDeaths, yesterdayDeaths),
+        cases: getPercent(totalCases, yesterdayTotalCases),
+        deaths: getPercent(totalDeaths, yesterdayTotalDeaths),
+        recovered: getPercent(totalRecovered, yesterdayRecovered),
+        test: getPercent(totalTests, yesterdayTests),
+      };
+      let changeRateBn = {
+        todayCases: util.bnNum(changeRate.todayCases),
+        todayDeath: util.bnNum(changeRate.todayDeaths),
+        cases: util.bnNum(changeRate.cases),
+        deaths: util.bnNum(changeRate.deaths),
+        recovered: util.bnNum(changeRate.recovered),
+        test: util.bnNum(changeRate.test),
+      };
 
       // translation to bengali
       let todayCasesBn = util.bnNum(todayCases, true);
@@ -144,22 +158,6 @@ exports.index = async (req, res) => {
       let totalTestsBn = util.bnNum(today.tests, true);
 
       updated = moment(updated).fromNow();
-
-      todayCasesRateBn = util.bnNum(todayCasesRate);
-      todayDeathRateBn = util.bnNum(todayDeathsRate);
-
-      totatCasesRateBn = util.bnNum(totatCasesRate);
-      totalDeathsRateBn = util.bnNum(totalDeathsRate);
-
-      recoveredRateBn = util.bnNum(recoveredRate);
-      testRateBn = util.bnNum(testRate);
-
-      allTodayCases = toBengaliWord(allTodayCases);
-      allCases = toBengaliWord(allCases);
-      allTodayDeaths = toBengaliWord(allTodayDeaths);
-      allDeaths = toBengaliWord(allDeaths);
-      allRecovered = toBengaliWord(allRecovered);
-      affectedCountries = toBengaliWord(affectedCountries);
 
       res.render('pages/index', {
         todayCases: todayCasesBn,
@@ -191,12 +189,8 @@ exports.index = async (req, res) => {
         recoveredRateEn: recoveredRate,
         testRateEn: testRate,
 
-        allTodayCases: allTodayCases,
-        allCases: allCases,
-        allTodayDeaths: allTodayDeaths,
-        allDeaths: allDeaths,
-        allRecovered: allRecovered,
-        affectedCountries: affectedCountries,
+        // worldwide data
+        worldData,
 
         // charts variable
         totalCasesEn: totalCases,
