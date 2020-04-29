@@ -8,9 +8,9 @@
         datasets: [
             {
                 label: 'দৈনিক মৃত্যু',
-                backgroundColor: 'rgb(250, 102, 31, 0.5)',
+                backgroundColor: 'rgb(250, 102, 31)',
                 borderColor: 'rgb(250, 102, 31)',
-                fill: true,
+                fill: false,
                 pointHoverRadius: 8,
                 data: [
                     <% timelineDailyDeaths.forEach(function (cases) { %>
@@ -78,6 +78,10 @@
                             display: true,
                             labelString: 'সংখ্যা',
                         },
+                        ticks: {
+                            suggestedMin: -5,
+                            suggestedMax: 5,
+                        },
                     },
                 ],
             },
@@ -95,9 +99,9 @@
             datasets: [
                 {
                     label: 'দৈনিক শনাক্ত',
-                    backgroundColor: 'rgb(250, 196, 29, 0.5)',
+                    backgroundColor: 'rgb(250, 196, 29)',
                     borderColor: 'rgb(250, 196, 29)',
-                    fill: true,
+                    fill: false,
                     pointHoverRadius: 8,
                     data: [
                         <% timelineDailyCases.forEach(function (cases) { %>
@@ -158,6 +162,10 @@
                         scaleLabel: {
                             display: true,
                             labelString: 'সংখ্যা',
+                        },
+                        ticks: {
+                            suggestedMin: -5,
+                            suggestedMax: 5,
                         },
                     },
                 ],
