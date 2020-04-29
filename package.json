@@ -18,6 +18,7 @@
     "url": "https://git.heroku.com/covidbd.git"
   },
   "dependencies": {
+    "@aero/centra": "^1.0.3",
     "bengali-number": "^1.0.4",
     "compression": "^1.7.4",
     "covidapi": "^0.3.0",
