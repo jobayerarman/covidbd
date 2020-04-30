@@ -34,8 +34,9 @@ $cyan:    #17a2b8 !default;
   }
 }
 
+// styles for upto tablet screen
 @media only screen and (max-width: 1023px) {
-   .emergency-number,
+  .emergency-number,
   .twitter-follow {
     padding: 1rem 0;
   }
@@ -51,20 +52,17 @@ $cyan:    #17a2b8 !default;
   .chart-container {
     margin-bottom: 1.25rem;
   }
+
+  .chart-container {
+    padding: 1.25rem 1.75rem !important;
+  }
+
+  .table-container {
+    padding: 1.75rem .75rem 0 !important;
+  }
 }
 
-.panel {
-  border-radius: 4px;
-}
-
-.bg-warning {
-  background-color: $orange !important;
-}
-
-.text-warning {
-  color: $orange !important;
-}
-
+// added color theme and shadow
 body {
   background-color: #F0F2F8;
 }
@@ -76,9 +74,22 @@ body {
 }
 
 .chart-container {
-  padding: 1.25rem 1.75rem !important;
+  padding: 1.75rem 0;
 }
 
 .table-container {
-  padding: 1.75rem .75rem 0;
+  padding: 1.75rem 0 0;
+}
+
+// utility classes
+.panel {
+  border-radius: 4px;
+}
+
+.bg-warning {
+  background-color: $orange !important;
+}
+
+.text-warning {
+  color: $orange !important;
 }
