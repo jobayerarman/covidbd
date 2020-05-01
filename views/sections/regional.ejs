@@ -10,6 +10,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>বিভাগের নাম</th>
+                                <th class="text-center">শতাংশ</th>
                                 <th class="text-center">মোট আক্রান্ত</th>
                             </tr>
                         </thead>
@@ -17,7 +18,8 @@
                             <% divisions.forEach(function(division) { %>
                             <tr>
                                 <td><%= division.name %></td>
-                                <td class="text-center"><%= division.count %></td>
+                                <td class="text-center"><%= division.percent %> %</td>
+                                <td class="text-center"><%= division.cases %></td>
                             </tr>
                             <% }); %>
                         </tbody>
@@ -35,6 +37,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th>জেলার নাম</th>
+                            <th scope="col" class="text-center">মোট মৃত্যু</th>
                             <th scope="col" class="text-center">মোট আক্রান্ত</th>
                         </tr>
                     </thead>
@@ -42,7 +45,8 @@
                         <% districts.forEach(function(district) { %>
                         <tr>
                             <td class=""><%= district.name %></td>
-                            <td class="text-center"><%= district.count %></td>
+                            <td class="text-center"><%= district.deaths %></td>
+                            <td class="text-center"><%= district.cases %></td>
                         </tr>
                         <% }); %>
                     </tbody>

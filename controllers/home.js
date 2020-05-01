@@ -51,14 +51,16 @@ exports.index = async (req, res) => {
   Object.entries(countryData.divisionData).forEach(([key, value]) => {
     let obj = {
       name: key,
-      count: value,
+      percent: value.percent,
+      cases: value.cases,
     };
     divisions.push(obj);
   });
   Object.entries(countryData.districtData).forEach(([key, value]) => {
     let obj = {
       name: key,
-      count: value,
+      cases: value.cases,
+      deaths: value.deaths,
     };
     districts.push(obj);
   });
