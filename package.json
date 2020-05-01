@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.10.14",
+  "version": "0.11.0",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",
@@ -25,10 +25,12 @@
     "ejs": "^2.7.4",
     "express": "^4.15.2",
     "google-news-json": "^1.0.3",
+    "load-json-file": "^6.2.0",
     "moment": "^2.24.0",
     "node-gnews": "^1.0.3",
     "prettier": "^2.0.5",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "write-json-file": "^4.3.0"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
