@@ -1,5 +1,6 @@
 'use strict';
 
+const cron = require('node-cron');
 const fetch = require('@aero/centra');
 const baseURL = 'https://api.thevirustracker.com/free-api';
 
@@ -58,8 +59,11 @@ const countryTotal = async () => {
       serious_cases: total_serious_cases,
       danger_rank: total_danger_rank,
     };
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    setError(
+      'Something went wrong when contacting the API, please try again later'
+    );
+    console.log(e);
   }
 };
 
@@ -76,8 +80,29 @@ const countryTimeline = async () => {
     await writeJsonFile('./data/data-virustracker.json', { timelineitems });
 
     return timelineitems;
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    setError(
+      'Something went wrong when contacting the API, please try again later'
+    );
+    console.log(e);
+  }
+};
+
+/**
+ * @description Gets data from API and then saves it in json file
+ */
+const saveData = async () => {
+  let jsondata = {};
+  try {
+    jsondata.countrydata = await countryTotal();
+    jsondata.timelineitems = await countryTimeline();
+
+    await writeJsonFile('./data/data-virustracker.json', jsondata);
+  } catch (e) {
+    setError(
+      'Something went wrong when contacting the API, please try again later'
+    );
+    console.log(e);
   }
 };
 
@@ -148,6 +173,11 @@ const totalDeaths = async () => {
   }
   return totalDeaths;
 };
+
+cron.schedule('0 */1 * * *', function () {
+  let date = new Date().toGMTString();
+  saveData().then(console.log('cron schedute ran at: ', date));
+});
 
 module.exports = {
   countryTotal,
