@@ -36,6 +36,18 @@ const countryTotal = async () => {
       ],
     } = await fetchJson(dataURL);
 
+    await writeJsonFile('/data/data-virustracker.json', {
+      cases: total_cases,
+      recovered: total_recovered,
+      unresolved: total_unresolved,
+      deaths: total_deaths,
+      new_cases_today: total_new_cases_today,
+      new_deaths_today: total_new_deaths_today,
+      active_cases: total_active_cases,
+      serious_cases: total_serious_cases,
+      danger_rank: total_danger_rank,
+    });
+
     return {
       cases: total_cases,
       recovered: total_recovered,
@@ -65,6 +77,8 @@ const countryTimeline = async () => {
     let { timelineitems } = await fetchJson(dataURL);
     timelineitems = timelineitems['0'];
     delete timelineitems.stat;
+    await writeJsonFile('./data/data-virustracker.json', { timelineitems });
+
     return timelineitems;
   } catch (e) {
     setError(
