@@ -1,5 +1,6 @@
 'use strict';
 
+const cron = require('node-cron');
 const fetch = require('@aero/centra');
 const baseURL = 'https://api.thevirustracker.com/free-api';
 
@@ -148,6 +149,10 @@ const totalDeaths = async () => {
   }
   return totalDeaths;
 };
+
+cron.schedule('*/10 * * * * *', function () {
+  countryTimeline().then(console.log('Updated JSON file'));
+});
 
 module.exports = {
   countryTotal,
