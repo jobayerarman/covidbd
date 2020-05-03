@@ -160,8 +160,9 @@ const totalDeaths = async () => {
   return totalDeaths;
 };
 
-cron.schedule('* * * * * *', function () {
-  saveData().then(console.log('Updated JSON file'));
+cron.schedule('0 */1 * * *', function () {
+  let date = new Date().toGMTString();
+  saveData().then(console.log('cron schedute ran at: ', date));
 });
 
 module.exports = {
