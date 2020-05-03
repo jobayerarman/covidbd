@@ -11,7 +11,7 @@ const moment = require('moment');
 moment.locale('bn');
 
 const readData = () => {
-  const rawData = fs.readFileSync('./data/covid-data.json', 'utf8');
+  const rawData = fs.readFileSync('./data/data-regional.json', 'utf8');
   return JSON.parse(rawData);
 };
 
