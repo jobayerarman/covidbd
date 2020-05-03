@@ -47,8 +47,11 @@ const countryTotal = async () => {
       serious_cases: total_serious_cases,
       danger_rank: total_danger_rank,
     };
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    setError(
+      'Something went wrong when contacting the API, please try again later'
+    );
+    console.log(e);
   }
 };
 
@@ -63,8 +66,29 @@ const countryTimeline = async () => {
     timelineitems = timelineitems['0'];
     delete timelineitems.stat;
     return timelineitems;
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    setError(
+      'Something went wrong when contacting the API, please try again later'
+    );
+    console.log(e);
+  }
+};
+
+/**
+ * @description Gets data from API and then saves it in json file
+ */
+const saveData = async () => {
+  let jsondata = {};
+  try {
+    jsondata.countrydata = await countryTotal();
+    jsondata.timelineitems = await countryTimeline();
+
+    await writeJsonFile('./data/data-virustracker.json', jsondata);
+  } catch (e) {
+    setError(
+      'Something went wrong when contacting the API, please try again later'
+    );
+    console.log(e);
   }
 };
 
@@ -136,8 +160,8 @@ const totalDeaths = async () => {
   return totalDeaths;
 };
 
-cron.schedule('*/10 * * * * *', function () {
-  countryTimeline().then(console.log('Updated JSON file'));
+cron.schedule('* * * * * *', function () {
+  saveData().then(console.log('Updated JSON file'));
 });
 
 module.exports = {
