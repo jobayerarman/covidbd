@@ -1,12 +1,12 @@
 {
 	"countrydata": {
-		"cases": 10929,
+		"cases": 11719,
 		"recovered": 1403,
 		"unresolved": 0,
-		"deaths": 183,
-		"new_cases_today": 786,
-		"new_deaths_today": 1,
-		"active_cases": 9343,
+		"deaths": 186,
+		"new_cases_today": 790,
+		"new_deaths_today": 3,
+		"active_cases": 10130,
 		"serious_cases": 1,
 		"danger_rank": 37
 	},
@@ -416,6 +416,13 @@
 			"total_cases": 10143,
 			"total_recoveries": 3,
 			"total_deaths": 182
+		},
+		"5/05/20": {
+			"new_daily_cases": 786,
+			"new_daily_deaths": 1,
+			"total_cases": 10929,
+			"total_recoveries": 3,
+			"total_deaths": 183
 		}
 	}
 }
