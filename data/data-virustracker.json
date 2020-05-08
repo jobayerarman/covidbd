@@ -1,14 +1,14 @@
 {
 	"countrydata": {
-		"cases": 11719,
-		"recovered": 1403,
+		"cases": 13134,
+		"recovered": 1910,
 		"unresolved": 0,
-		"deaths": 186,
-		"new_cases_today": 790,
-		"new_deaths_today": 3,
-		"active_cases": 10130,
+		"deaths": 206,
+		"new_cases_today": 709,
+		"new_deaths_today": 7,
+		"active_cases": 11018,
 		"serious_cases": 1,
-		"danger_rank": 37
+		"danger_rank": 36
 	},
 	"timelineitems": {
 		"3/08/20": {
@@ -423,6 +423,20 @@
 			"total_cases": 10929,
 			"total_recoveries": 3,
 			"total_deaths": 183
+		},
+		"5/06/20": {
+			"new_daily_cases": 790,
+			"new_daily_deaths": 3,
+			"total_cases": 11719,
+			"total_recoveries": 3,
+			"total_deaths": 186
+		},
+		"5/07/20": {
+			"new_daily_cases": 706,
+			"new_daily_deaths": 13,
+			"total_cases": 12425,
+			"total_recoveries": 3,
+			"total_deaths": 199
 		}
 	}
 }
