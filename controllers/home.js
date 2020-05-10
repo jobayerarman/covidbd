@@ -43,6 +43,8 @@ exports.index = async (req, res) => {
   let timelineTotalCases = await virusTracker.totalCases();
   let timelineDailyDeaths = await virusTracker.dailyDeaths();
   let timelineTotalDeaths = await virusTracker.totalDeaths();
+  let historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
+  let historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
 
   // division and district data
   let divisions = [];
@@ -96,6 +98,7 @@ exports.index = async (req, res) => {
       let today = result[0];
       let yesterday = result[1];
       let all = result[2];
+      let historical = result[3];
 
       // yesterday
       let {
@@ -194,6 +197,9 @@ exports.index = async (req, res) => {
         timelineTotalCases,
         timelineDailyDeaths,
         timelineTotalDeaths,
+
+        historicalDailyDeaths,
+        historicalDailyRecovered,
 
         // google news
         coronaArticles: coronaArticles,

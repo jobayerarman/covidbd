@@ -173,6 +173,95 @@
         },
     };
 
+    let historicalData = {
+        labels: [
+                <% historicalDailyDeaths.forEach(function (deaths) { %>
+                    moment('<%= deaths.date %>').format('MM/DD/YY'),
+                <% }); %>
+        ],
+        datasets: [
+            {
+                label: 'মোট মৃত্যু',
+                backgroundColor: 'rgb(237, 0, 0)',
+                borderColor: 'rgb(237, 0, 0)',
+                fill: false,
+                pointHoverRadius: 8,
+                data: [
+                    <% historicalDailyDeaths.forEach(function (deaths) { %>
+                        <%= deaths.count %>,
+                    <% }); %>
+                ],
+            },
+            {
+                label: 'মোট সুস্থ',
+                backgroundColor: 'rgb(58, 167, 69)',
+                borderColor: 'rgb(58, 167, 69)',
+                fill: false,
+                pointHoverRadius: 8,
+                data: [
+                    <% historicalDailyRecovered.forEach(function (recovered) { %>
+                        <%= recovered.count %>,
+                    <% }); %>
+                ],
+            },
+        ],
+    };
+
+    let historicalConfig = {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: historicalData,
+
+        // Configuration options go here
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'গত ৩০ দিনে মোট মৃত্যু ও সুস্থ',
+            },
+            legend: {
+                position: 'bottom',
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'index'
+            },
+            scales: {
+                xAxes: [
+                    {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'তারিখ',
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'সংখ্যা',
+                        },
+                        ticks: {
+                            suggestedMin: -5,
+                            suggestedMax: 5,
+                        },
+                    },
+                ],
+            },
+        },
+    };
+
     // pie chart - cases, deaths and recovered
     let pieChartOneData = {
         labels: ['শনাক্ত', 'মৃত্যু', 'সুস্থ'],
@@ -246,6 +335,9 @@
 
         let coronaDeaths = document.getElementById('coronaDeathByTime').getContext('2d');
         window.coronaDeaths = new Chart(coronaDeaths, deathConfig);
+
+        let coronaHistory = document.getElementById('coronaHistory').getContext('2d');
+        window.coronaDeaths = new Chart(coronaHistory, historicalConfig);
 
         let pieChartOne = document.getElementById('pie-chart-one').getContext('2d');
         window.pieChartOne = new Chart(pieChartOne, pieChartOneConfig);
