@@ -1,5 +1,6 @@
 'use strict';
 
+const track = require('covidapi');
 const cron = require('node-cron');
 const fetch = require('@aero/centra');
 const baseURL = 'https://api.thevirustracker.com/free-api';
@@ -77,8 +78,6 @@ const countryTimeline = async () => {
     let { timelineitems } = await fetchJson(dataURL);
     timelineitems = timelineitems['0'];
     delete timelineitems.stat;
-    await writeJsonFile('./data/data-virustracker.json', { timelineitems });
-
     return timelineitems;
   } catch (e) {
     setError(
@@ -112,7 +111,7 @@ const saveData = async () => {
  */
 const dailyCases = async () => {
   let dailyCases = [];
-  let { timelineitems } = await loadJsonFile('./data/data-virustracker.json');
+  let timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
@@ -129,7 +128,7 @@ const dailyCases = async () => {
  */
 const totalCases = async () => {
   let totalCases = [];
-  let { timelineitems } = await loadJsonFile('./data/data-virustracker.json');
+  let timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
@@ -146,7 +145,7 @@ const totalCases = async () => {
  */
 const dailyDeaths = async () => {
   let dailyDeaths = [];
-  let { timelineitems } = await loadJsonFile('./data/data-virustracker.json');
+  let timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
@@ -163,7 +162,7 @@ const dailyDeaths = async () => {
  */
 const totalDeaths = async () => {
   let totalDeaths = [];
-  let { timelineitems } = await loadJsonFile('./data/data-virustracker.json');
+  let timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
@@ -174,10 +173,54 @@ const totalDeaths = async () => {
   return totalDeaths;
 };
 
-cron.schedule('0 */1 * * *', function () {
-  let date = new Date().toGMTString();
-  saveData().then(console.log('cron schedute ran at: ', date));
-});
+/**
+ * @description Generates Historial Total Deaths
+ * @returns {Promise<array>}
+ */
+const historicalDailyDeaths = async () => {
+  let data = [];
+  let {
+    timeline: { deaths },
+  } = await track.historical.countries({
+    country: 'bangladesh',
+    days: 30,
+  });
+  for (let [key, value] of Object.entries(deaths)) {
+    let obj = {
+      date: key,
+      count: value,
+    };
+    data.push(obj);
+  }
+  return data;
+};
+
+/**
+ * @description Generates Historial Total Recovery
+ * @returns {Promise<array>}
+ */
+const historicalDailyRecovered = async () => {
+  let data = [];
+  let {
+    timeline: { recovered },
+  } = await track.historical.countries({
+    country: 'bangladesh',
+    days: 30,
+  });
+  for (let [key, value] of Object.entries(recovered)) {
+    let obj = {
+      date: key,
+      count: value,
+    };
+    data.push(obj);
+  }
+  return data;
+};
+
+// cron.schedule('0 */1 * * *', function () {
+//   let date = new Date().toGMTString();
+//   saveData().then(console.log('cron schedute ran at: ', date));
+// });
 
 module.exports = {
   countryTotal,
@@ -186,4 +229,6 @@ module.exports = {
   totalCases,
   dailyDeaths,
   totalDeaths,
+  historicalDailyDeaths,
+  historicalDailyRecovered,
 };
