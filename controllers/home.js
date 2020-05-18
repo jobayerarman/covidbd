@@ -177,8 +177,8 @@ exports.index = async (req, res) => {
         covidDataBn,
 
         // regional data
-        divisions: divisions,
-        districts: districts,
+        divisions,
+        districts,
 
         // change percent
         changeRate,
@@ -201,9 +201,12 @@ exports.index = async (req, res) => {
         historicalDailyDeaths,
         historicalDailyRecovered,
 
+        // updated time
+        updated,
+
         // google news
-        coronaArticles: coronaArticles,
-        latestArticles: latestArticles,
+        coronaArticles,
+        latestArticles,
       });
     })
     .catch((err) => console.error(err));
