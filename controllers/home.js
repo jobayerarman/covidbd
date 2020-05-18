@@ -39,12 +39,12 @@ let getPercent = (newNum, oldNum, reverse = false) => {
  */
 exports.index = async (req, res) => {
   // virustracker data
-  // let timelineDailyCases = await virusTracker.dailyCases();
-  // let timelineTotalCases = await virusTracker.totalCases();
-  // let timelineDailyDeaths = await virusTracker.dailyDeaths();
-  // let timelineTotalDeaths = await virusTracker.totalDeaths();
-  // let historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
-  // let historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
+  let timelineDailyCases = await virusTracker.dailyCases();
+  let timelineTotalCases = await virusTracker.totalCases();
+  let timelineDailyDeaths = await virusTracker.dailyDeaths();
+  let timelineTotalDeaths = await virusTracker.totalDeaths();
+  let historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
+  let historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
 
   // division and district data
   let divisions = [];
@@ -193,13 +193,13 @@ exports.index = async (req, res) => {
         totalRecoveredEn: totalRecovered,
         totalTestsEn: totalTests,
 
-        // timelineDailyCases,
-        // timelineTotalCases,
-        // timelineDailyDeaths,
-        // timelineTotalDeaths,
+        timelineDailyCases,
+        timelineTotalCases,
+        timelineDailyDeaths,
+        timelineTotalDeaths,
 
-        // historicalDailyDeaths,
-        // historicalDailyRecovered,
+        historicalDailyDeaths,
+        historicalDailyRecovered,
 
         // google news
         coronaArticles: coronaArticles,
