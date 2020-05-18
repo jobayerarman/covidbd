@@ -6,11 +6,13 @@
                 <% if (title == 'home') { %>বাংলাদেশের সার্বিক পরিস্থিতি<% } %>
                 <% if (title == 'world') { %>সারাবিশ্বের সার্বিক পরিস্থিতি<% } %>
                 <% if (title == 'wiki') { %>উইকি<% } %>
+                <% if (title != 'wiki') { %>
                 <br>
                 <small>
                     <span>সর্বশেষঃ </span>
                     <span></span> <%= updated %></span>
                 </small>
+                <% } %>
             </h5>
         </div>
     </div>
