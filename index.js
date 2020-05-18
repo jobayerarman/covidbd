@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
  * Controllers (route handlers).
  */
 const homeController = require('./controllers/home');
+const worldController = require('./controllers/world');
 
 /**
  * Create Express server.
@@ -23,6 +24,7 @@ app
 
   // ---- ROUTES ---- //
   .get('/', homeController.index)
+  .get('/world', worldController.index)
   .get('/wiki', (req, res) => res.render('pages/wiki', { title: 'wiki' }))
   .get('/about', (req, res) => res.render('pages/about', { title: 'about' }))
 

@@ -1,26 +1,15 @@
 const track = require('covidapi');
-const fs = require('fs');
-
 const googleNews = require('google-news-json');
-const toBengaliWord = require('bengali-number');
 
-const virusTracker = require('../src/api/virustracker');
 const util = require('../src/util/util');
 
 const moment = require('moment');
 moment.locale('bn');
 
-const readData = () => {
-  const rawData = fs.readFileSync('./data/data-regional.json', 'utf8');
-  return JSON.parse(rawData);
-};
-
 const getCovidData = async () => {
-  const a = track.countries({ country: 'bangladesh' }).catch(() => 'error');
-  const b = track.yesterday
-    .countries({ country: 'bangladesh' })
-    .catch(() => 'error');
-  const c = track.all().catch(() => 'error');
+  const a = track.yesterday.all().catch((err) => console.error(err));
+  const b = track.all().catch((err) => console.error(err));
+  const c = track.countries({ country: 'bangladesh' }).catch(() => 'error');
 
   const data = await Promise.all([a, b, c]);
 
@@ -35,38 +24,9 @@ let getPercent = (newNum, oldNum, reverse = false) => {
 
 /**
  * GET /
- * Home page.
+ * World page.
  */
 exports.index = async (req, res) => {
-  // virustracker data
-  let timelineDailyCases = await virusTracker.dailyCases();
-  let timelineTotalCases = await virusTracker.totalCases();
-  let timelineDailyDeaths = await virusTracker.dailyDeaths();
-  let timelineTotalDeaths = await virusTracker.totalDeaths();
-  let historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
-  let historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
-
-  // division and district data
-  let divisions = [];
-  let districts = [];
-  let countryData = readData();
-  Object.entries(countryData.divisionData).forEach(([key, value]) => {
-    let obj = {
-      name: key,
-      percent: value.percent,
-      cases: value.cases,
-    };
-    divisions.push(obj);
-  });
-  Object.entries(countryData.districtData).forEach(([key, value]) => {
-    let obj = {
-      name: key,
-      cases: value.cases,
-      deaths: value.deaths,
-    };
-    districts.push(obj);
-  });
-
   // latest corona news
   let coronaNews = await googleNews.getNews(
     googleNews.SEARCH,
@@ -95,10 +55,9 @@ exports.index = async (req, res) => {
 
   getCovidData()
     .then((result) => {
-      let today = result[0];
-      let yesterday = result[1];
-      let all = result[2];
-      let historical = result[3];
+      let yesterday = result[0];
+      let today = result[1];
+      let localData = result[2];
 
       // yesterday
       let {
@@ -124,19 +83,6 @@ exports.index = async (req, res) => {
 
       let todayRecovered = totalRecovered - yesterdayRecovered;
       let todayTests = totalTests - yesterdayTests;
-
-      // worldwise
-      let worldData = {
-        todayCases: util.bnNum(all.todayCases, true),
-        cases: util.bnNum(all.cases, true),
-        todayDeaths: util.bnNum(all.todayDeaths, true),
-        deaths: util.bnNum(all.deaths, true),
-        recovered: util.bnNum(all.recovered, true),
-        affectedCountries: util.bnNum(all.affectedCountries, true),
-      };
-      // update time
-      let updated = today.updated;
-      updated = moment(updated).fromNow();
 
       // get change percent
       let changeRate = {
@@ -167,39 +113,34 @@ exports.index = async (req, res) => {
         deaths: util.bnNum(totalDeaths, true),
         recovered: util.bnNum(today.recovered, true),
         tests: util.bnNum(today.tests, true),
+        affectedCountries: util.bnNum(today.affectedCountries, true),
       };
 
-      res.render('pages/index', {
-        // for active nav item
-        title: 'home',
+      // bangladesh
+      let bdData = {
+        todayCases: util.bnNum(localData.todayCases, true),
+        cases: util.bnNum(localData.cases, true),
+        todayDeaths: util.bnNum(localData.todayDeaths, true),
+        deaths: util.bnNum(localData.deaths, true),
+        recovered: util.bnNum(localData.recovered, true),
+      };
+
+      // update time
+      let updated = today.updated;
+      updated = moment(updated).fromNow();
+
+      res.render('pages/world', {
+        title: 'world',
 
         // main data
         covidDataBn,
-
-        // regional data
-        divisions,
-        districts,
 
         // change percent
         changeRate,
         changeRateBn,
 
-        // worldwide data
-        worldData,
-
-        // charts variable
-        totalCasesEn: totalCases,
-        totalDeathsEn: totalDeaths,
-        totalRecoveredEn: totalRecovered,
-        totalTestsEn: totalTests,
-
-        timelineDailyCases,
-        timelineTotalCases,
-        timelineDailyDeaths,
-        timelineTotalDeaths,
-
-        historicalDailyDeaths,
-        historicalDailyRecovered,
+        // bangladesh data
+        bdData,
 
         // updated time
         updated,
