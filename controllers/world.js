@@ -127,7 +127,7 @@ exports.index = async (req, res) => {
 
       // update time
       let updated = today.updated;
-      updated = moment(updated).fromNow();
+      updated = moment(updated).format('LLLL');
 
       res.render('pages/world', {
         title: 'world',
