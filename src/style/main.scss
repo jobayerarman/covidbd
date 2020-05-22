@@ -24,8 +24,13 @@ $cyan:    #17a2b8 !default;
     margin-top: 15px;
   }
 
-  .chart-container {
+  .chart-container,
+  .timeline-container {
     margin-bottom: 1.25rem;
+  }
+
+  .timeline-container {
+    padding: 1.25rem .75rem !important;
   }
 
   .list-inline {
@@ -69,8 +74,18 @@ body {
 
 .panel,
 .chart-container,
-.table-container {
+.table-container,
+.timeline-container {
   background-color: #fff;
+}
+
+.timeline-container {
+  padding: 1.75rem;
+  min-height: 420px;
+
+  .row {
+    margin-bottom: 5px;
+  }
 }
 
 .chart-container {
