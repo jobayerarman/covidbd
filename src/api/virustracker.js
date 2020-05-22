@@ -1,6 +1,6 @@
 'use strict';
 
-const track = require('covidapi');
+const track = require('novelcovid');
 const cron = require('node-cron');
 const fetch = require('@aero/centra');
 const baseURL = 'https://api.thevirustracker.com/free-api';
