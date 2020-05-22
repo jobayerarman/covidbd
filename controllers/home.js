@@ -1,8 +1,7 @@
-const track = require('covidapi');
+const track = require('novelcovid');
 const fs = require('fs');
 
 const googleNews = require('google-news-json');
-const toBengaliWord = require('bengali-number');
 
 const virusTracker = require('../src/api/virustracker');
 const util = require('../src/util/util');

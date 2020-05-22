@@ -1,6 +1,6 @@
 {
   "name": "covidbd",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "Corona Tracker using Node.js",
   "engines": {
     "node": "^10.0.0",
@@ -21,7 +21,6 @@
     "@aero/centra": "^1.0.3",
     "bengali-number": "^1.0.4",
     "compression": "^1.7.4",
-    "covidapi": "^0.4.3",
     "ejs": "^2.7.4",
     "express": "^4.15.2",
     "google-news-json": "^1.0.3",
@@ -29,6 +28,7 @@
     "moment": "^2.25.3",
     "node-cron": "^2.0.3",
     "node-gnews": "^1.0.3",
+    "novelcovid": "^2.1.1",
     "prettier": "^2.0.5",
     "serve-favicon": "^2.5.0",
     "write-json-file": "^4.3.0"
@@ -36,6 +36,7 @@
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "del": "^5.1.0",
+    "eslint": "^7.0.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-ejs": "0.0.2",
