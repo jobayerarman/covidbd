@@ -1,4 +1,4 @@
-const track = require('covidapi');
+const track = require('novelcovid');
 const googleNews = require('google-news-json');
 
 const util = require('../src/util/util');
