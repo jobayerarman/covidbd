@@ -5,7 +5,6 @@
     <strong><a href="https://covidbd.herokuapp.com/"> https://covidbd.herokuapp.com</a> </strong>
 <br><br>
 
-![GitHub top language](https://img.shields.io/github/languages/top/jobayerarman/covidbd)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jobayerarman/covidbd)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jobayerarman/covidbd)<br>
 
@@ -16,20 +15,28 @@
 
 ## Data API
 
-* NovelCOVID/API  
+* NovelCOVID/API
 [github.com/NovelCOVID/API](https://github.com/NovelCOVID/API)
+* Coronavirus Tracker API
+[thevirustracker.com](https://thevirustracker.com/api)
+
+## Resources
+* Chart.js
+[www.chartjs.org](https://www.chartjs.org/)
+* DataTables
+[datatables.net](https://datatables.net/)
 
 ## Additional Data Source
 
 * IEDCR
-[https://www.iedcr.gov.bd](https://www.iedcr.gov.bd)
+[www.iedcr.gov.bd](https://www.iedcr.gov.bd)
 
 * DGHS
-[https://www.dghs.gov.bd](https://www.dghs.gov.bd)
+[www.dghs.gov.bd](https://www.dghs.gov.bd)
 
 * Health Ministry of Bangladesh
-[http://www.mohfw.gov.bd](http://www.mohfw.gov.bd)
+[www.mohfw.gov.bd](http://www.mohfw.gov.bd)
 
 ## Icons
 * justicon
-[https://www.iconfinder.com/justicon](https://www.iconfinder.com/justicon)
+[www.iconfinder.com/justicon](https://www.iconfinder.com/justicon)

@@ -128,11 +128,11 @@ $(document).ready(function () {
     height = '300px';
   }
   $('.datatable').DataTable({
-    order: [[1, 'desc']],
+    order: [[2, 'desc']],
     scrollY: height,
     scrollCollapse: true,
     paging: false,
-    columnDefs: [{ width: width, targets: 1 }],
+    columns: [null, { width: width }, { width: width }],
     bInfo: false,
     oLanguage: {
       sSearch: 'সার্চঃ',

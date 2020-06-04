@@ -1,3 +1,9 @@
+/**
+ * the function for translating number to Bengali
+ * @param {int} num Number to convert in Bengali
+ * @param {boolean | false} [komma=false] komma notaiton on number
+ * @returns {string} Translated bangla number
+ */
 exports.bnNum = (num, komma = false) => {
   const banglaNumber = {
     '0': '০',

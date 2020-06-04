@@ -1,0 +1,348 @@
+<script>
+    let deathData = {
+        labels: [
+                <% timelineTotalDeaths.forEach(function (cases) { %>
+                    moment('<%= cases.date %>').format('YYYY-MM-DD'),
+                <% }); %>
+        ],
+        datasets: [
+            {
+                label: 'দৈনিক মৃত্যু',
+                backgroundColor: 'rgb(250, 102, 31)',
+                borderColor: 'rgb(250, 102, 31)',
+                fill: false,
+                pointHoverRadius: 8,
+                data: [
+                    <% timelineDailyDeaths.forEach(function (cases) { %>
+                        <%= cases.count %>,
+                    <% }); %>
+                ],
+            },
+            {
+                label: 'মোট মৃত্যু',
+                backgroundColor: 'rgb(237, 0, 0)',
+                borderColor: 'rgb(237, 0, 0)',
+                fill: false,
+                pointHoverRadius: 8,
+                data: [
+                    <% timelineTotalDeaths.forEach(function (cases) { %>
+                        <%= cases.count %>,
+                    <% }); %>
+                ],
+            },
+        ],
+    };
+
+    let deathConfig = {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: deathData,
+
+        // Configuration options go here
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'দৈনিক ও মোট মৃত্যুর সংখ্যা',
+            },
+            legend: {
+                position: 'bottom',
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'index'
+            },
+            scales: {
+                xAxes: [
+                    {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'তারিখ',
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'সংখ্যা',
+                        },
+                        ticks: {
+                            suggestedMin: -5,
+                            suggestedMax: 5,
+                        },
+                    },
+                ],
+            },
+        },
+    };
+
+    let casesConfig = {
+        type: 'line',
+        data: {
+            labels: [
+                <% timelineDailyCases.forEach(function (cases) { %>
+                    moment('<%= cases.date %>').format('YYYY-MM-DD'),
+                <% }); %>
+            ],
+            datasets: [
+                {
+                    label: 'দৈনিক শনাক্ত',
+                    backgroundColor: 'rgb(250, 196, 29)',
+                    borderColor: 'rgb(250, 196, 29)',
+                    fill: false,
+                    pointHoverRadius: 8,
+                    data: [
+                        <% timelineDailyCases.forEach(function (cases) { %>
+                            {
+                                x: moment('<%= cases.date %>', 'MM-DD-YY'),
+                                y: <%= cases.count %>
+                            },
+                        <% }); %>
+                    ],
+                },
+                {
+                    label: 'মোট শনাক্ত',
+                    backgroundColor: 'rgb(241, 118, 0)',
+                    borderColor: 'rgb(241, 118, 0)',
+                    fill: false,
+                    pointHoverRadius: 8,
+                    data: [
+                        <% timelineTotalCases.forEach(function (cases) { %>
+                            {
+                                x: moment('<%= cases.date %>', 'MM-DD-YY'),
+                                y: <%= cases.count %>
+                            },
+                        <% }); %>
+                    ],
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'দৈনিক ও মোট শনাক্তের সংখ্যা',
+            },
+            legend: {
+                position: 'bottom',
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            scales: {
+                xAxes: [
+                    {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'তারিখ',
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'সংখ্যা',
+                        },
+                        ticks: {
+                            suggestedMin: -5,
+                            suggestedMax: 5,
+                        },
+                    },
+                ],
+            },
+        },
+    };
+
+    let historicalData = {
+        labels: [
+                <% historicalDailyDeaths.forEach(function (deaths) { %>
+                    moment('<%= deaths.date %>').format('MM/DD/YY'),
+                <% }); %>
+        ],
+        datasets: [
+            {
+                label: 'মোট মৃত্যু',
+                backgroundColor: 'rgb(237, 0, 0)',
+                borderColor: 'rgb(237, 0, 0)',
+                fill: false,
+                pointHoverRadius: 8,
+                data: [
+                    <% historicalDailyDeaths.forEach(function (deaths) { %>
+                        <%= deaths.count %>,
+                    <% }); %>
+                ],
+            },
+            {
+                label: 'মোট সুস্থ',
+                backgroundColor: 'rgb(58, 167, 69)',
+                borderColor: 'rgb(58, 167, 69)',
+                fill: false,
+                pointHoverRadius: 8,
+                data: [
+                    <% historicalDailyRecovered.forEach(function (recovered) { %>
+                        <%= recovered.count %>,
+                    <% }); %>
+                ],
+            },
+        ],
+    };
+
+    let historicalConfig = {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: historicalData,
+
+        // Configuration options go here
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                text: 'গত ৩০ দিনে মোট মৃত্যু ও সুস্থ',
+            },
+            legend: {
+                position: 'bottom',
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'index'
+            },
+            scales: {
+                xAxes: [
+                    {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'তারিখ',
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'সংখ্যা',
+                        },
+                        ticks: {
+                            suggestedMin: -5,
+                            suggestedMax: 5,
+                        },
+                    },
+                ],
+            },
+        },
+    };
+
+    // pie chart - cases, deaths and recovered
+    let pieChartOneData = {
+        labels: ['শনাক্ত', 'মৃত্যু', 'সুস্থ'],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: ['rgb(241, 118, 0)', 'rgb(243, 58, 63)', 'rgb(58, 167, 69)'],
+            data: [<%= totalCasesEn %>, <%= totalDeathsEn %>, <%= totalRecoveredEn %>],
+        }]
+    };
+
+    let pieChartOneConfig = {
+        type: 'doughnut',
+
+        data: pieChartOneData,
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                padding: 30,
+                text: 'মোট শনাক্ত, মৃত্যু ও সুস্থ',
+            },
+            legend: {
+                position: 'bottom',
+                labels: {
+                    fontSize: 14,
+                    padding: 30
+                }
+            },
+        }
+    };
+    // pie chart - tests and cases
+    let pieChartTwoData = {
+        labels: ['পরীক্ষা', 'শনাক্ত'],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: ['rgb(35, 162, 184)', 'rgb(241, 118, 0)'],
+            data: [<%= totalTestsEn %>, <%= totalCasesEn %>],
+        }]
+    };
+
+    let pieChartTwoConfig = {
+        type: 'doughnut',
+
+        data: pieChartTwoData,
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                fontSize: 20,
+                padding: 30,
+                text: 'মোট পরীক্ষা ও শনাক্ত',
+            },
+            legend: {
+                position: 'bottom',
+                labels: {
+                    fontSize: 14,
+                    padding: 30
+                }
+            },
+        }
+    };
+
+    window.onload = function () {
+        let coronaCases = document.getElementById('coronaCasesByTime').getContext('2d');
+        window.coronaCases = new Chart(coronaCases, casesConfig);
+
+        let coronaDeaths = document.getElementById('coronaDeathByTime').getContext('2d');
+        window.coronaDeaths = new Chart(coronaDeaths, deathConfig);
+
+        let coronaHistory = document.getElementById('coronaHistory').getContext('2d');
+        window.coronaDeaths = new Chart(coronaHistory, historicalConfig);
+
+        let pieChartOne = document.getElementById('pie-chart-one').getContext('2d');
+        window.pieChartOne = new Chart(pieChartOne, pieChartOneConfig);
+
+        let pieChartTwo = document.getElementById('pie-chart-two').getContext('2d');
+        window.pieChartTwo = new Chart(pieChartTwo, pieChartTwoConfig);
+    };
+</script>

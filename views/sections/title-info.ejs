@@ -1,0 +1,20 @@
+<div class="title-container">
+  <div class="container-fluid px-md-5 mb-2">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">
+                <% if (title == 'home') { %>বাংলাদেশের সার্বিক পরিস্থিতি<% } %>
+                <% if (title == 'world') { %>সারাবিশ্বের সার্বিক পরিস্থিতি<% } %>
+                <% if (title == 'wiki') { %>উইকি<% } %>
+                <% if (title != 'wiki') { %>
+                <br>
+                <small>
+                    <span>সর্বশেষঃ </span>
+                    <span></span> <%= updated %></span>
+                </small>
+                <% } %>
+            </h5>
+        </div>
+    </div>
+  </div>
+</div>

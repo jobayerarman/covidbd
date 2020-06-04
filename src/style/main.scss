@@ -10,30 +10,40 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
+@media only screen and (max-width: 767px) {
+  .news-container {
+    .col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
 // styles for upto mobile screen
 @media only screen and (max-width: 768px) {
   .card {
     margin-top: 15px;
   }
 
-  .twitter-follow {
-    margin-top: 20px;
+  .chart-container,
+  .timeline-container {
+    margin-bottom: 1.25rem;
   }
 
-  .chart-container {
-    margin-bottom: 30px;
+  .timeline-container {
+    padding: 1.25rem .75rem !important;
   }
 
   .list-inline {
     padding-top: .5rem !important;
     padding-bottom: .5rem !important;
   }
+}
 
-  .news-container {
-    .col {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
+// styles for upto tablet screen
+@media only screen and (max-width: 1023px) {
+  .emergency-number,
+  .twitter-follow {
+    padding: 1rem 0;
   }
 }
 
@@ -44,8 +54,49 @@ $cyan:    #17a2b8 !default;
       margin-left: -30px !important;
     }
   }
+  .chart-container {
+    margin-bottom: 1.25rem;
+  }
+
+  .chart-container {
+    padding: 1.25rem 1.75rem !important;
+  }
+
+  .table-container {
+    padding: 1.75rem .75rem 0 !important;
+  }
 }
 
+// added color theme and shadow
+body {
+  background-color: #F0F2F8;
+}
+
+.panel,
+.chart-container,
+.table-container,
+.timeline-container {
+  background-color: #fff;
+}
+
+.timeline-container {
+  padding: 1.75rem;
+  min-height: 420px;
+
+  .row {
+    margin-bottom: 5px;
+  }
+}
+
+.chart-container {
+  padding: 1.75rem 0;
+}
+
+.table-container {
+  padding: 1.75rem 0 0;
+}
+
+// utility classes
 .panel {
   border-radius: 4px;
 }
@@ -57,4 +108,3 @@ $cyan:    #17a2b8 !default;
 .text-warning {
   color: $orange !important;
 }
-
