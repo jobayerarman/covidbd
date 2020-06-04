@@ -4,7 +4,8 @@
             <div class="col text-center">
                 <p>
                     <small>API data by
-                        <a rel="noopener" href="https://github.com/novelcovid/api" target="_blank">Novel CoVID19/API,</a>
+                        <a rel="noopener" href="https://github.com/novelcovid/api" target="_blank">Novel
+                            CoVID19/API,</a>
                         <a rel="noopener" href="https://thevirustracker.com/" target="_blank">theVirusTracker</a>
                     </small>
                 </p>
@@ -49,9 +50,34 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <!-- social-share-kit Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share-kit/1.0.15/js/social-share-kit.min.js" integrity="sha256-pZkANNk3OAr66HhVKttd7M9iCrFXwPhkomTxzWykRKQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share-kit/1.0.15/js/social-share-kit.min.js"
+    integrity="sha256-pZkANNk3OAr66HhVKttd7M9iCrFXwPhkomTxzWykRKQ=" crossorigin="anonymous"></script>
 <!-- Twitter Scripts -->
 <script src="https://platform.twitter.com/widgets.js"></script>
 
 <!-- User Scripts -->
 <script type="text/javascript" src="/scripts/main.js"></script>
+
+<!-- service worker registration -->
+<script type="text/javascript">
+    (function () {
+        if ('serviceWorker' in navigator) {
+            /**
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.register('service-worker.js', {
+                scope: '/'
+              })
+                .then(registration => {
+                  console.log('[ServiceWorker]: Registered scope: ', registration.scope);
+                });
+            });
+            */
+            navigator.serviceWorker.getRegistrations()
+                .then(function (registrations) {
+                    for (const registration of registrations) {
+                        registration.unregister();
+                    }
+                });
+        }
+    })();
+</script>
