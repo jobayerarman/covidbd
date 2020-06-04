@@ -2,11 +2,11 @@ const track = require('novelcovid');
 const fs = require('fs');
 
 const googleNews = require('google-news-json');
+const moment = require('moment');
 
 const virusTracker = require('../src/api/virustracker');
 const util = require('../src/util/util');
 
-const moment = require('moment');
 moment.locale('bn');
 
 const readData = () => {
@@ -26,8 +26,8 @@ const getCovidData = async () => {
   return data;
 };
 
-let getPercent = (newNum, oldNum, reverse = false) => {
-  let rate = parseFloat(((newNum - oldNum) / oldNum) * 100).toFixed(2) * 1;
+const getPercent = (newNum, oldNum, reverse = false) => {
+  const rate = parseFloat(((newNum - oldNum) / oldNum) * 100).toFixed(2) * 1;
   if (reverse) return rate * -1;
   return rate;
 };
@@ -38,19 +38,19 @@ let getPercent = (newNum, oldNum, reverse = false) => {
  */
 exports.index = async (req, res) => {
   // virustracker data
-  let timelineDailyCases = await virusTracker.dailyCases();
-  let timelineTotalCases = await virusTracker.totalCases();
-  let timelineDailyDeaths = await virusTracker.dailyDeaths();
-  let timelineTotalDeaths = await virusTracker.totalDeaths();
-  let historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
-  let historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
+  const timelineDailyCases = await virusTracker.dailyCases();
+  const timelineTotalCases = await virusTracker.totalCases();
+  const timelineDailyDeaths = await virusTracker.dailyDeaths();
+  const timelineTotalDeaths = await virusTracker.totalDeaths();
+  const historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
+  const historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
 
   // division and district data
-  let divisions = [];
-  let districts = [];
-  let countryData = readData();
+  const divisions = [];
+  const districts = [];
+  const countryData = readData();
   Object.entries(countryData.divisionData).forEach(([key, value]) => {
-    let obj = {
+    const obj = {
       name: key,
       percent: value.percent,
       cases: value.cases,
@@ -58,7 +58,7 @@ exports.index = async (req, res) => {
     divisions.push(obj);
   });
   Object.entries(countryData.districtData).forEach(([key, value]) => {
-    let obj = {
+    const obj = {
       name: key,
       cases: value.cases,
       deaths: value.deaths,
@@ -73,7 +73,7 @@ exports.index = async (req, res) => {
     'bn-BD'
   );
   coronaNews = coronaNews.items.slice(0, 6);
-  let coronaArticles = coronaNews.map((n) => {
+  const coronaArticles = coronaNews.map((n) => {
     return {
       title: n.title,
       published: moment(n.pubDate).fromNow(),
@@ -84,7 +84,7 @@ exports.index = async (req, res) => {
   // latest news of bangladesh
   let latestNews = await googleNews.getNews(googleNews.TOP_NEWS, null, 'bn-BD');
   latestNews = latestNews.items.slice(0, 6);
-  let latestArticles = latestNews.map((n) => {
+  const latestArticles = latestNews.map((n) => {
     return {
       title: n.title,
       published: moment(n.pubDate).fromNow(),
@@ -94,13 +94,12 @@ exports.index = async (req, res) => {
 
   getCovidData()
     .then((result) => {
-      let today = result[0];
-      let yesterday = result[1];
-      let all = result[2];
-      let historical = result[3];
+      const today = result[0];
+      const yesterday = result[1];
+      const all = result[2];
 
       // yesterday
-      let {
+      const {
         todayCases: yesterdayCases,
         cases: yesterdayTotalCases,
         todayDeaths: yesterdayDeaths,
@@ -110,22 +109,22 @@ exports.index = async (req, res) => {
       } = yesterday;
 
       // today
-      let todayCases =
-        today.todayCases == 0 ? yesterday.todayCases : today.todayCases;
-      let todayDeaths =
-        today.todayDeaths == 0 ? yesterday.todayDeaths : today.todayDeaths;
+      const todayCases =
+        today.todayCases === 0 ? yesterday.todayCases : today.todayCases;
+      const todayDeaths =
+        today.todayDeaths === 0 ? yesterday.todayDeaths : today.todayDeaths;
 
-      let totalCases = today.cases;
-      let totalDeaths = today.deaths;
+      const totalCases = today.cases;
+      const totalDeaths = today.deaths;
 
-      let totalRecovered = today.recovered;
-      let totalTests = today.tests;
+      const totalRecovered = today.recovered;
+      const totalTests = today.tests;
 
-      let todayRecovered = totalRecovered - yesterdayRecovered;
-      let todayTests = totalTests - yesterdayTests;
+      const todayRecovered = totalRecovered - yesterdayRecovered;
+      const todayTests = totalTests - yesterdayTests;
 
       // worldwise
-      let worldData = {
+      const worldData = {
         todayCases: util.bnNum(all.todayCases, true),
         cases: util.bnNum(all.cases, true),
         todayDeaths: util.bnNum(all.todayDeaths, true),
@@ -134,11 +133,11 @@ exports.index = async (req, res) => {
         affectedCountries: util.bnNum(all.affectedCountries, true),
       };
       // update time
-      let updated = today.updated;
+      let { updated } = today;
       updated = moment(updated).format('LLLL');
 
       // get change percent
-      let changeRate = {
+      const changeRate = {
         todayCases: getPercent(todayCases, yesterdayCases),
         todayDeaths: getPercent(todayDeaths, yesterdayDeaths),
         cases: getPercent(totalCases, yesterdayTotalCases),
@@ -147,7 +146,7 @@ exports.index = async (req, res) => {
         test: getPercent(totalTests, yesterdayTests),
       };
       // change percent translation
-      let changeRateBn = {
+      const changeRateBn = {
         todayCases: util.bnNum(changeRate.todayCases),
         todayDeaths: util.bnNum(changeRate.todayDeaths),
         cases: util.bnNum(changeRate.cases),
@@ -157,7 +156,7 @@ exports.index = async (req, res) => {
       };
 
       // translation to bengali
-      let covidDataBn = {
+      const covidDataBn = {
         todayCases: util.bnNum(todayCases, true),
         todayDeaths: util.bnNum(todayDeaths, true),
         todayRecovered: util.bnNum(todayRecovered),

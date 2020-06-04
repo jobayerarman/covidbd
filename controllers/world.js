@@ -1,9 +1,9 @@
 const track = require('novelcovid');
 const googleNews = require('google-news-json');
+const moment = require('moment');
 
 const util = require('../src/util/util');
 
-const moment = require('moment');
 moment.locale('bn');
 
 const getCovidData = async () => {
@@ -16,8 +16,8 @@ const getCovidData = async () => {
   return data;
 };
 
-let getPercent = (newNum, oldNum, reverse = false) => {
-  let rate = parseFloat(((newNum - oldNum) / oldNum) * 100).toFixed(2) * 1;
+const getPercent = (newNum, oldNum, reverse = false) => {
+  const rate = parseFloat(((newNum - oldNum) / oldNum) * 100).toFixed(2) * 1;
   if (reverse) return rate * -1;
   return rate;
 };
@@ -34,7 +34,7 @@ exports.index = async (req, res) => {
     'bn-BD'
   );
   coronaNews = coronaNews.items.slice(0, 6);
-  let coronaArticles = coronaNews.map((n) => {
+  const coronaArticles = coronaNews.map((n) => {
     return {
       title: n.title,
       published: moment(n.pubDate).fromNow(),
@@ -45,7 +45,7 @@ exports.index = async (req, res) => {
   // latest news of bangladesh
   let latestNews = await googleNews.getNews(googleNews.TOP_NEWS, null, 'bn-BD');
   latestNews = latestNews.items.slice(0, 6);
-  let latestArticles = latestNews.map((n) => {
+  const latestArticles = latestNews.map((n) => {
     return {
       title: n.title,
       published: moment(n.pubDate).fromNow(),
@@ -55,12 +55,12 @@ exports.index = async (req, res) => {
 
   getCovidData()
     .then((result) => {
-      let yesterday = result[0];
-      let today = result[1];
-      let localData = result[2];
+      const yesterday = result[0];
+      const today = result[1];
+      const localData = result[2];
 
       // yesterday
-      let {
+      const {
         todayCases: yesterdayCases,
         cases: yesterdayTotalCases,
         todayDeaths: yesterdayDeaths,
@@ -70,22 +70,22 @@ exports.index = async (req, res) => {
       } = yesterday;
 
       // today
-      let todayCases =
-        today.todayCases == 0 ? yesterday.todayCases : today.todayCases;
-      let todayDeaths =
-        today.todayDeaths == 0 ? yesterday.todayDeaths : today.todayDeaths;
+      const todayCases =
+        today.todayCases === 0 ? yesterday.todayCases : today.todayCases;
+      const todayDeaths =
+        today.todayDeaths === 0 ? yesterday.todayDeaths : today.todayDeaths;
 
-      let totalCases = today.cases;
-      let totalDeaths = today.deaths;
+      const totalCases = today.cases;
+      const totalDeaths = today.deaths;
 
-      let totalRecovered = today.recovered;
-      let totalTests = today.tests;
+      const totalRecovered = today.recovered;
+      const totalTests = today.tests;
 
-      let todayRecovered = totalRecovered - yesterdayRecovered;
-      let todayTests = totalTests - yesterdayTests;
+      const todayRecovered = totalRecovered - yesterdayRecovered;
+      const todayTests = totalTests - yesterdayTests;
 
       // get change percent
-      let changeRate = {
+      const changeRate = {
         todayCases: getPercent(todayCases, yesterdayCases),
         todayDeaths: getPercent(todayDeaths, yesterdayDeaths),
         cases: getPercent(totalCases, yesterdayTotalCases),
@@ -94,7 +94,7 @@ exports.index = async (req, res) => {
         test: getPercent(totalTests, yesterdayTests),
       };
       // change percent translation
-      let changeRateBn = {
+      const changeRateBn = {
         todayCases: util.bnNum(changeRate.todayCases),
         todayDeaths: util.bnNum(changeRate.todayDeaths),
         cases: util.bnNum(changeRate.cases),
@@ -104,7 +104,7 @@ exports.index = async (req, res) => {
       };
 
       // translation to bengali
-      let covidDataBn = {
+      const covidDataBn = {
         todayCases: util.bnNum(todayCases, true),
         todayDeaths: util.bnNum(todayDeaths, true),
         todayRecovered: util.bnNum(todayRecovered),
@@ -117,7 +117,7 @@ exports.index = async (req, res) => {
       };
 
       // bangladesh
-      let bdData = {
+      const bdData = {
         todayCases: util.bnNum(localData.todayCases, true),
         cases: util.bnNum(localData.cases, true),
         todayDeaths: util.bnNum(localData.todayDeaths, true),
@@ -126,7 +126,7 @@ exports.index = async (req, res) => {
       };
 
       // update time
-      let updated = today.updated;
+      let { updated } = today;
       updated = moment(updated).format('LLLL');
 
       res.render('pages/world', {
