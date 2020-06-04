@@ -1,12 +1,9 @@
-'use strict';
-
 const track = require('novelcovid');
-const cron = require('node-cron');
 const fetch = require('@aero/centra');
-const baseURL = 'https://api.thevirustracker.com/free-api';
-
 const writeJsonFile = require('write-json-file');
 const loadJsonFile = require('load-json-file');
+
+const baseURL = 'https://api.thevirustracker.com/free-api';
 
 /**
  * @description Data fetching function
@@ -20,8 +17,8 @@ const fetchJson = (dataToFetch) => fetch(`${baseURL}${dataToFetch}`).json();
  */
 const countryTotal = async () => {
   try {
-    let dataURL = '?countryTotal=BD';
-    let {
+    const dataURL = '?countryTotal=BD';
+    const {
       countrydata: [
         {
           total_cases,
@@ -74,7 +71,7 @@ const countryTotal = async () => {
  */
 const countryTimeline = async () => {
   try {
-    let dataURL = '?countryTimeline=BD';
+    const dataURL = '?countryTimeline=BD';
     let { timelineitems } = await fetchJson(dataURL);
     timelineitems = timelineitems['0'];
     delete timelineitems.stat;
@@ -91,7 +88,7 @@ const countryTimeline = async () => {
  * @description Gets data from API and then saves it in json file
  */
 const saveData = async () => {
-  let jsondata = {};
+  const jsondata = {};
   try {
     jsondata.countrydata = await countryTotal();
     jsondata.timelineitems = await countryTimeline();
@@ -110,16 +107,16 @@ const saveData = async () => {
  * @returns {Promise<array>}
  */
 const dailyCases = async () => {
-  let dailyCases = [];
-  let timelineitems = await countryTimeline();
+  const dataArray = [];
+  const timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
       count: value.new_daily_cases,
     };
-    dailyCases.push(obj);
+    dataArray.push(obj);
   }
-  return dailyCases;
+  return dataArray;
 };
 
 /**
@@ -127,16 +124,16 @@ const dailyCases = async () => {
  * @returns {Promise<array>}
  */
 const totalCases = async () => {
-  let totalCases = [];
-  let timelineitems = await countryTimeline();
+  const dataArray = [];
+  const timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
       count: value.total_cases,
     };
-    totalCases.push(obj);
+    dataArray.push(obj);
   }
-  return totalCases;
+  return dataArray;
 };
 
 /**
@@ -144,16 +141,16 @@ const totalCases = async () => {
  * @returns {Promise<array>}
  */
 const dailyDeaths = async () => {
-  let dailyDeaths = [];
-  let timelineitems = await countryTimeline();
+  const dataArray = [];
+  const timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
       count: value.new_daily_deaths,
     };
-    dailyDeaths.push(obj);
+    dataArray.push(obj);
   }
-  return dailyDeaths;
+  return dataArray;
 };
 
 /**
@@ -161,16 +158,16 @@ const dailyDeaths = async () => {
  * @returns {Promise<array>}
  */
 const totalDeaths = async () => {
-  let totalDeaths = [];
-  let timelineitems = await countryTimeline();
+  const dataArray = [];
+  const timelineitems = await countryTimeline();
   for (let [key, value] of Object.entries(timelineitems)) {
     let obj = {
       date: key,
       count: value.total_deaths,
     };
-    totalDeaths.push(obj);
+    dataArray.push(obj);
   }
-  return totalDeaths;
+  return dataArray;
 };
 
 /**
@@ -178,8 +175,8 @@ const totalDeaths = async () => {
  * @returns {Promise<array>}
  */
 const historicalDailyDeaths = async () => {
-  let data = [];
-  let {
+  const data = [];
+  const {
     timeline: { deaths },
   } = await track.historical.countries({
     country: 'bangladesh',
@@ -200,8 +197,8 @@ const historicalDailyDeaths = async () => {
  * @returns {Promise<array>}
  */
 const historicalDailyRecovered = async () => {
-  let data = [];
-  let {
+  const data = [];
+  const {
     timeline: { recovered },
   } = await track.historical.countries({
     country: 'bangladesh',
