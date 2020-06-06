@@ -1,222 +1,294 @@
 {
   "divisionData": {
     "ঢাকা": {
-      "percent": "৭৯.১৬", "cases": "১১,৭৫০"
+      "percent": "68.8",
+      "cases": "26,970"
     },
     "চট্টগ্রাম": {
-      "percent": "৮.৯৮", "cases": "১৩৩৩"
+      "percent": "17.27",
+      "cases": "6,768"
     },
     "সিলেট": {
-      "percent": "১.৪৮", "cases": "২১৯"
+      "percent": "2.68",
+      "cases": "1,051"
     },
     "রংপুর": {
-      "percent": "২.৫৭", "cases": "৩৮২"
+      "percent": "2.68",
+      "cases": "1,108"
     },
     "খুলনা": {
-      "percent": "১.৮৫", "cases": "২৭৪"
+      "percent": "1.91",
+      "cases": "748"
     },
     "ময়মনসিংহ": {
-      "percent": "৩.৫০", "cases": "৫১৯"
+      "percent": "2.89",
+      "cases": "1,132"
     },
     "বরিশাল": {
-      "percent": "১.০৬", "cases": "১৫৮"
+      "percent": "1.21",
+      "cases": "476"
     },
     "রাজশাহী": {
-      "percent": "১.৪০", "cases": "২০৮"
+      "percent": "2.41",
+      "cases": "946"
     }
   },
   "districtData": {
     "ঢাকা": {
-      "cases": 885, "deaths": "৯৮"
+      "cases": "20,707",
+      "deaths": "৯৮"
     },
     "গাজীপুর": {
-      "cases": 152, "deaths": "০"
+      "cases": "1,150",
+      "deaths": "০"
     },
     "কিশোরগঞ্জ": {
-      "cases": 490, "deaths": "১"
+      "cases": "264",
+      "deaths": "১"
     },
     "মাদারীপুর": {
-      "cases": 206, "deaths": "২"
+      "cases": "196",
+      "deaths": "২"
     },
     "মানিকগঞ্জ": {
-      "cases": 29, "deaths": "০"
+      "cases": "166",
+      "deaths": "০"
     },
     "নারায়ণগঞ্জ": {
-      "cases": 1391, "deaths": "৪০"
+      "cases": "2,460",
+      "deaths": "৪০"
     },
     "মুন্সিগঞ্জ": {
-      "cases": 297, "deaths": "৪"
+      "cases": "980",
+      "deaths": "৪"
     },
     "নরসিংদী": {
-      "cases": 173, "deaths": "১"
+      "cases": "190",
+      "deaths": "১"
     },
     "রাজবাড়ী": {
-      "cases": 27, "deaths": "০"
+      "cases": "90",
+      "deaths": "০"
     },
     "ফরিদপুর": {
-      "cases": 51, "deaths": "০"
+      "cases": "306",
+      "deaths": "০"
     },
     "টাঙ্গাইল": {
-      "cases": 35, "deaths": "৩"
+      "cases": "53",
+      "deaths": "৩"
     },
     "শরীয়তপুর": {
-      "cases": 67, "deaths": "১"
+      "cases": "142",
+      "deaths": "১"
     },
     "গোপালগঞ্জ": {
-      "cases": 78, "deaths": "০"
+      "cases": "266",
+      "deaths": "০"
     },
     "চট্টগ্রাম": {
-      "cases": 553, "deaths": "২"
+      "cases": "2,875",
+      "deaths": "২"
     },
     "কক্সবাজার": {
-      "cases": 139, "deaths": "০"
+      "cases": "969",
+      "deaths": "০"
     },
     "কুমিল্লা": {
-      "cases": 259, "deaths": "৪"
+      "cases": "1,173",
+      "deaths": "৪"
     },
     "ব্রাহ্মণবাড়িয়া": {
-      "cases": 60, "deaths": "২"
+      "cases": "121",
+      "deaths": "২"
     },
     "খাগড়াছড়ি": {
-      "cases": 7, "deaths": "০"
+      "cases": "47",
+      "deaths": "০"
     },
     "লক্ষ্মীপুর": {
-      "cases": 93, "deaths": "১"
+      "cases": "142",
+      "deaths": "১"
     },
     "বান্দরবান": {
-      "cases": 5, "deaths": "০"
+      "cases": "41",
+      "deaths": "০"
     },
     "রাঙ্গামাটি": {
-      "cases": 25, "deaths": "০"
+      "cases": "67",
+      "deaths": "০"
     },
     "নোয়াখালী": {
-      "cases": 89, "deaths": "১"
+      "cases": "838",
+      "deaths": "১"
     },
     "ফেনী": {
-      "cases": 26, "deaths": "০"
+      "cases": "257",
+      "deaths": "০"
     },
     "চাঁদপুর": {
-      "cases": 77, "deaths": "০"
+      "cases": "238",
+      "deaths": "০"
     },
     "মৌলভীবাজার": {
-      "cases": 37, "deaths": "৩"
+      "cases": "100",
+      "deaths": "৩"
     },
     "সুনামগঞ্জ": {
-      "cases": 43, "deaths": "০"
+      "cases": "163",
+      "deaths": "০"
     },
     "হবিগঞ্জ": {
-      "cases": 100, "deaths": "০"
+      "cases": "171",
+      "deaths": "০"
     },
     "সিলেট": {
-      "cases": 39, "deaths": "২"
+      "cases": "617",
+      "deaths": "২"
     },
     "রংপুর": {
-      "cases": 173, "deaths": "১"
+      "cases": "487",
+      "deaths": "১"
     },
     "গাইবান্ধা": {
-      "cases": 26, "deaths": "০"
+      "cases": "60",
+      "deaths": "০"
     },
     "নীলফামারী": {
-      "cases": 43, "deaths": "০"
+      "cases": "138",
+      "deaths": "০"
     },
     "লালমনিরহাট": {
-      "cases": 17, "deaths": "০"
+      "cases": "41",
+      "deaths": "০"
     },
     "কুড়িগ্রাম": {
-      "cases": 41, "deaths": "০"
+      "cases": "74",
+      "deaths": "০"
     },
     "দিনাজপুর": {
-      "cases": 47, "deaths": "০"
+      "cases": "182",
+      "deaths": "০"
     },
     "পঞ্চগড়": {
-      "cases": 11, "deaths": "০"
+      "cases": "52",
+      "deaths": "০"
     },
     "ঠাকুরগাঁও": {
-      "cases": 24, "deaths": "০"
+      "cases": "74",
+      "deaths": "০"
     },
     "খুলনা": {
-      "cases": 23, "deaths": "০"
+      "cases": "125",
+      "deaths": "০"
     },
     "যশোর": {
-      "cases": 89, "deaths": "০"
+      "cases": "159",
+      "deaths": "০"
     },
     "বাগেরহাট": {
-      "cases": 6, "deaths": "০"
+      "cases": "46",
+      "deaths": "০"
     },
     "নড়াইল": {
-      "cases": 15, "deaths": "০"
+      "cases": "30",
+      "deaths": "০"
     },
     "মাগুড়া": {
-      "cases": 22, "deaths": "০"
+      "cases": "37",
+      "deaths": "০"
     },
     "মেহেরপুর": {
-      "cases": 5, "deaths": "১"
+      "cases": "30",
+      "deaths": "১"
     },
     "সাতক্ষীরা": {
-      "cases": 5, "deaths": "০"
+      "cases": "49",
+      "deaths": "০"
     },
     "ঝিনাইদাহ": {
-      "cases": 43, "deaths": "০"
+      "cases": "57",
+      "deaths": "০"
     },
     "কুষ্টিয়া": {
-      "cases": 25, "deaths": "০"
+      "cases": "110",
+      "deaths": "০"
     },
     "চুয়াডাঙ্গা": {
-      "cases": 41, "deaths": "০"
+      "cases": "105",
+      "deaths": "০"
     },
     "ময়মনসিংহ": {
-      "cases": 276, "deaths": "৩"
+      "cases": "511",
+      "deaths": "৩"
     },
     "জামালপুর": {
-      "cases": 113, "deaths": "৩"
+      "cases": "275",
+      "deaths": "৩"
     },
     "নেত্রকোণা": {
-      "cases": 89, "deaths": "০"
+      "cases": "231",
+      "deaths": "০"
     },
     "শেরপুর": {
-      "cases": 41, "deaths": "০"
+      "cases": "115",
+      "deaths": "০"
     },
     "বরগুনা": {
-      "cases": 37, "deaths": "১"
+      "cases": "80",
+      "deaths": "১"
     },
     "ভোলা": {
-      "cases": 11, "deaths": "০"
+      "cases": "58",
+      "deaths": "০"
     },
     "বরিশাল": {
-      "cases": 60, "deaths": "০"
+      "cases": "180",
+      "deaths": "০"
     },
     "পটুয়াখালী": {
-      "cases": 29, "deaths": "১"
+      "cases": "88",
+      "deaths": "১"
     },
     "পিরোজপুর": {
-      "cases": 7, "deaths": "০"
+      "cases": "36",
+      "deaths": "০"
     },
     "ঝালকাঠি": {
-      "cases": 14, "deaths": "০"
+      "cases": "34",
+      "deaths": "০"
     },
     "জয়পুরহাট": {
-      "cases": 56, "deaths": "১"
+      "cases": "171",
+      "deaths": "১"
     },
     "পাবনা": {
-      "cases": 18, "deaths": "১"
+      "cases": "64",
+      "deaths": "১"
     },
     "চাঁপাইনবাবগঞ্জ": {
-      "cases": 15, "deaths": "০"
+      "cases": "64",
+      "deaths": "০"
     },
     "বগুরা": {
-      "cases": 29, "deaths": "০"
+      "cases": "268",
+      "deaths": "০"
     },
     "নাটোর": {
-      "cases": 14, "deaths": "০"
+      "cases": "61",
+      "deaths": "০"
     },
     "নওগাঁ": {
-      "cases": 40, "deaths": "০"
+      "cases": "196",
+      "deaths": "০"
     },
     "সিরাজগঞ্জ": {
-      "cases": 6, "deaths": "০"
+      "cases": "41",
+      "deaths": "০"
     },
     "রাজশাহী": {
-      "cases": 30, "deaths": "২"
+      "cases": "81",
+      "deaths": "২"
     }
   }
 }
