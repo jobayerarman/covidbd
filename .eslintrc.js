@@ -23,9 +23,5 @@ module.exports = {
         "VariableDeclaration": true
       }
     }],
-  },
-  plugins: [
-    "ejs",
-    "html",
-  ]
+  }
 };
