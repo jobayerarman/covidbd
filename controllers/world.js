@@ -80,8 +80,8 @@ exports.index = async (req, res) => {
       const covidDataBn = {
         todayCases: util.bnNum(todayCases, true),
         todayDeaths: util.bnNum(todayDeaths, true),
-        todayRecovered: util.bnNum(todayRecovered),
-        todayTests: util.bnNum(todayTests),
+        todayRecovered: util.bnNum(todayRecovered, true),
+        todayTests: util.bnNum(todayTests, true),
         cases: util.bnNum(totalCases, true),
         deaths: util.bnNum(totalDeaths, true),
         recovered: util.bnNum(today.recovered, true),
