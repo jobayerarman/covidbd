@@ -1,5 +1,4 @@
 const track = require('novelcovid');
-const googleNews = require('google-news-json');
 const moment = require('moment');
 
 const util = require('../src/util/util');
@@ -27,32 +26,6 @@ const getPercent = (newNum, oldNum, reverse = false) => {
  * World page.
  */
 exports.index = async (req, res) => {
-  // latest corona news
-  let coronaNews = await googleNews.getNews(
-    googleNews.SEARCH,
-    '%E0%A6%95%E0%A6%B0%E0%A7%8B%E0%A6%A8%E0%A6%BE%E0%A6%AD%E0%A6%BE%E0%A6%87%E0%A6%B0%E0%A6%BE%E0%A6%B8',
-    'bn-BD'
-  );
-  coronaNews = coronaNews.items.slice(0, 6);
-  const coronaArticles = coronaNews.map((n) => {
-    return {
-      title: n.title,
-      published: moment(n.pubDate).fromNow(),
-      link: n.link,
-    };
-  });
-
-  // latest news of bangladesh
-  let latestNews = await googleNews.getNews(googleNews.TOP_NEWS, null, 'bn-BD');
-  latestNews = latestNews.items.slice(0, 6);
-  const latestArticles = latestNews.map((n) => {
-    return {
-      title: n.title,
-      published: moment(n.pubDate).fromNow(),
-      link: n.link,
-    };
-  });
-
   getCovidData()
     .then((result) => {
       const yesterday = result[0];
@@ -144,10 +117,6 @@ exports.index = async (req, res) => {
 
         // updated time
         updated,
-
-        // google news
-        coronaArticles,
-        latestArticles,
       });
     })
     .catch((err) => console.error(err));

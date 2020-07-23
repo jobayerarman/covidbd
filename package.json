@@ -23,7 +23,6 @@
     "compression": "^1.7.4",
     "ejs": "^2.7.4",
     "express": "^4.15.2",
-    "google-news-json": "^1.0.3",
     "load-json-file": "^6.2.0",
     "moment": "^2.27.0",
     "node-cron": "^2.0.3",
