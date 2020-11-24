@@ -58,9 +58,6 @@ const countryTotal = async () => {
       danger_rank: total_danger_rank,
     };
   } catch (e) {
-    setError(
-      'Something went wrong when contacting the API, please try again later'
-    );
     console.log(e);
   }
 };
@@ -77,9 +74,6 @@ const countryTimeline = async () => {
     delete timelineitems.stat;
     return timelineitems;
   } catch (e) {
-    setError(
-      'Something went wrong when contacting the API, please try again later'
-    );
     console.log(e);
   }
 };
@@ -95,9 +89,6 @@ const saveData = async () => {
 
     await writeJsonFile('./data/data-virustracker.json', jsondata);
   } catch (e) {
-    setError(
-      'Something went wrong when contacting the API, please try again later'
-    );
     console.log(e);
   }
 };
@@ -109,8 +100,8 @@ const saveData = async () => {
 const dailyCases = async () => {
   const dataArray = [];
   const timelineitems = await countryTimeline();
-  for (let [key, value] of Object.entries(timelineitems)) {
-    let obj = {
+  for (const [key, value] of Object.entries(timelineitems)) {
+    const obj = {
       date: key,
       count: value.new_daily_cases,
     };
@@ -126,8 +117,8 @@ const dailyCases = async () => {
 const totalCases = async () => {
   const dataArray = [];
   const timelineitems = await countryTimeline();
-  for (let [key, value] of Object.entries(timelineitems)) {
-    let obj = {
+  for (const [key, value] of Object.entries(timelineitems)) {
+    const obj = {
       date: key,
       count: value.total_cases,
     };
@@ -143,8 +134,8 @@ const totalCases = async () => {
 const dailyDeaths = async () => {
   const dataArray = [];
   const timelineitems = await countryTimeline();
-  for (let [key, value] of Object.entries(timelineitems)) {
-    let obj = {
+  for (const [key, value] of Object.entries(timelineitems)) {
+    const obj = {
       date: key,
       count: value.new_daily_deaths,
     };
@@ -160,8 +151,8 @@ const dailyDeaths = async () => {
 const totalDeaths = async () => {
   const dataArray = [];
   const timelineitems = await countryTimeline();
-  for (let [key, value] of Object.entries(timelineitems)) {
-    let obj = {
+  for (const [key, value] of Object.entries(timelineitems)) {
+    const obj = {
       date: key,
       count: value.total_deaths,
     };
@@ -182,8 +173,8 @@ const historicalDailyDeaths = async () => {
     country: 'bangladesh',
     days: 30,
   });
-  for (let [key, value] of Object.entries(deaths)) {
-    let obj = {
+  for (const [key, value] of Object.entries(deaths)) {
+    const obj = {
       date: key,
       count: value,
     };
@@ -204,8 +195,8 @@ const historicalDailyRecovered = async () => {
     country: 'bangladesh',
     days: 30,
   });
-  for (let [key, value] of Object.entries(recovered)) {
-    let obj = {
+  for (const [key, value] of Object.entries(recovered)) {
+    const obj = {
       date: key,
       count: value,
     };
