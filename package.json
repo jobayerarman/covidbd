@@ -18,13 +18,13 @@
     "url": "https://git.heroku.com/covidbd.git"
   },
   "dependencies": {
-    "@aero/centra": "^1.0.4",
+    "@aero/centra": "^1.0.6",
     "bengali-number": "^1.0.4",
     "compression": "^1.7.4",
     "ejs": "^2.7.4",
     "express": "^4.15.2",
     "load-json-file": "^6.2.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.1",
     "node-cron": "^2.0.3",
     "node-gnews": "^1.0.3",
     "novelcovid": "^2.2.0",
@@ -32,12 +32,12 @@
     "write-json-file": "^4.3.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.10",
+    "browser-sync": "^2.26.13",
     "del": "^5.1.0",
-    "eslint": "^7.5.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -53,7 +53,7 @@
     "gulp-uglify-es": "^2.0.0",
     "gulp-util": "^3.0.8",
     "lazypipe": "^1.0.2",
-    "prettier": "2.0.5",
+    "prettier": "^2.2.0",
     "request": "^2.81.0",
     "tape": "^5.0.1"
   },
