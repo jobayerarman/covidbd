@@ -37,12 +37,12 @@ const getPercent = (newNum, oldNum, reverse = false) => {
  */
 exports.index = async (req, res) => {
   // virustracker data
-  const timelineDailyCases = await virusTracker.dailyCases();
-  const timelineTotalCases = await virusTracker.totalCases();
-  const timelineDailyDeaths = await virusTracker.dailyDeaths();
-  const timelineTotalDeaths = await virusTracker.totalDeaths();
-  const historicalDailyDeaths = await virusTracker.historicalDailyDeaths();
-  const historicalDailyRecovered = await virusTracker.historicalDailyRecovered();
+  const timelineDailyCases = [];
+  const timelineTotalCases = [];
+  const timelineDailyDeaths = [];
+  const timelineTotalDeaths = [];
+  const historicalDailyDeaths = [];
+  const historicalDailyRecovered = [];
 
   // division and district data
   const divisions = [];
