@@ -22,7 +22,7 @@
     "bengali-number": "^1.0.4",
     "compression": "^1.7.4",
     "ejs": "^2.7.4",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "load-json-file": "^6.2.0",
     "moment": "^2.29.1",
     "node-cron": "^2.0.3",
